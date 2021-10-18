@@ -170,8 +170,8 @@ const routes = [
 
 | 声明式编程                         | 编程式编程           |
 | -------------------------------- | ------------------- |
-| <router-link :to="..."/>         | router.push(...)    |
-| <router-link :to="..." replace/> | Router.replace(...) |
+| <router-link :to="/home"/>         | router.push(...)    |
+| <router-link :to="/home" replace/> | Router.replace(...) |
 
 
 
