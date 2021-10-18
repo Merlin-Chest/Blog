@@ -202,7 +202,6 @@ arr.forEach(function(item,index,a){
 //map,filter,eveny,some,find,findIndex 等基于forEach
 ```
 
-![ES6%E5%9F%BA%E7%A1%80%20e801993d1bd1419aa3e7e3d04214e020/IMG_20210706_170517.jpg](ES6%E5%9F%BA%E7%A1%80%20e801993d1bd1419aa3e7e3d04214e020/IMG_20210706_170517.jpg)
 
 - join(data)：用data将数组连接成字符串
 
