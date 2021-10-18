@@ -7,52 +7,52 @@ module.exports = {
     // 查看下方
   },
   themeConfig: {
-    navbar: [
-      {
-        text: "前端基础",
-        link: "/base/",
-        children: [
-          "/base/Javascript.md",
-          "/base/Typescript.md",
-          "/base/ES6.md",
-          "/base/AJAX.md",
-          "/base/Canvas基础.md",
-          {
-            text: "专题",
-            link: "/base/subject/",
-            children: ["/base/subject/异步专题.md"],
-          },
-        ],
-      },
-      {
-        text: "Vue",
-        link: "/vue/",
-        children: [
-          "/vue/vue基础.md",
-          "/vue/vue-router.md",
-          {
-            text: "原理",
-            link: "/vue/principle/",
-            children: ["/vue/principle/数据响应式.md"],
-          },
-        ],
-      },
-      {
-        text: "工具插件",
-        link: "/tools/",
-        children: ["/tools/webpack.md", "/tools/axios.md"],
-      },
-      {
-        text: "后端基础",
-        link: "/end/",
-        children: [
-          "/end/Koa.md",
-          "/end/Nodejs.md",
-          "/end/即时通信.md",
-          "/end/模版引擎.md",
-        ],
-      },
-    ],
+    // navbar: [
+    //   {
+    //     text: "前端基础",
+    //     link: "/base/",
+    //     children: [
+    //       "/base/Javascript.md",
+    //       "/base/Typescript.md",
+    //       "/base/ES6.md",
+    //       "/base/AJAX.md",
+    //       "/base/Canvas基础.md",
+    //       {
+    //         text: "专题",
+    //         link: "/base/subject/",
+    //         children: ["/base/subject/异步专题.md"],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     text: "Vue",
+    //     link: "/vue/",
+    //     children: [
+    //       "/vue/vue基础.md",
+    //       "/vue/vue-router.md",
+    //       {
+    //         text: "原理",
+    //         link: "/vue/principle/",
+    //         children: ["/vue/principle/数据响应式.md"],
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     text: "工具插件",
+    //     link: "/tools/",
+    //     children: ["/tools/webpack.md", "/tools/axios.md"],
+    //   },
+    //   {
+    //     text: "后端基础",
+    //     link: "/end/",
+    //     children: [
+    //       "/end/Koa.md",
+    //       "/end/Nodejs.md",
+    //       "/end/即时通信.md",
+    //       "/end/模版引擎.md",
+    //     ],
+    //   },
+    // ],
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: "https://gitee.com/merlin218",
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
