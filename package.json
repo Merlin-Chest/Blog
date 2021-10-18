@@ -1,0 +1,14 @@
+{
+  "name": "vuepress-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "merlin <863176846@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev docs --config ./docs/.vuepress/config.js",
+    "build": "vuepress build docs --config ./docs/.vuepress/config.js"
+  },
+  "devDependencies": {
+    "vuepress-vite": "^2.0.0-beta.26"
+  }
+}
