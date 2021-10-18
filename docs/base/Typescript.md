@@ -108,7 +108,7 @@ tsc -p ./configs/ts.json
     
     - 默认情况下null和undefined是所有类型的子类型
     
-    ```tsx
+    ```typescript
     let a:number;
     a = null;
     ```
@@ -116,7 +116,7 @@ tsc -p ./configs/ts.json
     - 变量声明了，但是未赋值，那么变量值为undefined，如果没有标记类型的话，默认类型是any
     - 因为 null 和 undefined 都是其它类型的子类型，所以默认情况下会有一些隐藏的问题
     
-    ```tsx
+    ```typescript
     let a:number; 
     a = null; // ok（实际运行是有问题的） 
     a.toFixed(1);
@@ -125,7 +125,7 @@ tsc -p ./configs/ts.json
     > 技巧：tsconfig.json 指定strictNullChecks配置为true，可以有效检测null或者undefined，避免常见问题，也可以是我们程序编写更加严谨
     > 
     
-    ```tsx
+    ```typescript
     let ele = document.querySelector('div'); // 获取元素的方法返回的类型可能会包含 null，所以最好是先进行必要的判断，再进行操作 
     if (ele) {ele.style.display = 'none'; }
     ```
@@ -134,7 +134,7 @@ tsc -p ./configs/ts.json
     - 内置对象类型
         - 在 JavaScript 中，有许多的内置对象，比如：Object、Array、Date……，我们可以通过对象的 构造函数 或者 类 来进行标注
         
-        ```tsx
+        ```typescript
         let a: object = {}; 
         // 数组这里标注格式有点不太一样，后面我们在数组标注中进行详细讲解 
         let arr: Array<number> = [1,2,3]; 
@@ -144,7 +144,7 @@ tsc -p ./configs/ts.json
     - 自定义对象类型
         - 字面量标注：方便，但不利于维护
         
-        ```tsx
+        ```typescript
         let a: {username: string; age: number} = { username: 'zMouse', age: 35 };
         // ok 
         a.username; 
@@ -155,7 +155,7 @@ tsc -p ./configs/ts.json
         
         - 接口：复用性高，但接口只能作为类型标注使用，不能作为具体值
         
-        ```tsx
+        ```typescript
         // 这里使用了 interface 关键字，在后面的接口章节中会详细讲解 
         interface Person { username: string; age: number; };
         let a: Person = { username: 'zMouse', age: 35 };
@@ -168,7 +168,7 @@ tsc -p ./configs/ts.json
         
         - 类与构造函数：功能强大，定义实体的同时也定义类对应的类型，但复杂
         
-        ```tsx
+        ```typescript
         class Person{
         	constructor(public username:string,public age:number){
         		
@@ -179,7 +179,7 @@ tsc -p ./configs/ts.json
         
         - 拓展：包装对象
         
-        ```tsx
+        ```typescript
         let a: string; 
         a = '1'; 
         // error String有的，string不一定有（对象有的，基础类型不一定有） 
@@ -195,7 +195,7 @@ tsc -p ./configs/ts.json
     - 数组存储的类型必须一致，所以在标注数组类型的时候，同时要标注数组中存储的数据类型
         - 使用泛型标注
         
-        ```tsx
+        ```typescript
         // <number> 表示数组中存储的数据类型，泛型具体概念后续会讲 
         let arr1: Array<number> = []; 
         
@@ -207,7 +207,7 @@ tsc -p ./configs/ts.json
         
         - 简单标注
         
-        ```tsx
+        ```typescript
         let arr2: string[] = []; 
         
         // ok 
@@ -221,7 +221,7 @@ tsc -p ./configs/ts.json
         - 初始化数据的个数以及对应位置标注类型必须一致
         - 越界数据必须是元组标注中的类型之一（标注越界数据可以不用对应顺序 - 联合类型）
         
-        ```tsx
+        ```typescript
         let data1: [string, number] = ['开课吧', 100]; 
         
         // ok 
@@ -236,7 +236,7 @@ tsc -p ./configs/ts.json
 - 枚举类型
     - 枚举的作用组织收集一组关联数据的方式，通过枚举我们可以给一组有关联意义的数据赋予一些友好的名字
     
-    ```tsx
+    ```typescript
     enum HTTP_CODE { 
     	OK = 200, 
     	NOT_FOUND = 404, 
@@ -260,7 +260,7 @@ tsc -p ./configs/ts.json
     - 枚举值为只读（常量），初始化后不可修改
     - 字符串类型枚举：枚举类型的值，也可以是字符串类型
     
-    ```tsx
+    ```typescript
     enum URLS { 
     	USER_REGISETER = '/user/register', 
     	USER_LOGIN = '/user/login', 
@@ -272,7 +272,7 @@ tsc -p ./configs/ts.json
 - 无值类型
     - 表示没有任何数据的类型，通常用于标注无返回值函数的返回值类型，函数默认标注类型为： void
     
-    ```tsx
+    ```typescript
     function fn():void { 
     	// 没有 return 或者 return undefined 
     }
@@ -286,7 +286,7 @@ tsc -p ./configs/ts.json
 - Never类型
     - 当一个函数永远不可能执行 return 的时候，返回的就是 never ，与 void 不同， void 是执行了return ， 只是没有值， never 是不会执行 return ，比如抛出错误，导致函数终止执行
     
-    ```tsx
+    ```typescript
     function fn(): never {
     	 throw new Error('error'); 
     }
@@ -311,7 +311,7 @@ tsc -p ./configs/ts.json
 - 函数类型
     - 函数也有自己的类型标注格式
     
-    ```tsx
+    ```typescript
     函数名称( 参数1: 类型, 参数2: 类型... ): 返回值类型;
     function add(x: number, y: number): number { return x + y; }
     ```
@@ -321,14 +321,14 @@ tsc -p ./configs/ts.json
 
 对复杂的对象类型进行标注的一种方式，或者给其它代码定义一种契约（比如：类）
 
-```tsx
+```typescript
 interface Point { x: number; y: number; }
 let p1: Point = { x: 100, y: 100 };
 ```
 
 - 可选属性（？）
 
-```tsx
+```typescript
 interface Point {
  x: number;
  y: number;
@@ -338,14 +338,14 @@ interface Point {
 
 - 只读属性（readonly）：该属性除了初始化以外，是不能被再次赋值的
 
-```tsx
+```typescript
 interface Point { readonly x: number; readonly y: number; }
 ```
 
 - 任意属性：通过索引类型来实现
     - 数字类型索引
     
-    ```tsx
+    ```typescript
     interface Point {
      x: number;
      y: number;
@@ -355,7 +355,7 @@ interface Point { readonly x: number; readonly y: number; }
     
     - 字符串索引类型
     
-    ```tsx
+    ```typescript
     interface Point {
      x: number;
      y: number;
@@ -366,7 +366,7 @@ interface Point { readonly x: number; readonly y: number; }
     - 数字索引是字符串索引的子类型
         - ⚠️  ：索引签名参数类型必须为 string 或 number 之一，但两者可同时出现
         
-        ```tsx
+        ```typescript
         interface Point {
          [prop1: string]: string;
          [prop2: number]: string; 
@@ -375,7 +375,7 @@ interface Point { readonly x: number; readonly y: number; }
         
         - ⚠️  ：当同时存在数字类型索引和字符串类型索引的时候，数字类型的值类型必须是字符串类型的值类型或子类型
         
-        ```tsx
+        ```typescript
         interface Point1 {
          [prop1: string]: string;
          [prop2: number]: number; // 错误 
@@ -388,7 +388,7 @@ interface Point { readonly x: number; readonly y: number; }
         
     - 使用接口描述函数
     
-    ```tsx
+    ```typescript
     interface IFunc {
      (a: string): string; 
     }
@@ -399,7 +399,7 @@ interface Point { readonly x: number; readonly y: number; }
     > 
     - 将接口合并：多个同名的接口合并成一个接口
         
-        ```tsx
+        ```typescript
         interface Box {
          height: number;
          width: number; 
@@ -417,7 +417,7 @@ interface Point { readonly x: number; readonly y: number; }
 
 - 联合类型：联合类型也可以称为多选类型，当我们希望标注一个变量为多个类型之一时可以选择联合类型标注，或的关系
 
-```tsx
+```typescript
 function css(ele: Element, attr: string, value: string|number) {
  // ... 
 }
@@ -433,7 +433,7 @@ if (box) {
 
 - 交叉类型：也称为合并类型，可以把多种类型合并到一起成为一种新的类型，并且 的关系
 
-```tsx
+```typescript
 interface o1 {
 	x: number,
   y: string
@@ -456,7 +456,7 @@ http://www.typescriptlang.org/docs/handbook/compiler-options.html
 
 - 字面量类型：有的时候，我们希望标注的不是某个类型，而是一个固定值，就可以使用字面量类型，配合联合类型会更有用
 
-```tsx
+```typescript
 function setPosition(ele: Element, direction: 'left' | 'top' | 'right' | 'bottom') {
  // ... 
 }
@@ -468,7 +468,7 @@ box && setDirection(box, 'hehe');
 
 - 类型别名：有的时候类型标注比较复杂，这个时候我们可以类型标注起一个相对简单的名字
 
-```tsx
+```typescript
 type dir = 'left' | 'top' | 'right' | 'bottom'; 
 function setPosition(ele: Element, direction: dir) {
  // ... 
@@ -477,7 +477,7 @@ function setPosition(ele: Element, direction: dir) {
 
 - 使用类型别名定义函数类型：使用类型别名定义函数类型，和接口有点不太相同
 
-```tsx
+```typescript
 type callback = (a: string) => string; 
 let fn: callback = function(a) {}; 
 
@@ -507,7 +507,7 @@ interface 与 type 的区别
     - 设置函数默认参数值
     - 返回函数值
     
-    ```tsx
+    ```typescript
     // 自动推断 x 为 number 
     let x = 1;
     // 不能将类型“"a"”分配给类型“number” 
@@ -520,7 +520,7 @@ interface 与 type 的区别
     
     有的时候，我们可能标注一个更加精确的类型（缩小类型标注范围）
     
-    ```tsx
+    ```typescript
     let img = document.querySelector('#img');
     
     //类型断言
@@ -538,7 +538,7 @@ interface 与 type 的区别
     - 参数
     - 返回值
     
-    ```tsx
+    ```typescript
     function fn(a:string):string {}
     let fn:(a:string) => string = function(a){}
     
@@ -553,7 +553,7 @@ interface 与 type 的区别
     
 - 可选参数（?）
 
-```tsx
+```typescript
 
 let div = document.querySelector('div');
 function css(el:HTMLElement,attr:string,value?:string){
@@ -569,7 +569,7 @@ div && css(div,'width');
     - 有默认值的参数也是可选的
     - 设置了默认值的参数可以根据值自动推导类型
     
-    ```tsx
+    ```typescript
     function sort(items:Array<any>,order = 'desc'){}
     
     sort([1,2,3]);
@@ -583,7 +583,7 @@ div && css(div,'width');
     剩余参数是一个数组，标注时一定要注意
     
 
-```tsx
+```typescript
 interface IObj{
     [key:any]:any;
 }
@@ -598,7 +598,7 @@ let newObj = merge({x:1},{y:2},{z:3});
 
 - 普通函数
 
-```tsx
+```typescript
 interface T{
     a:number;
     fn:(x:number) => void
@@ -623,7 +623,7 @@ let obj2:T = {
 
 - 箭头函数：this是固定的，取决于标注
 
-```tsx
+```typescript
 interface T{
     a:number;
     fn:(x:number)=>void
@@ -641,7 +641,7 @@ let obj2:T = {
 
 ### 函数重载
 
-```tsx
+```typescript
 function showOrHide(ele:HTMLElement,attr:string,value:'block'|'none'|number){
   //
 }
@@ -657,7 +657,7 @@ if(div){
 
 如下：
 
-```tsx
+```typescript
 function showOrHide(ele:HTMLElement,attr:'display',value:'block'|'none');
 function showOrHide(ele:HTMLElement,attr:'opacity',value:number);
 function showOrHide(ele:HTMLElement,attr:any,value:any){
@@ -675,7 +675,7 @@ if(div){
 
 - 重载函数类型只需要定义结构，不需要实体，类似接口
 
-```tsx
+```typescript
 interface PlainObject{
     [key:string]:string|number;
 }
@@ -719,7 +719,7 @@ if(div){
         - 构造函数不允许有return和返回值类型标注（因为要返回实例化对象）
     - 成员属性定义 & 成员方法
     
-    ```tsx
+    ```typescript
     class User{
       username:string;
       age:number;
@@ -744,7 +744,7 @@ if(div){
         - ts 提供了一个简化操作：给构造函数参数添加修饰符来直接生成成员属性
             - public 就是类的默认修饰符，表示该成员可以在任何地方进行读写操作
             
-            ```tsx
+            ```typescript
             class User {
              constructor( public id: number, public username: string ) {
                // 可以省略初始化赋值
@@ -761,7 +761,7 @@ if(div){
     - 继承
         - super关键字
         
-        ```tsx
+        ```typescript
         class VIP extends User{
           constructor(username:string,id:number,public score: number){
         		super(username,id);

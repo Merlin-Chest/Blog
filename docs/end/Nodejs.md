@@ -19,7 +19,7 @@ Tags: nodejs
 
 初步感受Node.js
 
-```
+```javascript
 //引入http模块
 let http = require("http");
 //创建一个服务器
@@ -119,33 +119,33 @@ serve.listen(3000);
         
         home.js执行文件
         
-        ```jsx
+        ```javascript
         //通过require来引入
         require("./aModule"); //注意一定要有"./"，文件后缀可加可不加。
         ```
         
         amodule.js文件
         
-        ```jsx
+        ```javascript
         console.log("我是amodule模块111");
         ```
         
     - 引入文件夹形式模块
         - home.js执行文件
         
-        ```jsx
+        ```javascript
         require("./aModuledir"); //必须加"./"
         ```
         
         aModuleDir里的index.js文件,会自动查找文件夹下的index.js文件执行
         
-        ```jsx
+        ```javascript
         console.log("我是aModule模块文件夹");
         ```
         
         - 当然也可以配置默认启动文件，在文件夹内新建package.json来指定执行文件
         
-        ```jsx
+        ```javascript
         {
           "name":"aModule",
           "version":"1.0.0",
@@ -157,7 +157,7 @@ serve.listen(3000);
     
     通过module.exports 导出； ___dirname  , __filename
     
-    ```
+    ```javascript
     module.exports = {
         a:"我是a的值",
         b(){
@@ -168,7 +168,7 @@ serve.listen(3000);
     
     引入导出文件
     
-    ```
+    ```javascript
     let mymodule = require("bModule");
     console.log(mymodule.a);
     mymodule.b();
@@ -229,7 +229,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
     - 文件读取：
         - 异步读取
         
-        ```jsx
+        ```javascript
         let fs = require("fs");
         fs.readFile("1.txt",(err,data)=>{
             if(err){
@@ -241,7 +241,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
         - 同步读取文件
         
-        ```jsx
+        ```javascript
         let fs = require("fs");
         let res = fs.readFileSync("1.txt");
         console.log(res.toString());
@@ -249,7 +249,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 文件写入：
         
-        ```jsx
+        ```javascript
         let fs = require("fs");
         **//flag配置  "a":追加写入，"w":写入，"r":读取**
         fs.writeFile("2.txt","我是要写入的内容",{flag:"w"},err=>{
@@ -262,7 +262,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 文件删除
         
-        ```jsx
+        ```javascript
         fs.unlink("2.txt",err=>{
             if(err){
                 return console.log(err);
@@ -274,7 +274,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
     - 复制文件
         - 先读取文件再写入文件
         
-        ```jsx
+        ```javascript
         function mycopy(src,dest){
            fs.writeFileSync(dest,fs.readFileSync(src));
         }
@@ -283,7 +283,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 修改文件名，目录也可以通过rename来操作
         
-        ```jsx
+        ```javascript
         fs.rename("1.txt","5.txt",function (err) {
             if(err){
                 console.log(err);
@@ -295,7 +295,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 判断文件是否存在
         
-        ```jsx
+        ```javascript
         fs.exists("4.txt",function (exists) {
             console.log(exists);
         })
@@ -303,7 +303,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 获取文件或者目录的详细信息
         
-        ```jsx
+        ```javascript
         fs.stat("index.html",(err,stat)=>{
         	if(err){
         		return console.log(err)
@@ -317,7 +317,7 @@ NPM(Node Package Manager)  官网的地址是 [npm官网](https://www.npmjs.com/
         
     - 删除非空目录
         
-        ```jsx
+        ```javascript
         function removeDir(path) {
             //读取目录
             let data = fs.readdirSync(path)

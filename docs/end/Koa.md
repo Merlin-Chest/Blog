@@ -39,7 +39,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
     
 - 一个简单的koa服务器
   
-    ```
+    ```javascript
      const Koa = require('koa');
      const app = new Koa();
      
@@ -53,7 +53,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
 - Koa 利用中间件 控制"上游"，调用"下游“；
     - koa是包含一组中间件函数的对象；可以将app.use里的函数理解成中间件
       
-        ```
+        ```javascript
          //这里的middleWare函数就是一个中间件
          let middleWare = async (ctx,next)=>{
              console.log("first middleWare");
@@ -159,7 +159,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
     
 - 使用koa-static
   
-    ```
+    ```javascript
      const static = require("koa-static");
      app.use(static(__dirname+"/static")) //加载静态文件的目录
     ```

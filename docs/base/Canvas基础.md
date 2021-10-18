@@ -16,7 +16,7 @@ Tags: HTML, JavaScript
 </canvas>
 ```
 
-```jsx
+```javascript
 //在页面渲染后再进行获取，可以写在一个函数中，onLoad时调用
 //定位当前canvas标签
 const canvas = document.getElementById('canvas');

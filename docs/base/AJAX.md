@@ -22,13 +22,13 @@ Tags: AJAX
 
 - 创建对象
 
-```jsx
+```javascript
 let xhr = new XMLHttpRequest();
 ```
 
 - 配置参数
     
-    ```jsx
+    ```javascript
     xhr.open(string method,string url,boolean async);
     ```
     
@@ -42,14 +42,14 @@ let xhr = new XMLHttpRequest();
         - 请求配置参数与数据的设置
             - 动态路由
             
-            ```jsx
+            ```javascript
             let itemId = 1;
             xhr.open('get',`/item/${itemId}`);
             ```
             
             - queryString
             
-            ```jsx
+            ```javascript
             let page = 1;
             let limit = 5;
             xhr.open('get',`/items?page=${page}&limit=${limit}`)
@@ -61,7 +61,7 @@ let xhr = new XMLHttpRequest();
     
 - 发送请求
 
-```jsx
+```javascript
 xhr.send();
 ```
 
@@ -93,7 +93,7 @@ xhr.send();
 
 对象的形式进行请求
 
-```jsx
+```javascript
 fetch('请求的链接',{
 		method:'get',
 		...各种参数

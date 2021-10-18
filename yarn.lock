@@ -28,14 +28,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@types/debug@^4.1.7":
+"@types/debug@^4.1.5", "@types/debug@^4.1.7":
   version "4.1.7"
   resolved "https://registry.nlark.com/@types/debug/download/@types/debug-4.1.7.tgz?cache=0&sync_timestamp=1629707134396&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fdebug%2Fdownload%2F%40types%2Fdebug-4.1.7.tgz#7cc0ea761509124709b8b2d1090d8f6c17aadb82"
   integrity sha1-fMDqdhUJEkcJuLLRCQ2PbBeq24I=
   dependencies:
     "@types/ms" "*"
 
-"@types/fs-extra@^9.0.12":
+"@types/fs-extra@^9.0.1", "@types/fs-extra@^9.0.12":
   version "9.0.13"
   resolved "https://registry.nlark.com/@types/fs-extra/download/@types/fs-extra-9.0.13.tgz#7594fbae04fe7f1918ce8b3d213f74ff44ac1f45"
   integrity sha1-dZT7rgT+fxkYzos9IT90/0SsH0U=
@@ -170,7 +170,7 @@
     "@vue/compiler-ssr" "3.2.20"
     "@vue/shared" "3.2.20"
 
-"@vue/shared@3.2.20", "@vue/shared@^3.2.3":
+"@vue/shared@3.2.20", "@vue/shared@^3.0.3", "@vue/shared@^3.2.3":
   version "3.2.20"
   resolved "https://registry.npmmirror.com/@vue/shared/download/@vue/shared-3.2.20.tgz?cache=0&sync_timestamp=1633712593357&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40vue%2Fshared%2Fdownload%2F%40vue%2Fshared-3.2.20.tgz#53746961f731a8ea666e3316271e944238dc31db"
   integrity sha1-U3RpYfcxqOpmbjMWJx6UQjjcMds=
@@ -336,6 +336,13 @@
     "@vuepress/utils" "2.0.0-beta.25"
     vue "^3.2.3"
 
+"@vuepress/shared@2.0.0-alpha.1":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.nlark.com/@vuepress/shared/download/@vuepress/shared-2.0.0-alpha.1.tgz?cache=0&sync_timestamp=1630255080226&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vuepress%2Fshared%2Fdownload%2F%40vuepress%2Fshared-2.0.0-alpha.1.tgz#92e4f95056351c22a07e62373753bad4d7142979"
+  integrity sha1-kuT5UFY1HCKgfmI3N1O61NcUKXk=
+  dependencies:
+    "@vue/shared" "^3.0.3"
+
 "@vuepress/shared@2.0.0-beta.25":
   version "2.0.0-beta.25"
   resolved "https://registry.nlark.com/@vuepress/shared/download/@vuepress/shared-2.0.0-beta.25.tgz?cache=0&sync_timestamp=1630255080226&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vuepress%2Fshared%2Fdownload%2F%40vuepress%2Fshared-2.0.0-beta.25.tgz#3d1915e605a7a569d78f888a0242afc883ea7759"
@@ -383,6 +390,23 @@
     hash-sum "^2.0.0"
     ora "^5.4.1"
     upath "^2.0.1"
+
+"@vuepress/utils@^2.0.0-alpha.1":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.nlark.com/@vuepress/utils/download/@vuepress/utils-2.0.0-alpha.1.tgz?cache=0&sync_timestamp=1630255100127&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vuepress%2Futils%2Fdownload%2F%40vuepress%2Futils-2.0.0-alpha.1.tgz#e68f466408e70680d9ff8c561311d10a0a813b0a"
+  integrity sha1-5o9GZAjnBoDZ/4xWExHRCgqBOwo=
+  dependencies:
+    "@types/debug" "^4.1.5"
+    "@types/fs-extra" "^9.0.1"
+    "@types/hash-sum" "^1.0.0"
+    "@vuepress/shared" "2.0.0-alpha.1"
+    chalk "^4.1.0"
+    debug "^4.2.0"
+    fs-extra "^9.0.1"
+    globby "^11.0.1"
+    hash-sum "^2.0.0"
+    ora "^5.1.0"
+    upath "^1.2.0"
 
 "@vueuse/core@^6.0.0":
   version "6.5.3"
@@ -435,6 +459,11 @@ array-union@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/array-union/download/array-union-2.1.0.tgz?cache=0&sync_timestamp=1614624407140&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Farray-union%2Fdownload%2Farray-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha1-t5hCCtvrHego2ErNii4j0+/oXo0=
+
+at-least-node@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/at-least-node/download/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
+  integrity sha1-YCzUtG6EStTv/JKoARo8RuAjjcI=
 
 autoprefixer@^10.3.1:
   version "10.3.7"
@@ -589,7 +618,7 @@ csstype@^2.6.8:
   resolved "https://registry.nlark.com/csstype/download/csstype-2.6.18.tgz?cache=0&sync_timestamp=1631540709509&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcsstype%2Fdownload%2Fcsstype-2.6.18.tgz#980a8b53085f34af313410af064f2bd241784218"
   integrity sha1-mAqLUwhfNK8xNBCvBk8r0kF4Qhg=
 
-debug@^4.3.2:
+debug@^4.2.0, debug@^4.3.2:
   version "4.3.2"
   resolved "https://registry.nlark.com/debug/download/debug-4.3.2.tgz?cache=0&sync_timestamp=1625374675284&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdebug%2Fdownload%2Fdebug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
   integrity sha1-8KScGKyHeeMdSgxgKd+3aHPHQos=
@@ -808,6 +837,16 @@ fs-extra@^10.0.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
+fs-extra@^9.0.1:
+  version "9.1.0"
+  resolved "https://registry.nlark.com/fs-extra/download/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
+  integrity sha1-WVRGDHZKjaIJS6NVS/g55rmnyG0=
+  dependencies:
+    at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
 fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.npm.taobao.org/fsevents/download/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
@@ -830,7 +869,7 @@ glob-parent@^5.1.2, glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
-globby@^11.0.4:
+globby@^11.0.1, globby@^11.0.4:
   version "11.0.4"
   resolved "https://registry.nlark.com/globby/download/globby-11.0.4.tgz?cache=0&sync_timestamp=1629801109090&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fglobby%2Fdownload%2Fglobby-11.0.4.tgz#2cbaff77c2f2a62e71e9b2813a67b97a3a3001a5"
   integrity sha1-LLr/d8Lypi5x6bKBOme5ejowAaU=
@@ -1112,7 +1151,7 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-ora@^5.4.1:
+ora@^5.1.0, ora@^5.4.1:
   version "5.4.1"
   resolved "https://registry.nlark.com/ora/download/ora-5.4.1.tgz?cache=0&sync_timestamp=1631556513877&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fora%2Fdownload%2Fora-5.4.1.tgz#1b2678426af4ac4a509008e5e4ac9e9959db9e18"
   integrity sha1-GyZ4Qmr0rEpQkAjl5KyemVnbnhg=
@@ -1366,6 +1405,11 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/universalify/download/universalify-2.0.0.tgz?cache=0&sync_timestamp=1603179967633&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Funiversalify%2Fdownload%2Funiversalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
   integrity sha1-daSYTv7cSwiXXFrrc/Uw0C3yVxc=
+
+upath@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/upath/download/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
+  integrity sha1-j2bbzVWog6za5ECK+LA1pQRMGJQ=
 
 upath@^2.0.1:
   version "2.0.1"

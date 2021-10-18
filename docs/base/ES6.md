@@ -1,6 +1,5 @@
 # ES6基础
 
-Created: July 4, 2021 3:31 PM
 Tags: ES6, JavaScript
 
 [JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
@@ -107,13 +106,13 @@ m.set("a",1).set("b",2)
 ### 箭头函数
 
 - 箭头函数：( ) ⇒ 返回值；( ) ⇒ { 执行语句 }；形参 ⇒ 返回值；（形参，形参） ⇒ 返回值
-    
+  
     ```javascript
     let fn = () =>{};
     ```
     
 - 箭头函数不定参：剩余参数
-    
+  
     ```javascript
     let f = (...arg) => { console.log(arg) }
     let f = (a,b,...arg) => { console.log(a,b,arg) }

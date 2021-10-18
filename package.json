@@ -9,6 +9,7 @@
     "build": "vuepress build docs --config ./docs/.vuepress/config.js"
   },
   "devDependencies": {
+    "@vuepress/utils": "^2.0.0-alpha.1",
     "vuepress-vite": "^2.0.0-beta.26"
   }
 }

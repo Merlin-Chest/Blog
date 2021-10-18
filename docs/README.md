@@ -1,16 +1,16 @@
 ---
 home: true
-# heroImage: /hero.png
-heroText: 欢迎来到我的博客！
-tagline: Hero 副标题
+heroImage: /hero.png
+heroText: 欢迎来到 Yaboo 的博客
+tagline: 随便看看。
 actionText: 快速上手 →
 actionLink: /zh/guide/
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-  footer: MIT Licensed | Copyright © 2018-present Evan You
+- title: 编程基础
+  details: 
+- title: 源码阅读
+  details: 
+- title: 工具使用
+  details: 
+  footer: MIT Licensed | Copyright © 2021-present Yaboo
 ---

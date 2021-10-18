@@ -1,3 +1,4 @@
+const path = require("path");
 module.exports = {
   lang: "zh-cn",
   // 在使用 vuepress-vite 包的时候，你可以忽略这个字段，因为 Vite 是默认打包工具
@@ -6,6 +7,7 @@ module.exports = {
   bundlerConfig: {
     // 查看下方
   },
+  theme: path.resolve(__dirname, './theme'),
   themeConfig: {
     navbar: [
       {
