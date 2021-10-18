@@ -321,4 +321,5 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 在浏览器中我们使用 `XMLHttpRequest` 提供的 `API` 来发送请求，在 `Node.js` 端我们需要使用 `http` 模块提供的 `API` 来发送请求，他们在底层提供的 `API` 结构包括针对响应数据的格式包装也不并不一致。那么 `axios` 为了能够解决这种差异，让使用者在不同的环境下使用统一的 `API` ，就采用了适配模式。
 
-![Untitled](../tools/Axios%2081d155ce10ba4b7fbf66eaa44e20d8c7/Untitled.png)
+![Untitled](https://i.loli.net/2021/10/18/Dqdi8tKeaImEoZs.png)
+

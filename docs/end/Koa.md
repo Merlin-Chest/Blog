@@ -34,11 +34,11 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
 ### **koa使用**
 
 - koa安装
-    
+  
     $ npm i koa
     
 - 一个简单的koa服务器
-    
+  
     ```
      const Koa = require('koa');
      const app = new Koa();
@@ -52,7 +52,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
     
 - Koa 利用中间件 控制"上游"，调用"下游“；
     - koa是包含一组中间件函数的对象；可以将app.use里的函数理解成中间件
-        
+      
         ```
          //这里的middleWare函数就是一个中间件
          let middleWare = async (ctx,next)=>{
@@ -102,11 +102,23 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
         ….
         
     - ctx.status 获取响应状态。默认情况下，`response.status` 设置为 `404` 而不是像 node 的 `res.statusCode` 那样默认为 `200`。
+    
     - http状态码：1xx(消息)、2xx(成功)、3xx(重定向)、4xx(请求错误)、5xx和6xx(服务器错误)
+    
     - 常见http状态码 （302 location 跳转）
-        
-        [Untitled](../base/Koa%20a5eaae3f301342e191dd84feb37506ab/Untitled%20Database%20ec401c08becd426e8205c3fa17062b75.csv)
-        
+    
+        | HTTP状态码 | 描述                                                   |
+        | ---------- | ------------------------------------------------------ |
+        | 100        | 继续。继续响应剩余部分，进行提交请求                   |
+        | 200        | 成功                                                   |
+        | 301        | 永久移动。请求资源永久移动到新位置                     |
+        | 302        | 临时移动。请求资源零时移动到新位置                     |
+        | 304        | 未修改。请求资源对比上次未被修改，响应中不包含资源内容 |
+        | 401        | 未授权，需要身份验证                                   |
+        | 403        | 禁止。请求被拒绝                                       |
+        | 404        | 未找到，服务器未找到需要资源                           |
+        | 500        | 服务器内部错误。服务器遇到错误，无法完成请求           |
+        | 503        | 服务器不可用。零时服务过载，无法处理请求               |
 
 ### **koa常用中间件介绍**
 
@@ -114,7 +126,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
 
 - 路由是引导匹配之意，是匹配url到相应处理程序的活动。
 - koa-router安装
-    
+  
     `npm i koa-router -S`
     
 - Koa-router使用
@@ -133,7 +145,7 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
 
 - Koa-views用于加载html模板文件；
     - 安装 koa-views
-        
+      
         `npm i koa-views -S`
         
     - 使用koa-view
@@ -142,11 +154,11 @@ koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框�
 
 - koa-static 是用于加载静态资源的中间件，通过它可以加载css、js等静态资源；
 - 安装 koa-static
-    
+  
     `npm i koa-static`
     
 - 使用koa-static
-    
+  
     ```
      const static = require("koa-static");
      app.use(static(__dirname+"/static")) //加载静态文件的目录

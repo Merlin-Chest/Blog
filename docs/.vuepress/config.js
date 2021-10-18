@@ -8,22 +8,22 @@ module.exports = {
   },
   themeConfig: {
     navbar: [
-      // {
-      //   text: "前端基础",
-      //   link: "/base/",
-      //   children: [
-      //     "/base/Javascript.md",
-      //     "/base/Typescript.md",
-      //     "/base/ES6.md",
-      //     "/base/AJAX.md",
-      //     "/base/Canvas基础.md",
-      //     {
-      //       text: "专题",
-      //       link: "/base/subject/",
-      //       children: ["/base/subject/异步专题.md"],
-      //     },
-      //   ],
-      // },
+      {
+        text: "前端基础",
+        link: "/base/",
+        children: [
+          "/base/Javascript.md",
+          "/base/Typescript.md",
+          "/base/ES6.md",
+          "/base/AJAX.md",
+          "/base/Canvas基础.md",
+          {
+            text: "专题",
+            link: "/base/subject/",
+            children: ["/base/subject/异步专题.md"],
+          },
+        ],
+      },
       {
         text: "Vue",
         link: "/vue/",
@@ -42,16 +42,16 @@ module.exports = {
         link: "/tools/",
         children: ["/tools/webpack.md", "/tools/axios.md"],
       },
-      // {
-      //   text: "后端基础",
-      //   link: "/end/",
-      //   children: [
-      //     "/end/Koa.md",
-      //     "/end/Nodejs.md",
-      //     "/end/即时通信.md",
-      //     "/end/模版引擎.md",
-      //   ],
-      // },
+      {
+        text: "后端基础",
+        link: "/end/",
+        children: [
+          "/end/Koa.md",
+          "/end/Nodejs.md",
+          "/end/即时通信.md",
+          "/end/模版引擎.md",
+        ],
+      },
     ],
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     repo: "https://gitee.com/merlin218",

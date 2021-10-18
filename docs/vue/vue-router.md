@@ -168,7 +168,12 @@ const routes = [
 
 ### 编程式导航
 
-[对比](../base/Vue3-Router%20cc18d2b8d3274b319f2d63a71df3da31/对比%203c1cae4aaf9448aaaf7d86314145a178.csv)
+| 声明式编程                      | 编程式编程          |
+| ------------------------------- | ------------------- |
+| <router-link :to="...">         | router.push(...)    |
+| <router-link :to="..." replace> | Router.replace(...) |
+
+
 
 - 常见用法
 
@@ -181,7 +186,7 @@ router.push({ path: `/user/${username}` })
 ```
 
 - 几个例子
-    
+  
     ```jsx
     <button @click="$router.push('/add')">新增</button>
     ```

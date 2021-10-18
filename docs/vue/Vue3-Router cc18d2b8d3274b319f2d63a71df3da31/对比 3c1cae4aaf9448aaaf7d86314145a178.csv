@@ -1,3 +1,0 @@
-﻿声明式,编程式
-"<router-link :to=""...""> ",router.push(...)
-"<router-link :to=""..."" replace>",router.replace(...)

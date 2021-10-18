@@ -673,7 +673,13 @@ Created: September 6, 2021 9:27 AM
 
 同时，现代浏览器都能够识别 `sourceMap` 文件，如 `chrome`，会在 `Sources` 面板中显示根据编译文件与对应的 `map` 文件定位到源文件中，有利于我们的调试和错误定位
 
-[参数设置](Webpack%205de570215d38447f8eaeb4143d192ce6/%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%200c22886597f844eda732dc21258d8ce7.csv)
+| 参数                    | 详情                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| eval                    | 不支持IE8 可以设断点调试，不显示列信息，每个js模块代码用eval()执行，并且在生成的每个模块代码尾部加上注释，如WEBPACK FOOTER；module id（模块在数组中的索引） ；sourceURL（原js路径）。不会生成.map文件 |
+| source-map              | 可以设断点调试，不显示列信息，生成相应的.Map文件，并在合并后的代码尾部加上注释//# sourceMappingURL=**.js.map |
+| eval-source-map         | 不能设断点调试，不显示列信息，可以用手动加入debugger调试;参考第一种eval模式，跟eval不一样的是其用base64存储map信息，不会生成.Map文件，Map信息以Base64格式存放在每个模块代码的尾部 |
+| cheap-source-map        | 可以设断点调试，不显示列信息，生成相应的.Map文件，可参考source-map，不包含 loader 的 sourcemap |
+| cheap-module-source-map | 不包含列信息，同时 loader 的 sourcemap 也被简化为只包含对应行的。最终的 sourcemap 只有一份，它是 webpack 对 loader 生成的 sourcemap 进行简化，然后再次生成的。 |
 
 ## **11、Code Spliting**
 
