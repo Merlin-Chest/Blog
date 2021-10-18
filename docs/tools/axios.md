@@ -25,7 +25,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 `Axios` 类是最核心 的类，封装并提供了请求所使用的 `API` 。
 
-```jsx
+```javascript
  // Axios 类
  function Axios() {
    // 初始化
@@ -37,7 +37,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 `Axios` 基于 `request` 方法又提供了一些列 `HTTP` 方法的别名函数：
 
-```jsx
+```javascript
  // Provide aliases for supported request methods
  // 针对不需要提交正文数据的请求封装处理
  utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
@@ -67,13 +67,13 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 `axios` 提供一个函数 `createInstance` 来辅助创建 `Axios` 类的实例。但是需要注意的，该函数返回的并不是 `Axios` 实例对象，而是实例对象的 `request` 方法，并且把实例对象的其它别名方法挂载到 `request` 方法上（函数也是对象，可以添加属性方法）。所以才有下面的用法：
 
-```jsx
+```javascript
  axios({...});
  axios.get('/', {...})
  ...
 ```
 
-```jsx
+```javascript
  function createInstance(defaultConfig) {
    var context = new Axios(defaultConfig);
    var instance = bind(Axios.prototype.request, context);
@@ -90,7 +90,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 当我们引用 `Axios` 库的时候，它会内部调用 `createInstance` 初始化并返回 `request` ：
 
-```jsx
+```javascript
  var axios = createInstance(defaults);
  ...
  
@@ -103,14 +103,14 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 **原始类**
 
-```jsx
+```javascript
  // 挂载原始Axios类
  axios.Axios = Axios;
 ```
 
 **工厂函数**
 
-```jsx
+```javascript
  // 创建实例的的工厂函数
  axios.create = function create(instanceConfig) {
    return createInstance(mergeConfig(axios.defaults, instanceConfig));
@@ -119,7 +119,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 所以，我们可以通过工厂函数来创建另外一个 `axios request` ：
 
-```jsx
+```javascript
  // 使用默认的 request
  axios.get('/user');
  
@@ -143,7 +143,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 是指在 `request` 以及 `get`、`post` 等别名方法中传入的配置
 
-```jsx
+```javascript
  axios({
    url: '/user'
  });
@@ -160,7 +160,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 我们还可以通过实例化的时候传入基础配置（我们可以把某些请求公用的配置在实例化的时候传入）
 
-```jsx
+```javascript
  let newRequest = axios.create({
    baseURL: 'http://localhost:9999'
  });
@@ -170,7 +170,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 `axios` 还有一组默认配置项，如果实例化的时候没有传入或者 `axios` 默认导出的那个实例化使用的就是默认配置。
 
-```jsx
+```javascript
  // 默认配置 可以通过 axios.defaults 来获取
  axios.defaults.baseURL = 'http://localhost:8888';
  axios.get('/user');
@@ -185,7 +185,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 在 `axios` 中有一个类似中间件的机制用来在 `request` 方法请求之前和响应以后（用户代码执行之前）去处理一些任务。
 
-```jsx
+```javascript
  // Add a request interceptor
  axios.interceptors.request.use(function (config) {
      // Do something before request is sent
@@ -214,7 +214,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
 
 拦截器本质上就是类似中间件数组，一共有两组：请求、响应
 
-```jsx
+```javascript
  function Axios(instanceConfig) {
    this.defaults = instanceConfig;
    this.interceptors = {
@@ -224,7 +224,7 @@ Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js �
  }
 ```
 
-```jsx
+```javascript
  // 拦截器的执行
  Axios.prototype.request = function request(config) {
    ...

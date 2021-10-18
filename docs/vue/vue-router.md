@@ -19,7 +19,7 @@ npm i vue-router@next -S
 
 - 引⼊vue-router插件
 
-```jsx
+```javascript
 //main.js
 import router from "./router/index";
 createApp(App)
@@ -29,7 +29,7 @@ createApp(App)
 
 ### 配置路由
 
-```jsx
+```javascript
 //router/index.js
 import { createRouter, createWebHashHistory } from "vue-router";
 import CourseList from "/comps/CourseList.vue";
@@ -51,13 +51,13 @@ routes,
 
 - 添加⼊⼝
 
-```jsx
+```javascript
 <router-view></router-view>
 ```
 
 - 跳转
 
-```jsx
+```javascript
 <router-link to="/add">新增</router-link>
 ```
 
@@ -68,7 +68,7 @@ routes,
     - 参数获取： this.$route.params.id 或 useRoute().params.id
 - 修改路由配置
 
-```jsx
+```javascript
 //router/index.js
 import CourseDetail from "/comps/CourseDetail.vue";
 const routes = [
@@ -78,13 +78,13 @@ const routes = [
 
 - 跳转
 
-```jsx
+```javascript
 <router-link :to="'/course/' + c.id">{{ c.name }}</router-link>
 ```
 
 - 页面获取路由参数
 
-```jsx
+```javascript
 <template> 
 	<div> 
 		<h3>{{ course.name }}</h3> 
@@ -100,7 +100,7 @@ const routes = [
         - 监听params： this.$watch(() => this.$route.params, (params, prevParams) => {})
         - 利⽤导航钩⼦
         
-        ```jsx
+        ```javascript
         async beforeRouteUpdate(to, from) {
         // 响应路由变化
         this.userData = await fetchUser(to.params.id)
@@ -109,7 +109,7 @@ const routes = [
         
     - 改进案例
     
-    ```jsx
+    ```javascript
     watch(
     	 () => route.params,
     	 () => {
@@ -122,7 +122,7 @@ const routes = [
     
 - 通配或404处理
 
-```jsx
+```javascript
 const routes = [
 // 下⾯配置会匹配所有path，匹配内容放⼊`$route.params.pathMatch`
  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
@@ -135,7 +135,7 @@ const routes = [
 
 - 修改路由配置
 
-```jsx
+```javascript
 const routes = [
 	 {
 			path: "/",
@@ -157,7 +157,7 @@ const routes = [
 - CourseList中发⽣两个变化
     - 需要添加⼀个 router-view 显示嵌套路由内容
     
-    ```jsx
+    ```javascript
     <p>
     	<router-link to="/course/add">新增</router-link>
     </p> 
@@ -177,7 +177,7 @@ const routes = [
 
 - 常见用法
 
-```jsx
+```javascript
 // 传递path
 router.push(`/user/${username}`)
 
@@ -187,16 +187,16 @@ router.push({ path: `/user/${username}` })
 
 - 几个例子
   
-    ```jsx
+    ```vue
     <button @click="$router.push('/add')">新增</button>
     ```
     
-    ```jsx
+    ```javascript
     // 使⽤`name`和`params`搭配，以利⽤⾃动的URL编码；不能使⽤`path`和`params`搭配
     router.push({ name: 'user', params: { username } })
     ```
     
-    ```jsx
+    ```vue
     <ul>
     	<li @click="showDetail(c)">
     	 {{ c.name }}
@@ -214,7 +214,8 @@ router.push({ path: `/user/${username}` })
     		return { courses, showDetail };
     	},
     </script>
-    
+  ```
+    ```    
     //路由定义时需要⼀个name，router/index.js
     { path: "/course/:id", name: "detail", component: CourseDetail}
     ```
@@ -226,7 +227,7 @@ router.push({ path: `/user/${username}` })
         - 避免path之间的排名竞争
     - router-link中也可使⽤
     
-    ```jsx
+    ```vue
     <router-link :to="{ name: 'bar', params: { param: 'abc' }}">Bar</router-link>
     ```
     

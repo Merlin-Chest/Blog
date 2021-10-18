@@ -25,13 +25,13 @@ Tags: vue
 3. **Recative API**
     1. reactive：对象响应式
         
-        ```jsx
+        ```javascript
         const obj = reactive({count:0})
         ```
         
     2. ref：单值响应式
         
-        ```jsx
+        ```javascript
         const count = ref(0)
         console.log(count.value)
         ```
@@ -46,7 +46,7 @@ Tags: vue
             
         - Ref对象作为 reactive 对象的属性被访问或修改时，也将⾃动解套 value 值
             
-            ```jsx
+            ```javascript
             const count = ref(0)
             const state = reactive({
             count,
@@ -56,7 +56,7 @@ Tags: vue
             
         - **toRefs** 把⼀个响应式对象转换成普通对象，该普通对象的每个属性都是⼀个Ref。
             
-            ```jsx
+            ```javascript
             const state = reactive({
             foo: 1,
             bar: 2,
@@ -72,7 +72,7 @@ Tags: vue
     3. computed：计算属性
         1. 传⼊⼀个 getter 函数，返回⼀个不可⼿动修改的 Ref 对象
             
-            ```jsx
+            ```javascript
             const count = ref(1)
             const doubleCount = computed(() => count.value * 2)
             console.log(doubleCount.value) // 2
@@ -81,7 +81,7 @@ Tags: vue
             
         2. 传⼊⼀个拥有 get 和 set 函数的对象，创建⼀个可⼿动修改的计算状态
             
-            ```jsx
+            ```javascript
             const count = ref(1)
             const doubleCount = computed({
             get: () => count.value * 2,
@@ -96,7 +96,7 @@ Tags: vue
     4. watchEffect ：副作⽤侦听器
         - ⽴即执⾏传⼊的⼀个函数，并收集响应式的依赖，当依赖变更时重新运⾏该函数
         
-        ```jsx
+        ```javascript
         const count = ref(0)
         watchEffect(() => console.log(count.value)) // 打印出 0
         setTimeout(() => {
@@ -108,7 +108,7 @@ Tags: vue
         - watch 侦听特定数据源，并在回调函数中执⾏副作⽤
             - 侦听单个数据源：数据源可以是⼀个拥有返回值的 getter 函数，也可以是 ref
             
-            ```jsx
+            ```javascript
             // 侦听⼀个 getter
             const state = reactive({ count: 0 })
             watch(
@@ -122,7 +122,7 @@ Tags: vue
             
             - 侦听多个数据源
             
-            ```jsx
+            ```javascript
             watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {})
             ```
             
@@ -137,7 +137,7 @@ Tags: vue
 4. **生命周期钩子**
     1. ⽣命周期钩⼦可以通过 onXXX 形式导⼊并在setup内部注册，只能在setup()使用
         
-        ```jsx
+        ```javascript
         import { onMounted, onUpdated, onUnmounted } from 'vue'
         const MyComponent = {
         	setup() {
@@ -156,7 +156,7 @@ Tags: vue
         
     2. 可以多次注册，按顺序执行
         
-        ```jsx
+        ```javascript
         setup() {
         	onMounted(() => {
         		console.log('mounted1')
@@ -169,7 +169,7 @@ Tags: vue
         
         妙⽤：可以⽤在其他可复⽤的逻辑中
         
-        ```jsx
+        ```javascript
         function useCounter() {
         const counter = ref(0)
         let timer
@@ -203,7 +203,7 @@ Tags: vue
 5. 依赖注入
     - 在setup中依赖注⼊使⽤ provide 和 inject
     
-    ```jsx
+    ```javascript
     import { provide, inject } from 'vue'
     const Ancestor = {
     	setup() {
@@ -224,7 +224,7 @@ Tags: vue
     
     - 如果注⼊⼀个响应式对象，则它的状态变化也可以被侦听
     
-    ```jsx
+    ```javascript
     // 提供者响应式数据
     const themeRef = ref('dark')
     provide('colorTheme', themeRef)
@@ -238,7 +238,7 @@ Tags: vue
 6. 模板引⽤
     - 为了获得对模板内元素或组件实例的引⽤，我们可以像往常⼀样在 setup() 中声明⼀个 同名的ref 并返回它
     
-    ```jsx
+    ```javascript
     <template> 
     	<div ref="root"></div>
     </template> 
@@ -266,7 +266,7 @@ Tags: vue
     - ⾮常灵活的⽅式，来分发 Vue 组件中的可复⽤功能
     - 当组件使⽤混⼊对象时，所有混⼊对象的选项将被“混合”进⼊该组件本身的选项
     
-    ```jsx
+    ```javascript
     // 定义⼀个混⼊对象
     const myMixin = {
     	created() {
@@ -295,7 +295,7 @@ Tags: vue
 2. 自定义指令
     - 对普通 DOM 元素进⾏底层操作
     
-    ```jsx
+    ```javascript
     const app = Vue.createApp({})
     // 全局注册指令 `v-focus`
     app.directive('focus', {
@@ -324,7 +324,7 @@ Tags: vue
     - 有时组件模板的⼀部分在逻辑上属于该组件，⽽从技术⻆度来看，最好将模板的这⼀部分移动到 DOM中 Vue app 之外的其他位置
     - ⽐如⼀个弹窗内容、消息通知等。
     
-    ```jsx
+    ```javascript
     //js
     app.component('modal-button', {
     	template: `
@@ -383,7 +383,7 @@ Tags: vue
 4.  渲染函数
     - 提供完全JS编程能⼒，可以解决更复杂的模板需求
     
-    ```jsx
+    ```javascript
     const app = Vue.createApp({})
     app.component('x-heading', {
     	render() {
@@ -404,7 +404,7 @@ Tags: vue
     
     渲染函数中⽤ if / else 和 map() 来替代 v-if 和 v-for
     
-    ```jsx
+    ```javascript
     props: ['items'],
     render() {
     	if (this.items.length) {
@@ -419,7 +419,7 @@ Tags: vue
     
     v-model 指令展开为 modelValue 和 onUpdate:modelValue ，要实现同等功能必须提供这些prop
     
-    ```jsx
+    ```javascript
     props: ['modelValue'],
     	render() {
     		return Vue.h(SomeComponent, {
@@ -431,7 +431,7 @@ Tags: vue
     
     事件处理需要提供⼀个正确的prop名称，例如，要处理 click 事件，prop名称应该是 onClick 
     
-    ```jsx
+    ```javascript
     render() {
     	return Vue.h('div', {
     		onClick: $event => console.log('clicked', $event.target)
@@ -441,7 +441,7 @@ Tags: vue
     
     对于 .passive 、 .capture 和 .once 事件修饰符，Vue提供了专属的对象语法
     
-    ```jsx
+    ```javascript
     render() {
     	return Vue.h('input', {
     		onClick: {
@@ -458,7 +458,7 @@ Tags: vue
     
     通过 this.$slots 访问静态插槽的内容，每个插槽都是⼀个 VNode 数组
     
-    ```jsx
+    ```javascript
     render() {
     	// `<div><slot></slot></div>`
     	return Vue.h('div', {}, this.$slots.default())
@@ -467,7 +467,7 @@ Tags: vue
     
     如果要将插槽传递给⼦组件
     
-    ```jsx
+    ```javascript
     render() {
     	// `<child v-slot="props"><span>{{ props.text }}</span></child>`
     	return Vue.h('div', [
@@ -484,7 +484,7 @@ Tags: vue
     - ⾃包含的代码，通常给 Vue 添加全局功能
     - 可以是包含 install() ⽅法的 object ，也可以是 function
     
-    ```jsx
+    ```javascript
     export default {
     	install: (app, options) => {
     		// 插件接收应⽤实例和插件选项
@@ -494,7 +494,7 @@ Tags: vue
     
     - 常见任务
     
-    ```jsx
+    ```javascript
     export default {
     	install: (app, options) => {
     		//添加指令/组件/过渡等全局资源
@@ -509,13 +509,13 @@ Tags: vue
     
     - 使用插件：实例挂载之前调⽤use()注册插件
     
-    ```jsx
+    ```javascript
     app.use(plugin)
     ```
     
     - 范例：实现⼀个Message插件
     
-    ```jsx
+    ```javascript
     const MessagePlugin = function (app) {
     const MyMessage = {
     	props: {
