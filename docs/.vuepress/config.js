@@ -7,7 +7,7 @@ module.exports = {
   bundlerConfig: {
     // 查看下方
   },
-  theme: path.resolve(__dirname, './theme'),
+  theme: path.resolve(__dirname, "./theme"),
   themeConfig: {
     navbar: [
       {
@@ -42,7 +42,7 @@ module.exports = {
       {
         text: "工具插件",
         link: "/tools/",
-        children: ["/tools/webpack.md", "/tools/axios.md"],
+        children: ["/tools/webpack.md", "/tools/axios.md", "/tools/jest.md"],
       },
       {
         text: "后端基础",
