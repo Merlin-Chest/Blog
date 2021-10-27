@@ -173,8 +173,6 @@ const routes = [
 | \<router-link :to="...">         | router.push(...)    |
 | \<router-link :to="..." replace> | Router.replace(...) |
 
-
-
 - 常见用法
 
 ```javascript
@@ -219,7 +217,7 @@ router.push({ path: `/user/${username}` })
     //路由定义时需要⼀个name，router/index.js
     { path: "/course/:id", name: "detail", component: CourseDetail}
     ```
-    
+  
 - 使用命名路由
     - 好处
         - ⽆需编写复杂URL

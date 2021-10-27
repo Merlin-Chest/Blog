@@ -30,8 +30,15 @@ module.exports = {
         text: "Vue",
         link: "/vue/",
         children: [
-          "/vue/vue基础.md",
-          "/vue/vue-router.md",
+          {
+            text: "vue3",
+            link: "/vue/vue3/",
+            children: [
+              "/vue/vue3/vue3新特性.md",
+              "/vue/vue3/vue3基础.md",
+              "/vue/vue3/vue3路由.md",
+            ],
+          },
           {
             text: "原理",
             link: "/vue/principle/",
@@ -51,7 +58,7 @@ module.exports = {
           "/end/Koa.md",
           "/end/Nodejs.md",
           "/end/即时通信.md",
-          "/end/模版引擎.md",
+          "/end/模板引擎.md",
         ],
       },
     ],
