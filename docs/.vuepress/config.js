@@ -44,6 +44,11 @@ module.exports = {
             link: "/vue/principle/",
             children: ["/vue/principle/数据响应式.md"],
           },
+          {
+            text: "手写源码",
+            link: "/vue/write/",
+            children: ["/vue/write/reactivity.md"],
+          },
         ],
       },
       {
