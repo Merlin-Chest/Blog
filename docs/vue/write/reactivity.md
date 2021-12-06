@@ -106,3 +106,22 @@ export function trigger(target, key) {
 }
 ```
 
+## 边缘情况
+
+1. reactive(reactive(obj))
+
+   ```typescript
+   export function isReactive(target) {
+     return !!(target && target.__isReactive);
+   }
+   ```
+
+2. let a = reactive(obj),b = reactive(obj)
+
+3.  hasChanged
+
+4. 深层对象代理
+
+5. 数组
+
+6. 嵌套effect
