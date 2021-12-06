@@ -1,4 +1,4 @@
-name: docs
+name: deploy to server
 
 on:
   # 每当 push 到 master 分支时触发部署
@@ -47,7 +47,7 @@ jobs:
         env:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
             ARGS: '-rltgoDzvO --delete'
-            SOURCE: dist/*
+            SOURCE: docs/.vuepress/dist
             REMOTE_HOST: ${{ secrets.HOST }}
             REMOTE_USER: root
             TARGET: /www/wwwroot/www.merlin218.top/blog
