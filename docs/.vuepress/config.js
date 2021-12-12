@@ -15,9 +15,8 @@ module.exports = {
         text: '前端基础',
         link: '/base/',
         children: [
-          '/base/Javascript.md',
-          '/base/Typescript.md',
-          '/base/ES6.md',
+          '/base/Javascript/README.md',
+          '/base/Typescript/README.md',
           '/base/AJAX.md',
           '/base/Canvas基础.md',
           {
@@ -48,7 +47,10 @@ module.exports = {
           {
             text: '手写源码',
             link: '/vue/write/',
-            children: ['/vue/write/reactivity.md'],
+            children: [
+              '/vue/write/reactivity.md',
+              '/vue/write/runtime-core.md',
+            ],
           },
         ],
       },
@@ -64,22 +66,26 @@ module.exports = {
           '/end/Koa.md',
           '/end/Nodejs.md',
           '/end/即时通信.md',
-          '/end/模板引擎.md',
+          '/end/模板引擎.md'
         ],
+      },
+      {
+        text: '自我提升',
+        link: '/promote/',
+        children: ['/algorithm/README.md'],
       },
     ],
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
-    repo: 'https://gitee.com/merlin218',
+    repo: 'Merlin218/Merlin218.github.io',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
     // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
-    repoLabel: 'Gitee',
 
     // 以下为可选的编辑链接选项
 
     // 假如你的文档仓库和项目本身不在一个仓库：
-    docsRepo: 'Merlin218/Merlin.github.io',
+    // docsRepo: 'Merlin218/Merlin.github.io',
     // 假如文档不是放在仓库的根目录下：
-    docsDir: 'docs',
+    // docsDir: 'docs',
     // 假如文档放在一个特定的分支下：
     docsBranch: 'master',
     // 默认是 false, 设置为 true 来启用

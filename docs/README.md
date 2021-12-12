@@ -1,6 +1,5 @@
 ---
 home: true
-heroImage: /hero.png
 heroText: 欢迎来到 Yaboo 的博客
 tagline: 随便看看。
 actionText: 快速上手 →

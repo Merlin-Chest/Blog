@@ -1,5 +1,6 @@
-# JavaScript基础
+# JavaScript
 
-Created: September 24, 2021 11:34 AM
+### [ES6基础](ES6.md)
 
-### 语法
+### [深入理解闭包](作用域与闭包.md)
+### [深入理解this](this.md)
