@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: 欢迎来到 Yaboo 的博客
+heroText: 欢迎来到 Merlin 的博客
 tagline: 随便看看。
 actionText: 快速上手 →
 actionLink: /zh/guide/
@@ -11,5 +11,5 @@ features:
   details: 
 - title: 工具使用
   details: 
-  footer: MIT Licensed | Copyright © 2021-present Yaboo
+  footer: MIT Licensed | Copyright © 2021-present Merlin
 ---
