@@ -1,0 +1,220 @@
+#双指针 #链表
+## 双指针技巧：
+1. 合并两个有序链表
+2.  合并`k`个有序链表
+3.  寻找单链表的倒数第`k`个节点
+4.  寻找单链表的中点
+5.  判断单链表是否包含环并找出环起点
+6.  判断两个单链表是否相交并找出交点
+
+### 合并两个有序链表
+
+总结：一个while两个if
+
+```java
+public class ListNode {
+     int val;
+     ListNode next;
+     ListNode() {}
+     ListNode(int val) { this.val = val; }
+     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   }
+class Solution {
+  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+	  //「虚拟头节点」技巧，避免处理空指针的情况，降低代码复杂度
+    ListNode p = new ListNode(-1), temp = p;
+    ListNode p1 = l1, p2 = l2;
+    while (p1 != null && p2 != null) {
+      if (p1.val <= p2.val) {
+        temp.next = p1;
+        p1 = p1.next;
+      } else if (p1.val > p2.val) {
+        temp.next = p2;
+        p2 = p2.next;
+      }
+      temp = temp.next;
+    }
+    if (p1 != null) {
+      temp.next = p1;
+    }
+    if (p2 != null) {
+      temp.next = p2;
+    }
+    return p.next;
+    }
+}
+```
+### 合并 k 个有序链表
+- 先对lists为空数组的情况进行判断。
+- 接着创建虚拟结点并记录保存，避免处理空指针的情况，降低代码的复杂度。
+- 将lists中的k个链表的头结点加入到优先队列中
+- 进入while循环，每次取出最小的结点，链接到虚拟结点后面，
+- 如果取出的结点后面还有结点，将新节点加入到优先队列中，
+- 每次循环虚拟结点都前进。
+- 最后返回虚拟结点的下一个结点。
+```java
+class Solution {
+  public ListNode mergeKLists(ListNode[] lists) {
+    if (lists.length == 0)
+      return null;
+    // 虚拟结点
+    ListNode node = new ListNode(-1);
+    ListNode p = node;
+    // 优先级队列，最小堆
+    PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (a, b) -> (a.val - b.val));
+    for (ListNode head : lists) {
+      if (head != null)
+        pq.add(head);
+    }
+    while (!pq.isEmpty()) {
+      // 取出结点
+      ListNode e = pq.poll();
+      node.next = e;
+      // 将当前结点的下一个结点加入最小堆
+      if (e.next != null) {
+        pq.add(e.next);
+      }
+      node = node.next;
+    }
+    return p.next;
+  }
+}
+```
+> 优先队列`pq`中的元素个数最多是`k`，所以一次`poll`或者`add`方法的时间复杂度是`O(logk)`；所有的链表节点都会被加入和弹出`pq`，**所以算法整体的时间复杂度是`O(Nlogk)`，其中`k`是链表的条数，`N`是这些链表的节点总数**。
+
+### 单链表的倒数第 k 个节点
+- 两次遍历：先算长度，在用for走n-k步
+- 一次遍历：用两个指针p1，p2，假设总长度是n，p1先走k步，那么就剩余n-k步，这个时候，我们让p1，p2同时走，那么p2也将走n-k步，即可得到倒数第k个结点的位置。
+
+```java
+//删除倒数第k个结点
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    if (head == null)
+      return null;
+	// 虚拟结点
+    ListNode dummy = new ListNode(-1);
+	// 这样子等于多了一个结点，也方便后续的查找
+	// 如果不增加的话，后续查找需要-1，因为本身已经处在第一个结点了
+    dummy.next = head;
+	// 因为要删除结点，使用需要找到倒数第n+1个结点
+    ListNode p = findFromEnd(dummy, n + 1);
+    p.next = p.next.next;
+    return dummy.next;
+  }
+  // 找到倒数第k个结点
+  public ListNode findFromEnd(ListNode head, int k) {
+    ListNode p1 = head;
+    for (int i = 0; i < k; i++) {
+      p1 = p1.next;
+    }
+    ListNode p2 = head;
+    while (p1 != null) {
+      p1 = p1.next;
+      p2 = p2.next;
+    }
+    return p2;
+  }
+
+```
+> 注意我们又使用了虚拟头结点的技巧，也是为了防止出现空指针的情况，比如说链表总共有 5 个节点，题目就让你删除倒数第 5 个节点，也就是第一个节点，那按照算法逻辑，应该首先找到倒数第 6 个节点。但第一个节点前面已经没有节点了，这就会出错。
+
+### 单链表的中点
+
+快慢指针法：我们让两个指针`slow`和`fast`分别指向链表头结点`head`。
+
+**每当慢指针`slow`前进一步，快指针`fast`就前进两步，这样，当`fast`走到链表末尾时，`slow`就指向了链表中点**。
+
+```java
+class Solution {
+  public ListNode middleNode(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    return slow;
+  }
+}
+```
+### 判断链表是否包含环
+
+每当慢指针`slow`前进一步，快指针`fast`就前进两步。
+
+如果`fast`最终遇到空指针，说明链表中没有环；如果`fast`最终和`slow`相遇，那肯定是`fast`超过了`slow`一圈，说明链表中含有环。
+
+```java
+public class Solution {
+  public boolean hasCycle(ListNode head) {
+    ListNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if (fast == slow) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+
+如何计算环的起点？
+
+当快慢指针相遇时，fast多走了一个环，fast走了2k，slow走了k，环长度为k，假设还起点与相遇的点距离为m，那么剩下到达起点的距离就是k-m，此时将一个指针重新指向head，然后同时用同样的速度前进，再次相遇时的位置，就是环的起点。
+
+![](https://raw.githubusercontent.com/Merlin218/image-storage/master/picGo/202201061037461.png)
+
+```java
+public class Solution {
+  public ListNode detectCycle(ListNode head) {
+    ListNode fast = head, slow = head;
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if (fast == slow) {
+        break;
+      }
+    }
+    if (fast == null || fast.next == null) {
+      // fast 遇到空指针说明没有环
+      return null;
+    }
+    fast = head;
+    while (fast != slow) {
+      fast = fast.next;
+      slow = slow.next;
+    }
+    return slow;
+  }
+}
+```
+### 两个链表是否相交
+**解决这个问题的关键是，通过某些方式，让`p1`和`p2`能够同时到达相交节点`c1`**。
+
+所以，我们可以让`p1`遍历完链表`A`之后开始遍历链表`B`，让`p2`遍历完链表`B`之后开始遍历链表`A`，这样相当于「逻辑上」两条链表接在了一起。
+
+如果这样进行拼接，就可以让`p1`和`p2`同时进入公共部分，也就是同时到达相交节点`c1`：
+
+![](https://raw.githubusercontent.com/Merlin218/image-storage/master/picGo/202201061053064.png)
+
+```java
+public class Solution {
+  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    ListNode p1 = headA, p2 = headB;
+    while (p1 != p2) {
+      if (p1 == null)
+        p1 = headB;
+      else
+        p1 = p1.next;
+      if (p2 == null)
+        p2 = headA;
+      else
+        p2 = p2.next;
+    }
+    return p1;
+  }
+}
+
+```
+
+> 学习链接：https://mp.weixin.qq.com/s/dVqXEMKZ6_tuB7J-leLmtg

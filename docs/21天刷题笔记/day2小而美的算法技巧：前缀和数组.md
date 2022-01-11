@@ -1,0 +1,84 @@
+#前缀和 #数组
+## 前缀和技巧
+
+适用于快速、频繁地计算一个索引区间内的元素之和。
+
+### 一维数组中的前缀和
+
+```java
+class NumArray {
+  private int[] preNum;
+
+  public NumArray(int[] nums) {
+    this.preNum = new int[nums.length + 1];
+    for (int i = 1; i <= nums.length; i++) {
+      preNum[i] = nums[i - 1] + preNum[i - 1];
+    }
+  }
+
+  public int sumRange(int left, int right) {
+    return preNum[right + 1] - preNum[left];
+  }
+}
+```
+
+`sumRange`函数仅仅需要做一次减法运算，避免了每次进行 for 循环调用，最坏时间复杂度为常数`O(1)`。
+
+### 二维矩阵中的前缀和
+
+```java
+class NumMatrix {
+  private int[][] preNum;
+
+  public NumMatrix(int[][] matrix) {
+    preNum = new int[matrix.length + 1][matrix[0].length + 1];
+    for (int i = 1; i <= matrix.length; i++) {
+      for (int j = 1; j <= matrix[0].length; j++) {
+        preNum[i][j] = preNum[i][j - 1] + preNum[i - 1][j] - preNum[i - 1][j - 1] + matrix[i - 1][j - 1];
+      }
+    }
+  }
+
+  public int sumRegion(int row1, int col1, int row2, int col2) {
+    return preNum[row2 + 1][col2 + 1] - preNum[row2 + 1][col1] - preNum[row1][col2 + 1] + preNum[row1][col1];
+  }
+}
+```
+
+### 和为 k 的子数组
+
+我们可以使用哈希表存储遍历过的前缀和以及他们出现的次数。
+另外呢，我们把计算满足条件的子数组的和转化为前缀和之差的问题。
+转化公式如下：小前缀和 + 子数组的和 = 大前缀和 -> 小前缀和 = 大前缀和 - 子数组的和
+所以在后续的遍历中，我们只需要：
+①计算新的 大前缀和 以及要查找的 小前缀和
+②如果能找到小前缀和，那么它对应的值就是在这个数之前已经存在的出现情况个数，也就是对应的子数组个数，直接增加。
+③增加新的前缀和/更新旧的前缀和
+
+```java
+class Solution {
+  public int subarraySum(int[] nums, int k) {
+    // 哈希表存储遍历过的前缀和以及出现次数
+    HashMap<Integer, Integer> mp = new HashMap<>();
+    // 满足条件的子数组个数
+    int count = 0;
+    int preSum = 0;
+    // 记录当前前缀和为0出现一次
+    mp.put(0, 1);
+    for (int i = 0; i < nums.length; i++) {
+      preSum += nums[i];
+      // 查找之前已经计算过的前缀和值
+      int findPreSum = preSum - k;
+      // 如果能找到则直接增加count
+      if (mp.containsKey(findPreSum)) {
+        count += mp.get(findPreSum);
+      }
+      // 增加新的前缀和/更新旧的前缀和
+      mp.put(preSum, mp.getOrDefault(preSum, 0) + 1);
+    }
+    return count;
+  }
+}
+```
+
+> 学习链接：https://mp.weixin.qq.com/s/EwAH3JDs5WFO6-LFmI3-2Q

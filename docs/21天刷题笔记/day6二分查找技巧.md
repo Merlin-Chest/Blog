@@ -1,0 +1,226 @@
+## 二分查找框架
+
+```java
+int binarySearch(int[] nums, int target) {
+    int left = 0, right = ...;
+
+    while(...) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            ...
+        } else if (nums[mid] < target) {
+            left = ...
+        } else if (nums[mid] > target) {
+            right = ...
+        }
+    }
+	...;
+    return ...;
+}
+```
+
+**分析二分查找的一个技巧是：不要出现 else，而是把所有情况用 else if 写清楚，这样可以清楚地展现所有细节**。本文都会使用 else if，旨在讲清楚，读者理解后可自行简化。
+
+其中 `...` 标记的部分，就是可能出现细节问题的地方，当你见到一个二分查找的代码时，首先注意这几个地方。后文用实例分析这些地方能有什么样的变化。
+
+另外声明一下，计算 mid 时需要防止溢出，代码中 `left + (right - left) / 2` 就和 `(left + right) / 2` 的结果相同，但是有效防止了 `left` 和 `right` 太大直接相加导致溢出。
+
+### 寻找一个数（基本的二分搜索）
+
+```java
+/*
+ * @lc app=leetcode.cn id=704 lang=java
+ *
+ * [704] 二分查找
+ */
+
+// @lc code=start
+class Solution {
+  public int search(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+	// 因为 right指向最后一个元素的下标，所以while条件需要加=
+    while (left <= right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] == target) {
+        return mid;
+      } else if (nums[mid] < target) {
+		// 当前的mid所在的下标已经不满足，所以需要+1或-1
+        left = mid + 1;
+      } else if (nums[mid] > target) {
+        right = mid - 1;
+      }
+    }
+    return -1;
+  }
+}
+// @lc code=end
+
+```
+
+**此算法有什么缺陷**？
+
+答：至此，你应该已经掌握了该算法的所有细节，以及这样处理的原因。但是，这个算法存在局限性。
+
+比如说给你有序数组 `nums = [1,2,2,2,3]`，`target` 为 2，此算法返回的索引是 2，没错。但是如果我想得到 `target` 的左侧边界，即索引 1，或者我想得到 `target` 的右侧边界，即索引 3，这样的话此算法是无法处理的。
+
+这样的需求很常见，**你也许会说，找到一个 `target`，然后向左或向右线性搜索不行吗？可以，但是不好，因为这样难以保证二分查找对数级的复杂度了**。
+
+### 寻找左、右侧边界的二分搜索
+
+**寻找左侧边界的二分查找**：
+
+```python
+因为我们初始化 right = nums.length
+所以决定了我们的「搜索区间」是 [left, right)
+所以决定了 while (left < right)
+同时也决定了 left = mid + 1 和 right = mid
+
+因为我们需找到 target 的最左侧索引
+所以当 nums[mid] == target 时不要立即返回
+而要收紧右侧边界以锁定左侧边界
+```
+
+**寻找右侧边界的二分查找**：
+
+```python
+因为我们初始化 right = nums.length
+所以决定了我们的「搜索区间」是 [left, right)
+所以决定了 while (left < right)
+同时也决定了 left = mid + 1 和 right = mid
+
+因为我们需找到 target 的最右侧索引
+所以当 nums[mid] == target 时不要立即返回
+而要收紧左侧边界以锁定右侧边界
+
+又因为收紧左侧边界时必须 left = mid + 1
+所以最后无论返回 left 还是 right，必须减一
+```
+
+对于寻找左右边界的二分搜索，常见的手法是使用左闭右开的「搜索区间」，**我们还根据逻辑将「搜索区间」全都统一成了两端都闭，便于记忆，只要修改两处即可变化出三种写法**：
+
+```java
+int binary_search(int[] nums, int target) {
+    int left = 0, right = nums.length - 1; 
+    while(left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid - 1; 
+        } else if(nums[mid] == target) {
+            // 直接返回
+            return mid;
+        }
+    }
+    // 直接返回
+    return -1;
+}
+
+int left_bound(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 别返回，锁定左侧边界
+            right = mid - 1;
+        }
+    }
+    // 最后要检查 left 越界的情况
+    if (left >= nums.length || nums[left] != target)
+        return -1;
+    return left;
+}
+
+int right_bound(int[] nums, int target) {
+    int left = 0, right = nums.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] < target) {
+            left = mid + 1;
+        } else if (nums[mid] > target) {
+            right = mid - 1;
+        } else if (nums[mid] == target) {
+            // 别返回，锁定右侧边界
+            left = mid + 1;
+        }
+    }
+    // 最后要检查 right 越界的情况
+    if (right < 0 || nums[right] != target)
+        return -1;
+    return right;
+}
+```
+
+通过本文，你学会了：
+
+1、分析二分查找代码时，不要出现 else，全部展开成 else if 方便理解。
+
+2、注意「搜索区间」和 while 的终止条件，如果存在漏掉的元素，记得在最后检查。
+
+3、如需定义左闭右开的「搜索区间」搜索左右边界，只要在 `nums[mid] == target` 时做修改即可，搜索右侧时需要减一。
+
+4、如果将「搜索区间」全都统一成两端都闭，好记，只要稍改 `nums[mid] == target` 条件处的代码和返回的逻辑即可，**推荐拿小本本记下，作为二分搜索模板**。
+
+#### [Leetcode34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+```java
+import java.lang.annotation.Target;
+
+/*
+ * @lc app=leetcode.cn id=34 lang=java
+ *
+ * [34] 在排序数组中查找元素的第一个和最后一个位置
+ */
+
+// @lc code=start
+class Solution {
+  public int[] searchRange(int[] nums, int target) {
+    int[] r = new int[2];
+    r[0] = find_l(nums, target);
+    r[1] = find_r(nums, target);
+    return r;
+  }
+
+  public int find_l(int[] nums, int target) {
+    int l = 0, r = nums.length - 1;
+    while (l <= r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] < target) {
+        l = mid + 1;
+      } else if (nums[mid] > target) {
+        r = mid - 1;
+      } else if (nums[mid] == target) {
+        r = mid - 1;
+      }
+    }
+    if (l >= nums.length || nums[l] != target) {
+      return -1;
+    }
+    return l;
+  }
+
+  public int find_r(int[] nums, int target) {
+    int l = 0, r = nums.length - 1;
+    while (l <= r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] < target) {
+        l = mid + 1;
+      } else if (nums[mid] > target) {
+        r = mid - 1;
+      } else if (nums[mid] == target) {
+        l = mid + 1;
+      }
+    }
+    if (r < 0 || nums[r] != target) {
+      return -1;
+    }
+    return r;
+  }
+}
+// @lc code=end
+
+```

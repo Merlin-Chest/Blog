@@ -1,0 +1,133 @@
+#差分数组 #数组
+## 差分数组
+
+主要适用场景是频繁对原始数组的某个区间的元素进行增减。
+
+## 工具类
+
+```java
+// 差分数组工具类
+class Difference {
+    // 差分数组
+    private int[] diff;
+
+    /* 输入一个初始数组，区间操作将在这个数组上进行 */
+    public Difference(int[] nums) {
+        assert nums.length > 0;
+        diff = new int[nums.length];
+        // 根据初始数组构造差分数组
+        diff[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            diff[i] = nums[i] - nums[i - 1];
+        }
+    }
+
+    /* 给闭区间 [i,j] 增加 val（可以是负数）*/
+    public void increment(int i, int j, int val) {
+        diff[i] += val;
+        if (j + 1 < diff.length) {
+            diff[j + 1] -= val;
+        }
+    }
+
+    /* 返回结果数组 */
+    public int[] result() {
+        int[] res = new int[diff.length];
+        // 根据差分数组构造结果数组
+        res[0] = diff[0];
+        for (int i = 1; i < diff.length; i++) {
+            res[i] = res[i - 1] + diff[i];
+        }
+        return res;
+    }
+}
+```
+
+这里注意一下`increment`方法中的 if 语句：
+
+```java
+public void increment(int i, int j, int val) {
+    diff[i] += val;
+    if (j + 1 < diff.length) {
+        diff[j + 1] -= val;
+    }
+}
+```
+
+当`j+1 >= diff.length`时，说明是对`nums[i]`及以后的整个数组都进行修改，那么就不需要再给`diff`数组减`val`了。
+
+## 例题
+
+![](https://raw.githubusercontent.com/Merlin218/image-storage/master/picGo/202201071805254.png)
+![](https://raw.githubusercontent.com/Merlin218/image-storage/master/picGo/202201071806867.png)
+
+```java
+/*
+ * @lc app=leetcode.cn id=1094 lang=java
+ *
+ * [1094] 拼车
+ */
+
+// @lc code=start
+class Solution {
+  // 差分数组类
+  public class Difference {
+    private int[] diff;
+    // 构造函数
+    public Difference(int[] nums) {
+      diff = new int[nums.length];
+      diff[0] = nums[0];
+      for (int i = 1; i < nums.length; i++) {
+        diff[i] = nums[i] - nums[i - 1];
+      }
+    }
+    // 给规定区间的数组的每个数增加一个值
+    public void increment(int i, int j, int val) {
+      diff[i] += val;
+      if (j + 1 < diff.length) {
+        diff[j + 1] -= val;
+      }
+    }
+    // 生成结果
+    public int[] result() {
+      int[] res = new int[diff.length];
+      res[0] = diff[0];
+      for (int i = 1; i < diff.length; i++) {
+        res[i] = res[i - 1] + diff[i];
+      }
+      return res;
+    }
+  }
+
+  public boolean carPooling(int[][] trips, int capacity) {
+    // 题目中没有告诉我们车站的数量，我们根据限制来设定
+    int[] nums = new int[1001];
+
+    // 新建一个差分数组
+    Difference diff = new Difference(nums);
+
+    // 对行程计划表进行遍历，处理形成最终的乘车情况
+    for (int[] trip : trips) {
+      int val = trip[0];
+      int start = trip[1];
+      // 最后一站乘客下车，不计入计算
+      int end = trip[2] - 1;
+      diff.increment(start, end, val);
+    }
+
+    // 获得最终的乘车人数数组
+    int[] res = diff.result();
+
+    // 检查是否超载
+    for (int i = 0; i < res.length; i++) {
+      if (res[i] > capacity) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+// @lc code=end
+```
+
+> 学习链接：https://mp.weixin.qq.com/s/123QujqVn3--gyeZRhxR-A
