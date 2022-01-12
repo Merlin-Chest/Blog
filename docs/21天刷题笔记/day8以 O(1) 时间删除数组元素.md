@@ -1,0 +1,132 @@
+## 本文内容
+结合哈希表和数组，使得数组的删除操作时间复杂度也变成 O(1)
+
+### 实现随机集合
+
+```java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+/*
+ * @lc app=leetcode.cn id=380 lang=java
+ *
+ * [380] O(1) 时间插入、删除和获取随机元素
+ */
+
+// @lc code=start
+class RandomizedSet {
+  private ArrayList<Integer> arr;
+  private Map<Integer, Integer> map;
+  private Random random = new Random();
+
+  public RandomizedSet() {
+    arr = new ArrayList<>();
+    map = new HashMap<>();
+  }
+
+  public boolean insert(int val) {
+    // 如果存在这个值，直接返回false
+    if (map.containsKey(val)) {
+      return false;
+    }
+    // 记录val的索引
+    map.put(val, arr.size());
+    // 把val加入数组中
+    arr.add(val);
+    return true;
+  }
+
+  public boolean remove(int val) {
+    // 如果map中不包含这个值，直接返回false
+    if (!map.containsKey(val)) {
+      return false;
+    }
+    // 先拿到这个val的索引
+    int index = map.get(val);
+    // 最后一项的值
+    int lastVal = arr.get(arr.size() - 1);
+    // 更改最后一项的索引
+    map.put(lastVal, index);
+    // 将数组中的这一项和最后一项交换
+    arr.set(index, lastVal);
+    // 移除最后一项
+    arr.remove(arr.size() - 1);
+    // 在map中移除该值
+    map.remove(val);
+    return true;
+  }
+
+  public int getRandom() {
+    return arr.get(random.nextInt(arr.size()));
+  }
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
+// @lc code=end
+
+```
+
+### 避开黑名单的随机数
+
+```java
+import java.util.HashMap;
+import java.util.Random;
+
+/*
+ * @lc app=leetcode.cn id=710 lang=java
+ *
+ * [710] 黑名单中的随机数
+ */
+
+// @lc code=start
+class Solution {
+  private int sz;
+  private HashMap<Integer, Integer> map = new HashMap<>();
+  private Random random = new Random();
+
+  public Solution(int n, int[] blacklist) {
+    // 计算白名单的数量
+    sz = n - blacklist.length;
+    // 把黑名单中的元素加入map中
+    for (int b : blacklist) {
+      map.put(b, 666);
+    }
+
+    // 更新黑名单的索引
+    int last = n - 1;
+    for (int b : blacklist) {
+      // 如果b在sz之前，之后的就不需要处理了
+      if (b < sz) {
+        // 找到最后一个白名单元素的索引
+        while (map.containsKey(last)) {
+          last--;
+        }
+        map.put(b, last--);
+      }
+
+    }
+  }
+
+  public int pick() {
+    int index = random.nextInt(sz);
+    // 如果index命中黑名单，返回正确的索引,否则直接返回
+    return map.getOrDefault(index, index);
+  }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(n, blacklist);
+ * int param_1 = obj.pick();
+ */
+// @lc code=end
+
+```
