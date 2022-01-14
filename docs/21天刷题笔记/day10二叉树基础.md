@@ -1,0 +1,78 @@
+### 二叉树遍历框架
+
+很多经典算法，以及所有`回溯`、`动态规划`、`分治算法`，其实都是树的问题，而树的问题就永远逃不开`树的递归遍历框架`这几行代码：
+
+```java
+/* 二叉树遍历框架 */
+void traverse(TreeNode root) {
+    // 前序遍历
+    traverse(root.left)
+    // 中序遍历
+    traverse(root.right)
+    // 后序遍历
+}
+```
+
+### 二叉树的重要性
+
+经典算法「快速排序」和「归并排序」：
+
+**快速排序就是个二叉树的前序遍历，归并排序就是个二叉树的后序遍历**。
+
+快速排序的逻辑是，若要对 `nums[lo..hi]` 进行排序，我们先找一个分界点 `p`，通过交换元素使得 `nums[lo..p-1]` 都小于等于 `nums[p]`，且 `nums[p+1..hi]` 都大于 `nums[p]`，然后递归地去 `nums[lo..p-1]` 和 `nums[p+1..hi]` 中寻找新的分界点，最后整个数组就被排序了。
+
+```java
+void sort(int[] nums, int lo, int hi) {
+    /****** 前序遍历位置 ******/
+    // 通过交换元素构建分界点 p
+    int p = partition(nums, lo, hi);
+    /************************/
+
+    sort(nums, lo, p - 1);
+    sort(nums, p + 1, hi);
+}
+```
+
+归并排序的逻辑，若要对 `nums[lo..hi]` 进行排序，我们先对 `nums[lo..mid]` 排序，再对 `nums[mid+1..hi]` 排序，最后把这两个有序的子数组合并，整个数组就排好序了。
+
+```java
+void sort(int[] nums, int lo, int hi) {
+    int mid = (lo + hi) / 2;
+    sort(nums, lo, mid);
+    sort(nums, mid + 1, hi);
+
+    /****** 后序遍历位置 ******/
+    // 合并两个排好序的子数组
+    merge(nums, lo, mid, hi);
+    /************************/
+}
+```
+
+#### [114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)
+
+```java
+class Solution {
+    public void flatten(TreeNode root) {
+        if(root == null || (root.left==null&root.right==null)){
+            return;
+        }
+        flatten(root.left);
+        flatten(root.right);
+
+        // 保存右节点
+        TreeNode right = root.right;
+        // 将左节点移动到右节点
+        root.right = root.left;
+        // 将左节点置为空
+        root.left = null;
+
+        // 寻找原左节点最右结点
+        TreeNode tmp = root;
+        while(tmp.right!=null){
+            tmp = tmp.right;
+        }
+        // 链接
+        tmp.right = right;
+    }
+}
+```
