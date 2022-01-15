@@ -1,0 +1,58 @@
+### BST简介
+
+BST 的完整定义如下：
+
+1、BST 中任意一个节点的`左子树所有节点`的值都`小于该节点`的值，`右子树所有节点`的值都`大于该节点`的值。
+
+2、BST 中任意一个节点的`左右子树都是 BST`。
+
+### 解题模板
+
+```java
+void BST(TreeNode root, int target) {
+    if (root.val == target)
+        // 找到目标，做点什么
+    if (root.val < target) 
+        BST(root.right, target);
+    if (root.val > target)
+        BST(root.left, target);
+}
+```
+
+### 在 BST 中搜索元素
+
+```java
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null){
+            return null;
+        }
+        if(root.val < val){
+            return searchBST(root.right,val);
+        }
+        if(root.val > val){
+            return searchBST(root.left,val);
+        }
+        return root;
+    }
+}
+```
+
+### 在 BST 中插入一个数
+
+```java
+TreeNode insertIntoBST(TreeNode root, int val) {
+    // 找到空位置插入新节点
+    if (root == null) return new TreeNode(val);
+    // if (root.val == val)
+    //     BST 中一般不会插入已存在元素
+    if (root.val < val) 
+        root.right = insertIntoBST(root.right, val);
+    if (root.val > val) 
+        root.left = insertIntoBST(root.left, val);
+    return root;
+}
+```
+
+### 在 BST 中删除一个数
+
