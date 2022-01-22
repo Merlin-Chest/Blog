@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body.night {
+      background-color: black;
+      color: white;
+    }
+
+    #modeChange::after {
+      content: '🌞';
+      float: right;
+      font-size: 2em;
+    }
+
+    body.night #modeChange::after {
+      content: '🌜';
+    }
+  </style>
+</head>
+
+<body>
+  <div id="modeChange"></div>
+  <header>
+    <h1>深夜食堂</h1>
+  </header>
+  <main>...</main>
+
+  <script>
+    const modeBtn = document.querySelector('#modeChange');
+    const body = document.body;
+    modeBtn.addEventListener('click', () => {
+      if (body.className !== 'night') {
+        body.className = 'night'
+      } else {
+        body.className = ''
+      }
+    })
+  </script>
+</body>
+
+</html>

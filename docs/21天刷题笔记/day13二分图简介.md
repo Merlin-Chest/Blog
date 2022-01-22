@@ -1,0 +1,137 @@
+**给你一幅「图」，请你用两种颜色将图中的所有顶点着色，且使得任意一条边的两个端点的颜色都不相同，你能做到吗**？
+
+这就是图的「双色问题」，其实这个问题就等同于二分图的判定问题，如果你能够成功地将图染色，那么这幅图就是一幅二分图，反之则不是。
+
+> 实际生活中的例子
+> 
+> 如何存储电影演员和电影之间的关系？
+> 
+>-  如果用哈希表存储，需要两个哈希表分别存储「每个演员到电影列表」的映射和「每部电影到演员列表」的映射。
+>
+>- 但如果用「图」结构存储，将电影和参演的演员连接，很自然地就成为了一幅二分图。每个电影节点的相邻节点就是参演该电影的所有演员，每个演员的相邻节点就是该演员参演过的所有电影，非常方便直观。
+
+### 二分图判定思路
+
+**遍历一遍图，一边遍历一边染色，看看能不能用两种颜色给所有节点染色，且相邻节点的颜色都不相同**。
+
+```java
+/* DFS图遍历框架 */
+void traverse(Graph graph, boolean[] visited, int v) {
+    visited[v] = true;
+    // 遍历节点 v 的所有相邻节点 neighbor
+    for (int neighbor : graph.neighbors(v)) {
+        if (!visited[neighbor]) {
+            // 相邻节点 neighbor 没有被访问过
+            // 那么应该给节点 neighbor 涂上和节点 v 不同的颜色
+            traverse(graph, visited, neighbor);
+        } else {
+            // 相邻节点 neighbor 已经被访问过
+            // 那么应该比较节点 neighbor 和节点 v 的颜色
+            // 若相同，则此图不是二分图
+        }
+    }
+}
+```
+
+- DFS遍历判断
+
+```java
+class Solution {
+    // 记录整体的状态
+    private boolean ok = true;
+    // 记录结点是否被访问
+    private boolean[] visited;
+    // 记录结点的颜色
+    private boolean[] color;
+    public boolean isBipartite(int[][] graph) {
+        int n = graph.length;
+        visited = new boolean[n];
+        // true,fasle表示不同颜色
+        color = new boolean[n];
+        // 可能存在多个子图，所以需要将每个结点作为起点都遍历一次
+        for(int i = 0;i<n;i++){
+            // 当状态为false时，直接返回
+            if(!ok) return ok;
+            // 对于没有访问过的结点才需要遍历
+            if (!visited[i]) {
+                traverse(graph, i);
+            }
+        }
+        return ok;
+    }
+    public void traverse(int[][] graph,int n){
+        // 如果状态已经为false,不需要在继续遍历
+        if(!ok) return;
+        visited[n] = true;
+        // 遍历所有邻接结点
+        for(int v:graph[n]){
+            if(visited[v]){
+                // 如果已经遍历过，判断是否颜色相同
+                if(color[n]==color[v]){
+                    ok = false;
+                }
+            }else{
+                // 涂上不同色
+                color[v] = !color[n];
+                // 继续遍历
+                traverse(graph,v);
+            }
+        }
+    }
+}
+```
+
+- BFS遍历判断
+
+```java
+// 记录图是否符合二分图性质
+private boolean ok = true;
+// 记录图中节点的颜色，false 和 true 代表两种不同颜色
+private boolean[] color;
+// 记录图中节点是否被访问过
+private boolean[] visited;
+
+public boolean isBipartite(int[][] graph) {
+    int n = graph.length;
+    color =  new boolean[n];
+    visited =  new boolean[n];
+    
+    for (int v = 0; v < n; v++) {
+        if (!visited[v]) {
+            // 改为使用 BFS 函数
+            bfs(graph, v);
+        }
+    }
+    
+    return ok;
+}
+
+// 从 start 节点开始进行 BFS 遍历
+private void bfs(int[][] graph, int start) {
+    Queue<Integer> q = new LinkedList<>();
+    visited[start] = true;
+    q.offer(start);
+    
+    while (!q.isEmpty() && ok) {
+        int v = q.poll();
+        // 从节点 v 向所有相邻节点扩散
+        for (int w : graph[v]) {
+            if (!visited[w]) {
+                // 相邻节点 w 没有被访问过
+                // 那么应该给节点 w 涂上和节点 v 不同的颜色
+                color[w] = !color[v];
+                // 标记 w 节点，并放入队列
+                visited[w] = true;
+                q.offer(w);
+            } else {
+                // 相邻节点 w 已经被访问过
+                // 根据 v 和 w 的颜色判断是否是二分图
+                if (color[w] == color[v]) {
+                    // 若相同，则此图不是二分图
+                    ok = false;
+                }
+            }
+        }
+    }
+}
+```
