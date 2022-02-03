@@ -1,6 +1,13 @@
+/*
+ * @Author: Merlin218
+ * @Date: 2021-10-18 15:06:10
+ * @LastEditors: Merlin218
+ * @LastEditTime: 2022-02-03 14:41:52
+ * @Description: 请填写简介
+ */
 const path = require('path');
 module.exports = {
-  base: '/blog/',
+  // base: '/blog/',
   lang: 'zh-cn',
   // 在使用 vuepress-vite 包的时候，你可以忽略这个字段，因为 Vite 是默认打包工具
   bundler: '@vuepress/bundler-vite',
@@ -91,6 +98,6 @@ module.exports = {
     // 默认是 false, 设置为 true 来启用
     editLinks: true,
     // 默认为 "Edit this page"
-    editLinkText: '帮助我们改善此页面！',
+    editLinkText: '',
   },
 };

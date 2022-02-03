@@ -1,0 +1,80 @@
+**解决两个字符串的动态规划问题，一般都是用两个指针 `i,j` 分别指向两个字符串的最后，然后一步步往前走，缩小问题的规模**。
+
+梳理一下思路：
+
+base case 是 `i` 走完 `s1` 或 `j` 走完 `s2`，可以直接返回另一个字符串剩下的长度。
+
+对于每对儿字符 `s1[i]` 和 `s2[j]`，可以有四种操作：
+
+```python
+if s1[i] == s2[j]:
+    啥都别做（skip）
+    i, j 同时向前移动
+else:
+    三选一：
+        插入（insert）
+        删除（delete）
+        替换（replace）
+```
+
+```java
+if s1[i] == s2[j]:
+    return dp(i - 1, j - 1)  # 啥都不做
+# 解释：
+# 本来就相等，不需要任何操作
+# s1[0..i] 和 s2[0..j] 的最小编辑距离等于
+# s1[0..i-1] 和 s2[0..j-1] 的最小编辑距离
+# 也就是说 dp(i, j) 等于 dp(i-1, j-1)
+		
+dp(i, j - 1) + 1,    # 插入
+# 解释：
+# 我直接在 s1[i] 插入一个和 s2[j] 一样的字符
+# 那么 s2[j] 就被匹配了，前移 j，继续跟 i 对比
+# 别忘了操作数加一
+
+dp(i - 1, j) + 1,    # 删除
+# 解释：
+# 我直接把 s[i] 这个字符删掉
+# 前移 i，继续跟 j 对比
+# 操作数加一
+
+dp(i - 1, j - 1) + 1 # 替换
+# 解释：
+# 我直接把 s1[i] 替换成 s2[j]，这样它俩就匹配了
+# 同时前移 i，j 继续对比
+# 操作数加一
+```
+
+带备忘录Java代码：
+```java
+class Solution {
+    int[][] memo;
+    public int minDistance(String word1, String word2) {
+        // dp备忘录
+        memo = new int[word1.length()][word2.length()];
+        return dp(word1,word2,word1.length()-1,word2.length()-1);
+    }
+    public int dp(String s1,String s2,int i,int j){
+        // base case
+        if(i==-1) return j+1;
+        if(j==-1) return i+1;
+        // 如果已经经过了，直接返回
+        if(memo[i][j]!=0) return memo[i][j];
+        // 两个字符相等，都同时前进，操作数不用加1
+        if(s1.charAt(i)==s2.charAt(j)){
+            memo[i][j] = dp(s1,s2,i-1,j-1);
+        }else{
+            // 删除、插入、替换进行比较，取其小
+            memo[i][j] = min(
+                dp(s1,s2,i-1,j-1)+1, // 替换
+                dp(s1,s2,i-1,j)+1, // 删除
+                dp(s1,s2,i,j-1)+1 // 插入
+            );
+        }
+        return memo[i][j];
+    }
+    public int min (int a,int b,int c){
+        return Math.min(a,Math.min(b,c));
+    }
+}
+```

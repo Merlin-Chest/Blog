@@ -5,11 +5,11 @@
   "author": "merlin <863176846@qq.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "vuepress dev docs --config ./docs/.vuepress/config.js",
-    "build": "vuepress build docs --config ./docs/.vuepress/config.js"
+    "dev": "vuepress dev docs --config ./docs/.vuepress/config.ts",
+    "build": "vuepress build docs --config ./docs/.vuepress/config.ts"
   },
   "devDependencies": {
     "@vuepress/utils": "^2.0.0-alpha.1",
-    "vuepress-vite": "^2.0.0-beta.26"
+    "vuepress-vite": "^2.0.0-beta.35"
   }
 }

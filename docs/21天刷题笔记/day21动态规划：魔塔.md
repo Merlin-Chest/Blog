@@ -1,0 +1,43 @@
+动态规划的原理都很相似，见之前的文章。
+
+`Leetcode`地下城勇士
+
+```java
+class Solution {
+    int[][] memo;
+    public int calculateMinimumHP(int[][] grid) {
+        // 初始化备忘录
+        memo = new int[grid.length][grid[0].length];
+        for(int i =0;i<grid.length;i++){
+            Arrays.fill(memo[i],-1);
+        }
+        return dp(grid,0,0);
+    }
+    public int dp(int[][] grid, int i,int j){
+        // 其实是从终点处反推在起点处最少需要的生命值
+        int m = grid.length;
+        int n = grid[0].length;
+        // 到达终点，返回该点的最少生命值
+        if(i == m - 1 && j == n - 1){
+            return grid[i][j] >= 0 ? 1 : -grid[i][j] + 1;
+        }
+        // 超出范围
+        if (i == m || j == n) {
+            return Integer.MAX_VALUE;
+        }
+        // 如果处理过，直接返回
+        if(memo[i][j] != -1){
+            return memo[i][j];
+        }
+        // 计算是从左边过来还是从上面过来的需要的生命值少
+        int res = Math.min(
+            dp(grid,i,j+1),
+            dp(grid,i+1,j)
+        ) - grid[i][j];
+        // 骑士的生命值至少为 1
+        memo[i][j] = res<=0 ? 1 : res;
+
+        return memo[i][j];
+    }
+}
+```
