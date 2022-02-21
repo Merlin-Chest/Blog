@@ -50,4 +50,4 @@ jobs:
             SOURCE: docs/.vuepress/dist/*
             REMOTE_HOST: ${{ secrets.HOST }}
             REMOTE_USER: root
-            TARGET: /www/wwwroot/www.merlin218.top/blog
+            TARGET: /www/wwwroot/www.merlin218.top
