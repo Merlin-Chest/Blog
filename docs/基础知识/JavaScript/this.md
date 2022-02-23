@@ -16,7 +16,7 @@
 
 - this指向函数作用域？no！
 
-this指向是在进行时绑定的，与函数声明的位置没有任何关系，取决于函数的调用方式，在哪里被调用。
+this指向是在运行时绑定的，与函数声明的位置没有任何关系，取决于函数的调用方式，在哪里被调用。
 
 ## 函数的调用位置
 
@@ -246,3 +246,20 @@ var obj2 = {
 var bar = foo.bind(obj);
 bar.call(obj2); // 2 而不是3，箭头函数的绑定无法修改。
 ```
+
+如果对一个函数进行多次 bind，那么上下文会是什么呢?
+
+```js
+let a = {}
+let fn = function () { console.log(this) } 
+fn.bind().bind(a)() // => ?
+
+// fn.bind().bind(a) 等于 
+let fn2 = function fn1() {
+  return function() {
+    return fn.apply()
+}.apply(a) }
+fn2();
+```
+
+ 不管我们给函数 bind 几次，fn 中的 this 永远由第一次 bind 决定，所以结果永远是 window。

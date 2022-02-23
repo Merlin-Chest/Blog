@@ -9,7 +9,7 @@ navbar: false
 ### [AJAX](AJAX.md)
 
   
-### [Canvas基础](Canvas基础.md)
+### [Canvas](Canvas.md)
 
   
 ### [ES6](ES6.md)
