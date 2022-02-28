@@ -1,32 +1,4 @@
 # Koa
-
-Created: August 11, 2021 10:12 AM
-Tags: JavaScript, koa, nodejs
-
-- 课堂目标
-
-1、koa使用
-
-2、了解koa中的applition对象及context对象
-
-3、koa-views使用
-
-4、koa-static使用
-
-5、使用koa-router中间件搭建路由
-
-6、了解常见http状态码
-
-7 、restful接口设计
-
-- 本节知识点
-    - http模块实现模板加载及静态文件处理
-    - koa的安装及使用
-    - Application及context对象介绍
-    - 常用http状态码介绍
-    - 路由中间件koa-router介绍
-    - 中间件koa-views介绍
-
 ## **koa介绍**
 
 koa是express原班人马打造的轻量、健壮、富有表现力的nodejs框架。目前koa有koa1和koa2两个版本；koa2依赖Node.js 7.6.0或者更高版本；koa不在内核方法中绑定任何中间件，它仅仅是一个轻量级的函数库，几乎所有功能都必须通过第三方插件来实现。

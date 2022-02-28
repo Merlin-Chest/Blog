@@ -1,7 +1,4 @@
 # ES6基础
-
-Tags: ES6, JavaScript
-
 [JavaScript | MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 
 ### let 与 const（块级作用域）
@@ -89,7 +86,7 @@ let arr = [
 	["b",2],
 	["c",3],
 ];
-let m = Map(arr)
+let m = new Map(arr)
 //{a:1,b:2,c:3}
 ```
 
@@ -118,7 +115,7 @@ m.set("a",1).set("b",2)
     let f = (a,b,...arg) => { console.log(a,b,arg) }
     ```
     
-- 箭头函数本身没有this，调用箭头函数this时，指向**其声明时**，所在**作用域的this**
+- 箭头函数本身没有this，调用箭头函数this时，指向**其调用时**，所在**作用域的this**
 - 参数默认值
 
 ### Array数组新增方法
@@ -136,24 +133,6 @@ let arr = [];
 
 ```javascript
 **Array.isArray(data)** //检测是否为数组，返回值：true/false
-```
-
-### 数组方法
-
-- find( ),findIndex( )：**返回该值&索引**
-
-```javascript
-let arr = [1,2,3,4] // ["a","b","c"]
-//arr.indexOf("a")
-let val = arr.find((item,index)=>{
-	if(item > 3){
-		return true;
-	}
-});
-//箭头函数写法
-let val = **arr.find(item=>iten>=3);  //返回该值**
-let index = **arr.findIndex(item=>iten>=3);  //返回该值的索引**
-//找不到返回undefined
 ```
 
 - flat( ),flatMap( )：数组扁平化
@@ -175,22 +154,14 @@ let newArr = **arr.flatMap**((item)=>{   //flatMap只能扁平化一层
 })
 ```
 
-- fill( )：数组填充
-
-```javascript
-let arr = [1,2,3,4,5]
-**arr.fill("a",2,4)**
-//[1,2,"a","a",5]
-```
-
-- includes( )：查找某值
+- includes()：查找某值
 
 ```javascript
 let arr = ["a","b","c","d","e"];
 **arr.includes("c",3)**  //参数：要查找的值，从第几位开始检索（可选）
 ```
 
-- forEach( )：为每个元素执行的函数
+- forEach()：为每个元素执行的函数
 
 ```javascript
 let arr = [1,2,3,4,5];
@@ -281,5 +252,3 @@ Object.is(val1,val2) //判断两个值是不是相同的值
     - 两个都是相同个字符按照相同的顺序组成的字符串
     - 两个值指向同一个对象（比较的是地址）
     - 两个值都是数字并且都是正零+0/-0/NaN
-
-### babel使用：兼容性处理
