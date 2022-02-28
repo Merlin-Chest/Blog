@@ -37,6 +37,28 @@ const getSubNav = (path: string, unDirIncludes: string[] = [], prefix: string = 
     // 处理配置
     const text = dir.substring(dir.lastIndexOf('/') + 1)
     const link = prefix + text + '/'
+    // 创建README.md
+    FileHelper.createReadme(dir);
+    // 如果存在符合条件的子目录
+    if (hasSubDirs(dir, unDirIncludes)) {
+      // 获取子目录的nav配置
+      const subFolder = FileHelper.getAllCurDirs(dir, unDirIncludes).map(subFolderDir => {
+        const subFolderText = subFolderDir.substring(subFolderDir.lastIndexOf('/') + 1)
+        const subFolderLink = link + subFolderText + '/'
+        // 给子目录也创建README.md
+        FileHelper.createReadme(subFolderDir);
+        return {
+          text: subFolderText,
+          link: subFolderLink
+        }
+      })
+      return {
+        text,
+        link,
+        children: showSubNavCtx.includes(text) ? subFolder : []
+      }
+    }
+    // 不存在子目录
     return {
       text,
       link,
@@ -67,5 +89,6 @@ const getMdFiles = (path: string, prefix: string = '') => {
   FileHelper.createReadme(path);
   return files.map(item => prefix + item);
 }
+
 
 exports.getNavConfig = getNav

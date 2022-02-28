@@ -5,7 +5,7 @@ const { getNavConfig } = require("./utils/handleNav");
 const ignoreDirs = ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian"];
 
 // 显示子sub的内容
-const showSubNavCtx = ['JavaScript', '其他', '工具使用', 'Vue','设计模式']
+const showSubNavCtx = ['其他', '工具使用', 'Vue', '设计模式', '前端工程化']
 
 module.exports = {
   // base: '/blog/',

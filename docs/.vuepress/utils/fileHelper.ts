@@ -75,21 +75,24 @@ const getAllCurDirs = (dir: string = ".", unDirIncludes: string[] = []): string[
  * @param {string} dir 文件目录
  * @return {*}
  */
-const createReadme = (dir: string) => {
+const createReadme = (dir: string, unDirIncludes: string[] = []) => {
   // 获取md文件列表
-  const files = getAllFiles(dir, ['md'])
+  let files = getAllFiles(dir, ['md'])
+  if (files.length <= 0) {
+    files = getAllCurDirs(dir, unDirIncludes).map(item => {
+      return {
+        title: item.substring(item.lastIndexOf('/') + 1),
+        link: item.replace(dir,'.'),
+        children: getAllFiles(item, ['md']) || []
+      }
+    })
+  }
   // 生成文件内容
   const content = Template.readmeTemplate(files);
   // 文件路径
   const file = path.join(dir, './README.md')
-  // 是否存在文件
-  fs.access('README.md', fs.constants.F_OK, (err) => {
-    try {
-      fs.writeFileSync(file, content)
-    } catch (err) {
-      console.error(file + ' 创建失败')
-    }
-  });
+  // 写入文件
+  fs.writeFileSync(file, content)
 }
 
 module.exports = {
