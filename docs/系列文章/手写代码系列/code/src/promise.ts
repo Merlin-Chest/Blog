@@ -1,3 +1,98 @@
+
+// const PENDING: statusType = 'pending';
+// const RESOLVED: statusType = 'fulfilled';
+// const REJECTED: statusType = 'reject';
+
+// type statusType = 'pending' | 'fulfilled' | 'reject'
+
+// interface MyPromise<T> {
+//   status: statusType; // 状态
+//   value: T | null; // 结果或者错误
+//   resolvedCallbacks: Function[]; // 成功回调队列
+//   rejectedCallbacks: Function[]; // 失败回调队列
+// }
+
+
+// function MyPromise<T>(this: MyPromise<T>, fn: (resolve: Function, reject: Function) => void) {
+//   // 初始化
+//   const that = this;
+//   that.status = PENDING;
+//   that.value = null;
+//   that.resolvedCallbacks = [];
+//   that.rejectedCallbacks = [];
+
+//   // 成功函数
+//   function resolve(value: any) {
+//     // 保证函数的执行顺序 ?? 因为事件循环中，宏任务是最后执行的吗
+//     setTimeout(() => {
+//       if (that.status === PENDING) {
+//         that.status = RESOLVED;
+//         that.value = value;
+//         that.resolvedCallbacks.map((cb: Function) => cb(that.value))
+//       }
+//     }, 0)
+
+//   }
+//   // 失败函数
+//   function reject(error: any) {
+//     // 保证函数的执行顺序
+//     setTimeout(() => {
+//       if (that.status === PENDING) {
+//         that.status = REJECTED;
+//         that.value = error;
+//         that.rejectedCallbacks.map((cb: Function) => cb(that.value))
+//       }
+//     }, 0)
+//   }
+
+//   try {
+//     fn(resolve, reject);
+//   } catch (err) {
+//     reject(err)
+//   }
+// }
+
+// // then方法
+// MyPromise.prototype.then = function (this: MyPromise<T>, onFulfilled?: Function, onRejected?: Function) {
+//   const that = this;
+//   let promise2:MyPromise<any>;
+//   // 避免onFulfilled或onRejected不是函数
+//   onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value: any) => value;
+//   onRejected = typeof onRejected === 'function' ? onRejected : (error: any) => { throw error };
+
+//   // 处于pending
+//   if (that.status === PENDING) {
+//     return (promise2 = new MyPromise((resolve:Function, reject:Function) => {
+//       that.resolvedCallbacks.push(() => { 
+//         try {
+//           const value = onFulfilled();
+//           resolutionProcedure(promise2,value,resolve,reject)
+//         } catch (err) {
+//           reject(err)
+//         }
+//       });
+//       that.rejectedCallbacks.push(() => {
+//         try {
+//           const error = onRejected();
+//           resolutionProcedure(promise2, error, resolve, reject)
+//         } catch (err) {
+//           reject(err)
+//         }
+//       });
+//     }))
+//   }
+//   // 处于resolved
+//   if (that.status === RESOLVED) {
+//     onFulfilled(that.value)
+//   }
+//   // 处于rejected
+//   if (that.status === REJECTED) {
+//     onRejected(that.value)
+//   }
+// }
+
+// function resolutionProcedure(promise2:MyPromise, x:any, resolve:Function, reject:Function){}
+
 var PENDING: statusType = 'pending';
 var FULFILLED: statusType = 'fulfilled';
 var REJECTED: statusType = 'reject';
@@ -56,20 +151,19 @@ class MyPromise {
   }
 
   static race(promiseList: MyPromise[]) {
-    var resPromise = new MyPromise((resolve: Function, reject: Function) => {
-      if (length === 0) {
-        return resolve();
-      } else {
-        promiseList.forEach((promise: MyPromise) => {
-          MyPromise.resolve(promise).then((value: any) => {
-            return resolve(value)
-          })
+    const length = promiseList.length
+    if (length === 0) {
+      MyPromise.resolve();
+    }
+    return new MyPromise((resolve: Function, reject: Function) => {
+      for (let i = 0; i < length; i++) {
+        MyPromise.resolve(promiseList[i]).then((value: any) => {
+          resolve(value)
         }, (reason: any) => {
-          return reject(reason)
+          reject(reason)
         })
       }
     })
-    return resPromise;
   }
 
   static allSettled(promiseList: MyPromise[]) {
@@ -123,26 +217,30 @@ class MyPromise {
     // 存一下this,以便resolve和reject里面访问
     var that = this;
     function resolve(value: any) {
-      if (that.status === PENDING) {
-        // 改变状态，拿到结果
-        that.status = FULFILLED;
-        that.value = value;
+      setTimeout(() => {
+        if (that.status === PENDING) {
+          // 改变状态，拿到结果
+          that.status = FULFILLED;
+          that.value = value;
 
-        // resolve里面将所有成功的回调拿出来执行
-        that.onFulfilledCallbacks.forEach((callback: Function) => {
-          callback(that.value);
-        });
-      }
+          // resolve里面将所有成功的回调拿出来执行
+          that.onFulfilledCallbacks.forEach((callback: Function) => {
+            callback(that.value);
+          });
+        }
+      }, 0)
     }
     function reject(reason: any) {
-      if (that.status === PENDING) {
-        that.status = REJECTED;
-        that.reason = reason;
+      setTimeout(() => {
+        if (that.status === PENDING) {
+          that.status = REJECTED;
+          that.reason = reason;
 
-        that.onRejectedCallbacks.forEach((callback: Function) => {
-          callback(that.reason);
-        });
-      }
+          that.onRejectedCallbacks.forEach((callback: Function) => {
+            callback(that.reason);
+          });
+        }
+      }, 0);
     }
 
     try {

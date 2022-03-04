@@ -15,17 +15,18 @@ describe('MyPromise', () => {
     expect(MyPromise.reject(1) instanceof MyPromise).toBe(true)
   });
   test('race', async () => {
-    let p1 = new MyPromise((resolve: Function, reject: Function) => {
-      resolve(1)
-    })
-    let p2 = new MyPromise((resolve: Function, reject: Function) => {
-      resolve(2)
-    })
-    let p3 = new MyPromise((resolve: Function, reject: Function) => {
-      resolve(3)
-    })
-    let value = await MyPromise.race([p1, p2, p3]);
-    console.log(value)
+    let p1 = new MyPromise(function (resolve: Function, reject: Function) {
+      setTimeout(resolve, 500, "one");
+    });
+    let p2 = new MyPromise(function (resolve: Function, reject: Function) {
+      setTimeout(resolve, 100, "two");
+    });
+    let p3 = new MyPromise(function (resolve: Function, reject: Function) {
+      setTimeout(resolve, 300, "three");
+    });
+Promise
+    const value = await MyPromise.race([p1, p2])
+    expect(value).toBe('two');
   })
   test('all', async () => {
     let p1 = new MyPromise((resolve: Function, reject: Function) => {
