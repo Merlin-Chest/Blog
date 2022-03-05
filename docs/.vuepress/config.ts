@@ -2,7 +2,7 @@ const rootPath = require('path').dirname(__dirname);
 const { getNavConfig } = require("./utils/handleNav");
 
 // 需要排除的一些目录
-const ignoreDirs = ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian"];
+const ignoreDirs = ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"];
 
 // 显示子sub的内容
 const showSubNavCtx = ['其他', '工具使用', 'Vue', '设计模式', '前端工程化']
