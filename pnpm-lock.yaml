@@ -2,8 +2,12 @@ lockfileVersion: 5.3
 
 specifiers:
   '@vuepress/utils': ^2.0.0-alpha.1
+  v8-natives: ^1.2.5
   vuepress-vite: ^2.0.0-beta.35
   webpack: ^5.0.0
+
+dependencies:
+  v8-natives: registry.npmmirror.com/v8-natives/1.2.5
 
 devDependencies:
   '@vuepress/utils': registry.npmmirror.com/@vuepress/utils/2.0.0-alpha.1
@@ -2424,6 +2428,13 @@ packages:
     name: util-deprecate
     version: 1.0.2
     dev: true
+
+  registry.npmmirror.com/v8-natives/1.2.5:
+    resolution: {integrity: sha512-CVNliz6KF2yet3HBIkbFJKZmjlt95C8dsNZDnwoS6X98+QJRpsSz9uxo3TziBqdyJQkWwfD3VG9lRzsQNvF24Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/v8-natives/-/v8-natives-1.2.5.tgz}
+    name: v8-natives
+    version: 1.2.5
+    engines: {node: '>= 0.6.0'}
+    dev: false
 
   registry.npmmirror.com/vite/2.7.13:
     resolution: {integrity: sha512-Mq8et7f3aK0SgSxjDNfOAimZGW9XryfHRa/uV0jseQSilg+KhYDSoNb9h1rknOy6SuMkvNDLKCYAYYUMCE+IgQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-2.7.13.tgz}

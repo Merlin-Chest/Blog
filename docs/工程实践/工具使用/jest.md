@@ -20,7 +20,7 @@ module.exports = {
 ```
 
 ```bash
-//安装依赖
+// 安装依赖
 yarn add --dev babel-jest @babel/core @babel/prest-env
 ```
 
@@ -32,9 +32,9 @@ yarn add --dev babel-jest @babel/core @babel/prest-env
   "version": "1.0.0",
   "description": "探索 jest 是否支持 nodejs 的 esm 规范",
   "main": "index.js",
-  "type": "module",//使nodejs支持esm
+  "type": "module",// 使nodejs支持esm
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest" //添加参数，让jest知道要用esm的形式运行
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest" // 添加参数，让jest知道要用esm的形式运行
   },
  }
 ```

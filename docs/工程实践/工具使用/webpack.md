@@ -1,7 +1,5 @@
 # Webpack
 
-Created: September 6, 2021 9:27 AM
-
 ## **1、webpack 是什么？**
 
 - 官⽅方⽹网站:[https://webpack.js.org/](https://webpack.js.org/)
@@ -18,7 +16,6 @@ Created: September 6, 2021 9:27 AM
 ```
 
 > 注：不推荐全局安装
-> 
 
 `webpack-cli` : 提供 webpack 命令、工具，类似 `create-react-app`
 
@@ -57,7 +54,6 @@ Created: September 6, 2021 9:27 AM
 通过 `npx` 也可以帮助我们定位命令到 `./node_modules/.bin/` 目录下
 
 > 注：npm5.2+ 增加，如果没有，可以使用 npm i -g npx 来安装
-> 
 
 ## **4、打包模块**
 
@@ -99,7 +95,6 @@ Created: September 6, 2021 9:27 AM
 通常情况下，我们的项目目录大致如下：
 
 ```
- /
  -- /dist - 项目打包后存放目录
  -- /node_modules - 第三方模块
  -- /src
@@ -562,8 +557,6 @@ Created: September 6, 2021 9:27 AM
 
 通过 `proxy` 设置，当我们在当前 `WebpackDevServer` 环境下发送以 `/api` 开头的请求都会被转发到 [http://localhost:8787](http://localhost:8787/) 目标服务器下
 
-<!--修改前端代码-->
-
 ```
  axios({
    //url: 'http://locahost:8081/api/info',
@@ -720,7 +713,6 @@ Created: September 6, 2021 9:27 AM
 ```
 
 > When you opt-in to code splitting, Webpack may duplicate modules between chunks depending on heuristics. If this happens, then you can end up with multiple instances of the same module, each with their own state that can easily get out of sync.However, you can set optimization.runtimeChunk to . This moves Webpack's runtime module loader into its own bundle rather than being inlined into each entry, creating a global registry that allows code-splitted modules to be shared between entries. This doesn't prevent Webpack from copying module code between entry points, but it prevents it creating two instances of the same module at runtime, while reducing the number of HTTP requests needed to load modules for a given page."single"当你选择使用代码分割时，webpack可能会受启发式的在多个chunk中复制依赖模块。如果发生了这种事情，这时您有可能得到相同模块的多个实例，他们之间的状态将会很难保证同步。当然，您可以通过设置 optimization.runtimeChunk为“single”进行解决 。这会将Webpack的运行时模块加载程序移到它自己的包中，而不是内联到每个条目中，从而创建一个全局注册表，允许在条目之间共享代码分割的模块。这并不能阻止Webpack在入口点之间复制模块代码，但它可以防止Webpack在运行时创建同一模块的两个实例，同时减少为给定页面加载模块所需的HTTP请求数。runtimeChunk: "single"是对于确保模块实例化正确所必须的，它默认是禁用状态，这在Webpack代码分割指南中记载着。Although using multiple entry points per page is allowed in webpack, it should be avoided when possible in favor of an entry point with multiple imports: entry: { page: ['./analytics', './app'] }. This results in a better optimization and consistent execution order when using async script tags.尽管我们可以在webpack中对每个页面配置多入口，但我们应当避免像entry: { page: ['./analytics', './app'] }这样的多入口使用多引入的情况。这会让我们在使用async属性的script标签时获得更好的优化以及保证其一致的执行顺序。
-> 
 
 ### **11 - 2 - 1、SplitChunksPlugin**
 

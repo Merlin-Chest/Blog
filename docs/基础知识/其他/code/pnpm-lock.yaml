@@ -1,0 +1,16 @@
+lockfileVersion: 5.3
+
+specifiers:
+  v8-natives: ^1.2.5
+
+dependencies:
+  v8-natives: registry.npmmirror.com/v8-natives/1.2.5
+
+packages:
+
+  registry.npmmirror.com/v8-natives/1.2.5:
+    resolution: {integrity: sha512-CVNliz6KF2yet3HBIkbFJKZmjlt95C8dsNZDnwoS6X98+QJRpsSz9uxo3TziBqdyJQkWwfD3VG9lRzsQNvF24Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/v8-natives/-/v8-natives-1.2.5.tgz}
+    name: v8-natives
+    version: 1.2.5
+    engines: {node: '>= 0.6.0'}
+    dev: false

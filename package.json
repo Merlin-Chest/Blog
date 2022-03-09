@@ -12,5 +12,8 @@
     "@vuepress/utils": "^2.0.0-alpha.1",
     "vuepress-vite": "^2.0.0-beta.35",
     "webpack": "^5.0.0"
+  },
+  "dependencies": {
+    "v8-natives": "^1.2.5"
   }
 }
