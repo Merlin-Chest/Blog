@@ -1,7 +1,8 @@
-
+---
+sidebar: false
+title: TypeScript
+---
 ## 该章节包含以下内容
-  
-  
 - [Typescript基础](Typescript基础.md)
 
   

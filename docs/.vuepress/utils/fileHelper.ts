@@ -82,13 +82,13 @@ const createReadme = (dir: string, unDirIncludes: string[] = []) => {
     files = getAllCurDirs(dir, unDirIncludes).map(item => {
       return {
         title: item.substring(item.lastIndexOf('/') + 1),
-        link: item.replace(dir,'.'),
+        link: item.replace(dir, '.'),
         children: getAllFiles(item, ['md']) || []
       }
     })
   }
   // 生成文件内容
-  const content = Template.readmeTemplate(files);
+  const content = Template.READMETemplate(files, dir.substring(dir.lastIndexOf('/') + 1));
   // 文件路径
   const file = path.join(dir, './README.md')
   // 写入文件

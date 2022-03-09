@@ -33,7 +33,7 @@ const getNav = (path: string, unDirIncludes: string[] = [], showSubNavCtx: strin
 const getSubNav = (path: string, unDirIncludes: string[] = [], prefix: string = '/', showSubNavCtx: string[] = []) => {
   // 获取全部子目录路径
   const allCurDirs = FileHelper.getAllCurDirs(path, unDirIncludes);
-  return allCurDirs.map((dir: string) => {
+  return [ ...getMdFiles(path, prefix), ...allCurDirs.map((dir: string) => {
     // 处理配置
     const text = dir.substring(dir.lastIndexOf('/') + 1)
     const link = prefix + text + '/'
@@ -64,7 +64,7 @@ const getSubNav = (path: string, unDirIncludes: string[] = [], prefix: string = 
       link,
       children: showSubNavCtx.includes(text) ? getMdFiles(dir, link) : []
     }
-  });
+  })];
 }
 
 /**

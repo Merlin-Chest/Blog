@@ -1,11 +1,9 @@
-
+---
+sidebar: false
+title: 工具使用
+---
 ## 该章节包含以下内容
-  
-  
 - [Echart](Echart.md)
-
-  
-- [Axios源码解读](Axios源码解读.md)
 
   
 - [git](git.md)
@@ -15,5 +13,8 @@
 
   
 - [webpack](webpack.md)
+
+  
+- [包管理工具](包管理工具.md)
 
   

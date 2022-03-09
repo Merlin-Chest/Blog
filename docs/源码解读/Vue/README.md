@@ -1,7 +1,8 @@
-
+---
+sidebar: false
+title: Vue
+---
 ## 该章节包含以下内容
-  
-  
 - [reactivity模块](reactivity模块.md)
 
   

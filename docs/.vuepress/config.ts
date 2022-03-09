@@ -10,6 +10,7 @@ const showSubNavCtx = ['其他', '工具使用', 'Vue', '设计模式', '前端�
 module.exports = {
   // base: '/blog/',
   lang: 'zh-cn',
+  title:'Being not just coder',
   // 在使用 vuepress-vite 包的时候，你可以忽略这个字段，因为 Vite 是默认打包工具
   bundler: '@vuepress/bundler-vite',
   // Vite 打包工具的配置项
@@ -23,7 +24,7 @@ module.exports = {
     displayAllHeaders: true,
     lastUpdated: '最后更新时间', // string | boolean
     smoothScroll: true, // 页面滚动效果
-    repo: 'Merlin218',
+    repo: 'https://github.com/Merlin218',
     // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
     // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
     // 以下为可选的编辑链接选项

@@ -1,7 +1,8 @@
-
+---
+sidebar: false
+title: 算法笔记
+---
 ## 该章节包含以下内容
-  
-  
 - [KMP算法](KMP算法.md)
 
   
