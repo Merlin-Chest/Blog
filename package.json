@@ -10,10 +10,24 @@
   },
   "devDependencies": {
     "@vuepress/utils": "^2.0.0-alpha.1",
+    "vuepress-auto-navbar": "^1.0.0",
     "vuepress-vite": "^2.0.0-beta.35",
     "webpack": "^5.0.0"
   },
   "dependencies": {
     "v8-natives": "^1.2.5"
-  }
+  },
+  "description": "个人博客",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Merlin218/Merlin218.github.io.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Merlin218/Merlin218.github.io/issues"
+  },
+  "homepage": "https://github.com/Merlin218/Merlin218.github.io#readme"
 }

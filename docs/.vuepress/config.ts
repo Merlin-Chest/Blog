@@ -1,11 +1,4 @@
-const rootPath = require('path').dirname(__dirname);
-const { getNavConfig } = require("./utils/handleNav");
-
-// 需要排除的一些目录
-const ignoreDirs = ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"];
-
-// 显示子sub的内容
-const showSubNavCtx = ['其他', '工具使用', 'Vue', '设计模式', '前端工程化','计算机网络']
+const AutoNavPlugin = require('vuepress-auto-navbar')
 
 module.exports = {
   // base: '/blog/',
@@ -19,7 +12,15 @@ module.exports = {
   },
   themeConfig: {
     logo: 'logo.jpg',
-    navbar: getNavConfig(rootPath, ignoreDirs, showSubNavCtx), // 自动生成导航栏配置
+    navbar: AutoNavPlugin({
+      subNav: {
+        show: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络']
+      },
+      ignore: {
+        folders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
+        files: [] // 需要排除的一些文件
+      }
+    }),// 自动生成导航栏配置
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     displayAllHeaders: true,
     lastUpdated: true, // string | boolean
