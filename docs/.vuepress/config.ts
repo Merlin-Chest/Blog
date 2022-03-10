@@ -10,7 +10,7 @@ const showSubNavCtx = ['其他', '工具使用', 'Vue', '设计模式', '前端�
 module.exports = {
   // base: '/blog/',
   lang: 'zh-cn',
-  title:'Being not just coder',
+  title:'Code More Create',
   // 在使用 vuepress-vite 包的时候，你可以忽略这个字段，因为 Vite 是默认打包工具
   bundler: '@vuepress/bundler-vite',
   // Vite 打包工具的配置项
