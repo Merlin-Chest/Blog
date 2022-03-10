@@ -9,9 +9,3 @@ title: 计算机网络
 - [UDP](UDP.md)
 
   
-- [localhost和127.0.0.1的区别](localhost和127.0.0.1的区别.md)
-
-  
-- [当ping一个IP地址会发生什么](当ping一个IP地址会发生什么.md)
-
-  

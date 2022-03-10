@@ -3,20 +3,6 @@ sidebar: false
 title: 基础知识
 ---
 ## 该章节包含以下内容
-#### [HTTP](./HTTP)
-    
-- [HTTP、HTTPS代理分析及原理](HTTP、HTTPS代理分析及原理.md)
-
-  
-- [HTTP缓存机制](HTTP缓存机制.md)
-
-  
-- [常见的状态码](常见的状态码.md)
-
-  
-- [输入网址后发生什么](输入网址后发生什么.md)
-
-  
 #### [JavaScript](./JavaScript)
     
 - [AJAX](./JavaScript/AJAX.md)
@@ -110,6 +96,9 @@ title: 基础知识
 - [事件机制](./浏览器/事件机制.md)
 
   
+- [安全防范](./浏览器/安全防范.md)
+
+  
 - [客户端存储](./浏览器/客户端存储.md)
 
   
@@ -128,11 +117,5 @@ title: 基础知识
 
   
 - [UDP](./计算机网络/UDP.md)
-
-  
-- [localhost和127.0.0.1的区别](localhost和127.0.0.1的区别.md)
-
-  
-- [当ping一个IP地址会发生什么](当ping一个IP地址会发生什么.md)
 
   

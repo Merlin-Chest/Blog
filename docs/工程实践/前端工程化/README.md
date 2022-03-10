@@ -8,6 +8,9 @@ title: 前端工程化
 - [AST抽象语法树](./打包篇/AST抽象语法树.md)
 
   
+- [Webpack性能优化](./打包篇/Webpack性能优化.md)
+
+  
 - [加载chunk](./打包篇/加载chunk.md)
 
   

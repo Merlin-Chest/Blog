@@ -6,6 +6,9 @@ title: 打包篇
 - [AST抽象语法树](AST抽象语法树.md)
 
   
+- [Webpack性能优化](Webpack性能优化.md)
+
+  
 - [加载chunk](加载chunk.md)
 
   

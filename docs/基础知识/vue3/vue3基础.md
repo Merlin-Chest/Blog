@@ -1,8 +1,4 @@
 # Vue3基础
-
-Created: August 16, 2021 11:43 PM
-Tags: vue
-
 ## Composition API
 
 ### **介绍**

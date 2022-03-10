@@ -29,7 +29,7 @@ features:
   <a style="font-size:20px;line-height:50px;margin-right:10px;" href="mailto:863176846@qq.com" alt="email">邮箱</a>
 </div>
 
-<div style="display:flex;algin-items:center;justify-content:space-between;">
+<div style="display:flex;algin-items:center;justify-content:space-between;flex-wrap: wrap">
   <img src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="400"/>
   </div>
