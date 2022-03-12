@@ -2,17 +2,15 @@ lockfileVersion: 5.3
 
 specifiers:
   '@vuepress/utils': ^2.0.0-alpha.1
-  v8-natives: ^1.2.5
-  vuepress-auto-navbar: ^1.0.0
+  vuepress-plugin-auto-navbar: ^1.0.2
   vuepress-vite: ^2.0.0-beta.35
   webpack: ^5.0.0
 
 dependencies:
-  v8-natives: registry.npmmirror.com/v8-natives/1.2.5
+  vuepress-plugin-auto-navbar: 1.0.2
 
 devDependencies:
   '@vuepress/utils': registry.npmmirror.com/@vuepress/utils/2.0.0-alpha.1
-  vuepress-auto-navbar: 1.0.0
   vuepress-vite: registry.npmmirror.com/vuepress-vite/2.0.0-beta.35_webpack@5.69.1
   webpack: registry.npmmirror.com/webpack/5.69.1
 
@@ -167,9 +165,9 @@ packages:
     dev: true
     optional: true
 
-  /vuepress-auto-navbar/1.0.0:
-    resolution: {integrity: sha512-7M8zXfqzOsLwtdet/m71M5CqOeGp0KL/4tDuJ7A0N1Zu8PIXrdnYeRlL/oTpBoSfSFId2u4jeBV3JfQGcSjerQ==}
-    dev: true
+  /vuepress-plugin-auto-navbar/1.0.2:
+    resolution: {integrity: sha512-noBvoJtjC6PX1siVdinlaN+OzlAYsT4Hvy2SeRRH1e4cY3JPbq2ErkIX69Ng0qz38OgDgT5wUZHjTyEKuRpRXg==}
+    dev: false
 
   registry.nlark.com/@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@nodelib/fs.scandir/download/@nodelib/fs.scandir-2.1.5.tgz}
@@ -2403,13 +2401,6 @@ packages:
     name: util-deprecate
     version: 1.0.2
     dev: true
-
-  registry.npmmirror.com/v8-natives/1.2.5:
-    resolution: {integrity: sha512-CVNliz6KF2yet3HBIkbFJKZmjlt95C8dsNZDnwoS6X98+QJRpsSz9uxo3TziBqdyJQkWwfD3VG9lRzsQNvF24Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/v8-natives/-/v8-natives-1.2.5.tgz}
-    name: v8-natives
-    version: 1.2.5
-    engines: {node: '>= 0.6.0'}
-    dev: false
 
   registry.npmmirror.com/vite/2.7.13:
     resolution: {integrity: sha512-Mq8et7f3aK0SgSxjDNfOAimZGW9XryfHRa/uV0jseQSilg+KhYDSoNb9h1rknOy6SuMkvNDLKCYAYYUMCE+IgQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-2.7.13.tgz}
