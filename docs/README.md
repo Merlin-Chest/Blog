@@ -1,11 +1,12 @@
 ---
-home: true
-heroText: Guys 👋 Nice to meet u!
-tagline: 在这记录学习前端的点滴
-features:
-  footer: MIT Licensed | Copyright © 2021-present Merlin
+title: 首页
+sidebar: false
+editLink: false
+contributors: false
+lastUpdated: false
 ---
-<div style="text-align:center;height:60vh;display:flex;flex-flow:column;algin-items:center;justify-content:space-evenly;">
+<div style="text-align:center;height:80vh;display:flex;flex-flow:column;algin-items:center;justify-content:space-evenly;">
+<h1>Guys 👋 Nice to meet u!</h1>
 <div style="display:flex;algin-items:center;justify-content:center;">
   <span style="font-size:20px;line-height:50px;margin-right:10px;">IDE</span>
   <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3ctitle%3efile_type_vscode%3c/title%3e%3cpath d='M29.01%2c5.03%2c23.244%2c2.254a1.742%2c1.742%2c0%2c0%2c0-1.989.338L2.38%2c19.8A1.166%2c1.166%2c0%2c0%2c0%2c2.3%2c21.447c.025.027.05.053.077.077l1.541%2c1.4a1.165%2c1.165%2c0%2c0%2c0%2c1.489.066L28.142%2c5.75A1.158%2c1.158%2c0%2c0%2c1%2c30%2c6.672V6.605A1.748%2c1.748%2c0%2c0%2c0%2c29.01%2c5.03Z' style='fill:%230065a9'/%3e%3cpath d='M29.01%2c26.97l-5.766%2c2.777a1.745%2c1.745%2c0%2c0%2c1-1.989-.338L2.38%2c12.2A1.166%2c1.166%2c0%2c0%2c1%2c2.3%2c10.553c.025-.027.05-.053.077-.077l1.541-1.4A1.165%2c1.165%2c0%2c0%2c1%2c5.41%2c9.01L28.142%2c26.25A1.158%2c1.158%2c0%2c0%2c0%2c30%2c25.328V25.4A1.749%2c1.749%2c0%2c0%2c1%2c29.01%2c26.97Z' style='fill:%23007acc'/%3e%3cpath d='M23.244%2c29.747a1.745%2c1.745%2c0%2c0%2c1-1.989-.338A1.025%2c1.025%2c0%2c0%2c0%2c23%2c28.684V3.316a1.024%2c1.024%2c0%2c0%2c0-1.749-.724%2c1.744%2c1.744%2c0%2c0%2c1%2c1.989-.339l5.765%2c2.772A1.748%2c1.748%2c0%2c0%2c1%2c30%2c6.6V25.4a1.748%2c1.748%2c0%2c0%2c1-.991%2c1.576Z' style='fill:%231f9cf0'/%3e%3c/svg%3e" decoding="async" data-nimg="intrinsic" class="h-50" width="50">
@@ -30,7 +31,7 @@ features:
 </div>
 
 <div style="display:flex;algin-items:center;justify-content:space-between;flex-wrap: wrap">
-  <img src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="400"/>
+  <img style="flex:1" src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
+  <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="200"/>
   </div>
 </div>
