@@ -1,5 +1,9 @@
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
+const navbar = AutoNavPlugin({
+  subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络', '算法基础', '刷题技巧'],
+  ignoreFolders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
+})
 
 module.exports = {
   lang: 'zh-cn',
@@ -12,10 +16,10 @@ module.exports = {
   },
   themeConfig: {
     logo: 'logo.jpg',
-    navbar: AutoNavPlugin({
-      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络', '算法基础', '刷题技巧'],
-      ignoreFolders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
-    }),// 自动生成导航栏配置
+    navbar,// 自动生成导航栏配置
+    sidebar: {
+      '/': navbar
+    },
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     displayAllHeaders: true,
     lastUpdated: true, // string | boolean
