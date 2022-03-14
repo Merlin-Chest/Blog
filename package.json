@@ -5,11 +5,24 @@
   "author": "merlin <863176846@qq.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "vuepress dev docs --config ./docs/.vuepress/config.ts",
-    "build": "vuepress build docs --config ./docs/.vuepress/config.ts"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "nav": "vuepress navs docs"
   },
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.36"
+    "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepress/shared-utils": "^1.9.7",
+    "chalk": "^2.0.0",
+    "commander": "^2.0.0",
+    "esm": "^3.0.0",
+    "markdown-it": "^8.4.2",
+    "vue": ">=2.6.0 <3.0.0 || >=3.0.0-rc.1 <3.0.0",
+    "vue-class-component": "*",
+    "vuepress": "^1.9.7",
+    "vuepress-plugin-auto-sidebar": "^2.3.2",
+    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
+    "vuepress-theme-vt": "^0.4.2",
+    "webpack": "^5.0.0"
   },
   "description": "个人博客",
   "directories": {
@@ -23,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/Merlin218/Merlin218.github.io/issues"
   },
-  "homepage": "https://github.com/Merlin218/Merlin218.github.io#readme",
-  "dependencies": {
-    "vuepress-plugin-auto-navbar": "1.0.3"
-  }
+  "homepage": "https://github.com/Merlin218/Merlin218.github.io#readme"
 }

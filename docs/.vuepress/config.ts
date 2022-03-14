@@ -1,25 +1,23 @@
-import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
+import { defineConfig } from "vuepress/config";
+const nav = require('./nav');
 
-module.exports = {
-  lang: 'zh-cn',
+module.exports = defineConfig({
   title: 'Code More Create',
+  plugins: {
+    "vuepress-plugin-auto-sidebar": {},
+    // require('../../../vuepress-plugin-auto-nav/src'): {}
+  },
+  theme: 'vt',
   themeConfig: {
-    logo: 'logo.jpg',
-    navbar: AutoNavPlugin({
-      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络', '算法基础', '刷题技巧'],
-      ignoreFolders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
-    }),// 自动生成导航栏配置
+    logo: 'logo.jpg', nav,
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
-    displayAllHeaders: true,
+    editLinks: true,
     lastUpdated: true, // string | boolean
-    lastUpdatedText: '最后更新时间',
-    contributorsText: '作者',
     smoothScroll: true, // 页面滚动效果
     repo: 'https://github.com/Merlin218',
     editLinkText: '更正错误',
     docsRepo: 'https://github.com/Merlin218/Merlin218.github.io',
     docsBranch: 'master',
     docsDir: 'docs',
-    editLinkPattern: ':repo/edit/:branch/:path',
   },
-};
+});
