@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/Merlin218/Merlin218.github.io#readme",
   "dependencies": {
-    "vuepress-plugin-auto-navbar": "^1.0.2"
+    "vuepress-plugin-auto-navbar": "1.0.3"
   }
 }

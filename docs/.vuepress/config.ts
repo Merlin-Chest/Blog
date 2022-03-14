@@ -1,5 +1,6 @@
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
+
 module.exports = {
   lang: 'zh-cn',
   title: 'Code More Create',
@@ -12,12 +13,8 @@ module.exports = {
   themeConfig: {
     logo: 'logo.jpg',
     navbar: AutoNavPlugin({
-      subNav: {
-        show: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络', '算法基础', '刷题技巧']
-      },
-      ignore: {
-        folders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
-      }
+      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '计算机网络', '算法基础', '刷题技巧'],
+      ignoreFolders: ["node_modules", "assets", "public", ".vuepress", "code", ".obsidian", "utils"], // 需要排除的一些目录
     }),// 自动生成导航栏配置
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     displayAllHeaders: true,

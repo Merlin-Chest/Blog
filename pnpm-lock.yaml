@@ -2,12 +2,12 @@ lockfileVersion: 5.3
 
 specifiers:
   '@vuepress/utils': ^2.0.0-alpha.1
-  vuepress-plugin-auto-navbar: ^1.0.2
+  vuepress-plugin-auto-navbar: 1.0.3
   vuepress-vite: ^2.0.0-beta.35
   webpack: ^5.0.0
 
 dependencies:
-  vuepress-plugin-auto-navbar: 1.0.2
+  vuepress-plugin-auto-navbar: 1.0.3
 
 devDependencies:
   '@vuepress/utils': registry.npmmirror.com/@vuepress/utils/2.0.0-alpha.1
@@ -165,8 +165,8 @@ packages:
     dev: true
     optional: true
 
-  /vuepress-plugin-auto-navbar/1.0.2:
-    resolution: {integrity: sha512-noBvoJtjC6PX1siVdinlaN+OzlAYsT4Hvy2SeRRH1e4cY3JPbq2ErkIX69Ng0qz38OgDgT5wUZHjTyEKuRpRXg==}
+  /vuepress-plugin-auto-navbar/1.0.3:
+    resolution: {integrity: sha512-ljEJ900/bb73iWQYFgZY5r6fGVvNHoDiuU2YZsQxZrklIlqSuTtdkZEUgLxOIS6IZyeXNJdwxS1aiRt1BedBJw==}
     dev: false
 
   registry.nlark.com/@nodelib/fs.scandir/2.1.5:
