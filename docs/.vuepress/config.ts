@@ -1,9 +1,11 @@
-import { defineConfig } from 'vuepress/config';
-import AutoNavPlugin from './plugins/vuepress-plugin-auto-nav';
+import { defineConfig } from '@vuepress/types';
+import  AutoNavPlugin  from './plugins/vuepress-plugin-auto-nav';
 
 module.exports = defineConfig({
   title: 'Code More Create',
-  plugins: {'vuepress-plugin-auto-sidebar':{}},
+  plugins:[
+    ["vuepress-plugin-auto-sidebar",{}]
+  ],
   theme: 'vt',
   themeConfig: {
     logo: 'logo.jpg',

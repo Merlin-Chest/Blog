@@ -9,4 +9,4 @@ var AutoNavPlugin = function (options) {
     var path = resolve(process.cwd(), 'docs');
     return getNav(path, options.ignoreFolders, options.subNavShow, 0);
 };
-export { AutoNavPlugin as default };
+export default AutoNavPlugin;

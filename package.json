@@ -6,27 +6,19 @@
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "nav": "vuepress navs docs"
+    "build": "vuepress build docs"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.0.0",
     "@vue/component-compiler-utils": "^3.3.0",
-    "@vuepress/shared-utils": "^1.9.7",
-    "chalk": "^2.0.0",
-    "commander": "^2.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.2",
-    "esm": "^3.0.0",
     "markdown-it": "^8.4.2",
     "typescript": "^4.6.2",
-    "vue": ">=2.6.0 <3.0.0 || >=3.0.0-rc.1 <3.0.0",
-    "vue-class-component": "*",
     "vuepress": "^1.9.7",
-    "vuepress-plugin-auto-sidebar": "^2.3.2",
-    "vuepress-plugin-autobar": "github:boboidream/vuepress-bar",
+    "vuepress-plugin-auto-sidebar": "^2.4.0-alpha.4",
     "vuepress-theme-vt": "^0.4.2",
-    "webpack": "^5.0.0"
+    "webpack": "^4.8.0"
   },
   "description": "个人博客",
   "directories": {
