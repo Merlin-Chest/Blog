@@ -5,7 +5,7 @@ editLink: false
 contributors: false
 lastUpdated: false
 ---
-<div style="text-align:center;height:80vh;display:flex;flex-flow:column;algin-items:center;justify-content:space-evenly;">
+<div style="text-align:center;height:60vh;display:flex;flex-flow:column;algin-items:center;justify-content:space-evenly;">
 <h1>Guys 👋 Nice to meet u!</h1>
 <div style="display:flex;algin-items:center;justify-content:center;">
   <span style="font-size:20px;line-height:50px;margin-right:10px;">IDE</span>

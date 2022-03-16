@@ -81,7 +81,7 @@ Promise.all([p1, p2])
 ### Promise.race
 
 - 将多个 Promise 实例，包装成一个新的 Promise 实例
-- 只要`p1`、`p2`、`p3`之中有一个实例率先改变状态，`p`的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给`p`的回调函数。
+- 只要`p1`、`p2`、`p3`之中有一个实例**率先改变状态**，`p`的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给`p`的回调函数。无论状态是resolve还是reject
 - 例子：如果指定时间内没有获得结果，就将 Promise 的状态变为`reject`，否则变为`resolve`
 ```js
 const p = Promise.race([
@@ -158,3 +158,20 @@ Promise.try(() => database.users.get({id: userId}))
   .then(...)
   .catch(...) // 可以捕获异步和同步的错误
 ```
+
+## 总结
+
+- Promise
+	- 异步编程的解决方案
+		- 对比回调函数和事件
+	- 特点
+		- 内部状态不影响外部
+		- 链式调用
+		- 无法判断事情的进展
+		- 无法取消
+		- 状态一旦确定不可改变
+	- API
+		- all：全部fulfilled -> fulfilled；一个reject -> reject
+		- any：一个fulfilled -> fulfilled;全部reject -> reject
+		- race：第一个响应决定状态和结果
+		- allSettled：永远resolve，拿到一个Promise结果数组

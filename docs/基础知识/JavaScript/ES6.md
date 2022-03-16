@@ -12,6 +12,31 @@
     - 块级作用域
     - 不会进行预解析
 
+> 对比var、let和const
+> - `var`声明是全局作用域或函数作用域，而`let`和`const`是块作用域。
+> - `var`变量可以在其范围内更新和重新声明； `let`变量可以被更新但不能重新声明； `const`变量既不能更新也不能重新声明。
+> - 它们都被提升到其作用域的顶端。但是，`var`变量会被初始化为undefined，`let`和`const`变量不会被初始化（暂时性死区）。
+> -在声明期间可以不初始化`var`和`let`，但是必须初始化`const`。
+
+```js
+console.log(a, b) // a,b变量提升，不会报错，a，b为undefined
+var a = 12, b ='merlin' // a,b赋值
+function foo(){ 
+    console.log(a, b) // a变量提升，a为undefined，b取全局作用域的值merlin
+    var a = b = 13 // a赋值，b重新赋值
+    console.log(a, b) // 13 13
+} 
+foo() 
+console.log(a, b) // a为全局作用域12，b在函数中被修改为13
+
+/* 输出：
+    undefined undefined
+    undefined "林一一"
+    13 13
+    12 13
+*/
+```
+
 ### 解构赋值
 
 ```javascript
@@ -98,7 +123,7 @@ m.has(val)  //是否包含某一项，参数：要查找的key值；返回值：
 m.set(key,val)   //增加某一项，返回set对象本身
 //链式使用
 m.set("a",1).set("b",2)
-```
+``` 
 
 ### 箭头函数
 
@@ -131,7 +156,6 @@ obj.b();    // 'GLOBAL'
 ```
 
 上面这个例子，对象`obj`的方法`a`使用普通函数定义的，**普通函数作为对象的方法调用时，`this`指向它所属的对象**。所以，`this.id`就是`obj.id`，所以输出`'OBJ'`。 但是方法`b`是使用箭头函数定义的，箭头函数中的`this`实际是继承的它定义时所处的全局执行环境中的`this`，所以指向`Window`对象，所以输出`'GLOBAL'`。（**这里要注意，定义对象的大括号`{}`是无法形成一个单独的执行环境的，它依旧是处于全局执行环境中！！**）
-- 参数默认值
 
 ### Array数组新增方法
 

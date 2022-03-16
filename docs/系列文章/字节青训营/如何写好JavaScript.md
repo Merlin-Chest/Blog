@@ -1,8 +1,7 @@
+# 如何写好JavaScript
 >课件链接：
->
->跟着月影学 JavaScript (上)：https://bytedance.feishu.cn/file/boxcn0vymHvT8flR0loNcQfZ4ne
->
->跟着月影学 JavaScript (下)：https://bytedance.feishu.cn/file/boxcnzft1B4IVEyqF9LDIxkz61e
+> [跟着月影学 JavaScript (上)](https://bytedance.feishu.cn/file/boxcn0vymHvT8flR0loNcQfZ4ne)
+> [跟着月影学 JavaScript (下)](https://bytedance.feishu.cn/file/boxcnzft1B4IVEyqF9LDIxkz61e)
 
 ## 写好JS的一些原则
 
