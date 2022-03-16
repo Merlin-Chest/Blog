@@ -1,11 +1,7 @@
 # 深入浅出CSS
 >课程链接：
->
->深入 CSS：https://bytedance.feishu.cn/file/boxcn9mDBCRxymaLnpeq1Ovwcue
-
->课件链接：
->
->了解 CSS：https://bytedance.feishu.cn/file/boxcnaUPgIwFZ1J73mZ3TvrCOmb
+>[深入CSS](https://bytedance.feishu.cn/file/boxcn9mDBCRxymaLnpeq1Ovwcue)
+>[了解 CSS](https://bytedance.feishu.cn/file/boxcnaUPgIwFZ1J73mZ3TvrCOmb)
 
 ## 一、CSS使用
 
