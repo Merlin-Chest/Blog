@@ -5,7 +5,7 @@ editLink: false
 contributors: false
 lastUpdated: false
 ---
-<div style="text-align:center;height:60vh;display:flex;flex-flow:column;algin-items:center;justify-content:space-evenly;">
+<div style="text-align:center;height:80vh;display:flex;flex-flow:column;align-items:center;justify-content:space-evenly;margin-top:0;">
 <h1>Guys 👋 Nice to meet u!</h1>
 <div style="display:flex;algin-items:center;justify-content:center;">
   <span style="font-size:20px;line-height:50px;margin-right:10px;">IDE</span>
@@ -32,6 +32,6 @@ lastUpdated: false
 
 <div style="display:flex;algin-items:center;justify-content:space-between;flex-wrap: wrap">
   <img style="flex:1" src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
-  <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="200"/>
+  <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="360"/>
   </div>
 </div>
