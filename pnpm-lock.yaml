@@ -11,6 +11,7 @@ specifiers:
   markdown-it: ^8.4.2
   typescript: ^4.6.2
   vuepress: ^1.9.7
+  vuepress-plugin-auto-navbar: ^1.0.5
   vuepress-plugin-auto-sidebar: ^2.4.0-alpha.4
   vuepress-theme-vt: ^0.4.2
   webpack: ^4.8.0
@@ -19,6 +20,7 @@ dependencies:
   '@typescript-eslint/eslint-plugin': 5.15.0_5400bdff049a1444f15d03ace6195cd2
   eslint-config-airbnb-base: 15.0.0_157002f9dff1b62f2b20650d7e8bf1eb
   eslint-plugin-vue: 8.5.0_eslint@7.32.0
+  vuepress-plugin-auto-navbar: 1.0.5
 
 devDependencies:
   '@typescript-eslint/parser': 5.15.0_eslint@7.32.0+typescript@4.6.2
@@ -9102,6 +9104,10 @@ packages:
       util.promisify: 1.0.0
       webpack: 4.46.0
     dev: true
+
+  /vuepress-plugin-auto-navbar/1.0.5:
+    resolution: {integrity: sha512-RVHAosG9Gaw2pDB89c1rTaty9MIQakEe3xW8JeBsQfeD6wheOsqQhT/ubExoAdPt5+shVZq6oK3pbhlZJooRVQ==}
+    dev: false
 
   /vuepress-plugin-auto-sidebar/2.4.0-alpha.4:
     resolution: {integrity: sha512-wgZ8jAgr6dSKfV0SpAVE54OzGypy9lS6LKn2JxHT3hD8lHJh//uhwstxvBqnwlpfbJq5xThXOQtoqs1LVdd90A==}

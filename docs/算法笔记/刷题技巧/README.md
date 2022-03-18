@@ -4,7 +4,7 @@ title: 刷题技巧
 ## 该章节包含以下内容
   
   
-- [2Sum 3Sum 4Sum 问题](2Sum 3Sum 4Sum 问题.md)
+- [2Sum&3Sum&4Sum 问题](2Sum&3Sum&4Sum 问题.md)
 
   
 - [BFS算法基础](BFS算法基础.md)

@@ -4,6 +4,9 @@ title: JavaScript
 ## 该章节包含以下内容
   
   
+- [._类型与值](._类型与值.md)
+
+  
 - [AJAX](AJAX.md)
 
   
@@ -13,7 +16,7 @@ title: JavaScript
 - [ES6](ES6.md)
 
   
-- [Promise](基础知识/JavaScript/Promise.md)
+- [Promise](Promise.md)
 
   
 - [this](this.md)
@@ -26,6 +29,9 @@ title: JavaScript
 
   
 - [原型](原型.md)
+
+  
+- [垃圾回收机制](垃圾回收机制.md)
 
   
 - [对象](对象.md)

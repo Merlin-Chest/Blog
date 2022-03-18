@@ -1,11 +1,9 @@
 import { defineConfig } from '@vuepress/types';
-import  AutoNavPlugin  from './plugins/vuepress-plugin-auto-nav';
+import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
 module.exports = defineConfig({
   title: 'Code More Create',
-  plugins:[
-    ["vuepress-plugin-auto-sidebar",{}]
-  ],
+  plugins: [['vuepress-plugin-auto-sidebar', {}]],
   theme: 'vt',
   themeConfig: {
     logo: 'logo.jpg',
@@ -19,6 +17,7 @@ module.exports = defineConfig({
         '.obsidian',
         'utils',
       ],
+      ignoreFiles: ['个人简历'],
       subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化'],
       deep: 3,
     }),
