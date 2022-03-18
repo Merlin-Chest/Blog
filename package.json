@@ -37,6 +37,6 @@
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-vue": "^8.5.0",
-    "vuepress-plugin-auto-navbar": "^1.0.5"
+    "vuepress-plugin-auto-navbar": "^1.0.7"
   }
 }
