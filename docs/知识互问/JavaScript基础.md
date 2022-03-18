@@ -168,3 +168,20 @@ setTimeout
 promise in setTimeout
 */
 ```
+
+- JS最大安全整数，IEEE75标准，
+- on和addEventListen
+- 类数组和可迭代数组，如何转化为数组
+- 创建对象的方式
+- get和post的区别
+- isNaN和Number.isNaN
+- new的执行流程
+- Proxy的使用，对比Object.defineProperty
+- 模块化方案对比（cjs、amd、umd、esm）
+- 如何判断一个对象属于某个类
+- 对原型、原型 链的理解
+- 对闭包的理解
+- call和apply的区别
+- 对象创建的方法有哪些
+- 对象继承的方法有哪些
+- 响应式和双向绑定的区分

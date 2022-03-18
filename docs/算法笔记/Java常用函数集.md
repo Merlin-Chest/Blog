@@ -1,9 +1,15 @@
+### Integer
+
+`Integer_MAX_VALUE`
+`Integer_MIN_VALUE`
+
 ## 字符
 
 - `Character.isDigit`是否是数字
 - `Character.isLetter`是否是字母
 - `Character.isLowerCase`是否是小写字母
 - `Character.isUpperCase`是否是大写字母
+- `Character.getNumericValue`char字符转化为数字 （char - '0'也可以）
 
 ## 字符串(String)
 

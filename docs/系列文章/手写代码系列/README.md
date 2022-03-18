@@ -4,7 +4,7 @@ title: 手写代码系列
 ## 该章节包含以下内容
   
   
-- [Promise](Promise.md)
+- [Promise](系列文章/手写代码系列/JavaScript/Promise.md)
 
   
 - [once函数](once函数.md)

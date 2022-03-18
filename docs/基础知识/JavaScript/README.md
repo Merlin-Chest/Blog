@@ -13,7 +13,7 @@ title: JavaScript
 - [ES6](ES6.md)
 
   
-- [Promise](Promise.md)
+- [Promise](基础知识/JavaScript/Promise.md)
 
   
 - [this](this.md)
