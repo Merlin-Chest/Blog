@@ -1,59 +1,28 @@
 ---
-title: docs
+sidebar: false
+editLink: false
+contributors: false
+lastUpdated: false
 ---
-## 该章节包含以下内容
-  
-  
-- [个人简历](个人简历.md)
 
-  
-- [互联网公司列表](互联网公司列表.md)
-
-  
-- [学习计划](学习计划.md)
-
-  
-#### [.obsidian专题](./.obsidian)
-    
-#### [.vuepress专题](./.vuepress)
-    
-#### [utils专题](./utils)
-    
-- [yaml-template](./utils/yaml-template.md)
-
-  
-#### [基础知识专题](./基础知识)
-    
-#### [工程实践专题](./工程实践)
-    
-- [前端监控](./工程实践/前端监控.md)
-
-  
-#### [源码解读专题](./源码解读)
-    
-- [Axios源码解读](./源码解读/Axios源码解读.md)
-
-  
-#### [知识互问专题](./知识互问)
-    
-- [HTML&CSS基础](./知识互问/HTML&CSS基础.md)
-
-  
-- [JavaScript基础](./知识互问/JavaScript基础.md)
-
-  
-#### [算法笔记专题](./算法笔记)
-    
-- [Java常用函数集](./算法笔记/Java常用函数集.md)
-
-  
-#### [系列文章专题](./系列文章)
-    
-#### [设计模式专题](./设计模式)
-    
-- [单例模式](./设计模式/单例模式.md)
-
-  
-- [策略模式](./设计模式/策略模式.md)
-
-  
+<div style="text-align:center;height:68vh;display:flex;flex-flow:column;align-items:center;justify-content:space-evenly;margin-top:0;">
+<h1>Guys 👋 Nice to meet u!</h1>
+<div style="display:flex;algin-items:center;justify-content:center;">
+  <span style="font-size:20px;line-height:50px;margin-right:10px;">技术栈</span>
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3ctitle%3efile_type_vue%3c/title%3e%3cpath d='M24.4%2c3.925H30L16%2c28.075%2c2%2c3.925H12.71L16%2c9.525l3.22-5.6Z' style='fill:%2341b883'/%3e%3cpath d='M2%2c3.925l14%2c24.15L30%2c3.925H24.4L16%2c18.415%2c7.53%2c3.925Z' style='fill:%2341b883'/%3e%3cpath d='M7.53%2c3.925%2c16%2c18.485l8.4-14.56H19.22L16%2c9.525l-3.29-5.6Z' style='fill:%2335495e'/%3e%3c/svg%3e" decoding="async" data-nimg="intrinsic" width="50">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3e%3ctitle%3efile_type_typescript_official%3c/title%3e%3crect x='2' y='2' width='28' height='28' rx='1.312' style='fill:%233178c6'/%3e%3cpath d='M18.245%2c23.759v3.068a6.492%2c6.492%2c0%2c0%2c0%2c1.764.575%2c11.56%2c11.56%2c0%2c0%2c0%2c2.146.192%2c9.968%2c9.968%2c0%2c0%2c0%2c2.088-.211%2c5.11%2c5.11%2c0%2c0%2c0%2c1.735-.7%2c3.542%2c3.542%2c0%2c0%2c0%2c1.181-1.266%2c4.469%2c4.469%2c0%2c0%2c0%2c.186-3.394%2c3.409%2c3.409%2c0%2c0%2c0-.717-1.117%2c5.236%2c5.236%2c0%2c0%2c0-1.123-.877%2c12.027%2c12.027%2c0%2c0%2c0-1.477-.734q-.6-.249-1.08-.484a5.5%2c5.5%2c0%2c0%2c1-.813-.479%2c2.089%2c2.089%2c0%2c0%2c1-.516-.518%2c1.091%2c1.091%2c0%2c0%2c1-.181-.618%2c1.039%2c1.039%2c0%2c0%2c1%2c.162-.571%2c1.4%2c1.4%2c0%2c0%2c1%2c.459-.436%2c2.439%2c2.439%2c0%2c0%2c1%2c.726-.283%2c4.211%2c4.211%2c0%2c0%2c1%2c.956-.1%2c5.942%2c5.942%2c0%2c0%2c1%2c.808.058%2c6.292%2c6.292%2c0%2c0%2c1%2c.856.177%2c5.994%2c5.994%2c0%2c0%2c1%2c.836.3%2c4.657%2c4.657%2c0%2c0%2c1%2c.751.422V13.9a7.509%2c7.509%2c0%2c0%2c0-1.525-.4%2c12.426%2c12.426%2c0%2c0%2c0-1.9-.129%2c8.767%2c8.767%2c0%2c0%2c0-2.064.235%2c5.239%2c5.239%2c0%2c0%2c0-1.716.733%2c3.655%2c3.655%2c0%2c0%2c0-1.171%2c1.271%2c3.731%2c3.731%2c0%2c0%2c0-.431%2c1.845%2c3.588%2c3.588%2c0%2c0%2c0%2c.789%2c2.34%2c6%2c6%2c0%2c0%2c0%2c2.395%2c1.639q.63.26%2c1.175.509a6.458%2c6.458%2c0%2c0%2c1%2c.942.517%2c2.463%2c2.463%2c0%2c0%2c1%2c.626.585%2c1.2%2c1.2%2c0%2c0%2c1%2c.23.719%2c1.1%2c1.1%2c0%2c0%2c1-.144.552%2c1.269%2c1.269%2c0%2c0%2c1-.435.441%2c2.381%2c2.381%2c0%2c0%2c1-.726.292%2c4.377%2c4.377%2c0%2c0%2c1-1.018.105%2c5.773%2c5.773%2c0%2c0%2c1-1.969-.35A5.874%2c5.874%2c0%2c0%2c1%2c18.245%2c23.759Zm-5.154-7.638h4V13.594H5.938v2.527H9.92V27.375h3.171Z' style='fill:white%3bfill-rule:evenodd'/%3e%3c/svg%3e" decoding="async" data-nimg="intrinsic" width="50">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 32 32'%3e%3cdefs%3e%3cradialGradient id='a' cx='-236.884' cy='-171.086' r='0.006' gradientTransform='matrix(2157.515%2c 0%2c 0%2c -2491.283%2c 511096.688%2c -426208.482)' gradientUnits='userSpaceOnUse'%3e%3cstop offset='0' stop-color='%2393b4e7'/%3e%3cstop offset='0.593' stop-color='%23b9d1f8'/%3e%3cstop offset='1' stop-color='%239cb6e0'/%3e%3c/radialGradient%3e%3c/defs%3e%3ctitle%3efile_type_webpack%3c/title%3e%3cpath d='M16%2c2.043%2c3.9%2c9.032V23.011L16%2c30l12.106-6.989V9.032Z' style='fill:url(%23a)'/%3e%3cpath d='M16%2c9.133%2c10%2c12.6v6.932L16%2c23l6-3.466V12.6Z' style='fill:%236f95db'/%3e%3cpath d='M16%2c2%2c3.869%2c9.037%2c16%2c15.642%2c28.131%2c9.08Zm0%2c14.548L3.869%2c22.981%2c16%2c29.974l12.088-7.037L16%2c16.548Z' style='fill:white%3bfill-opacity:0.100000001490116'/%3e%3c/svg%3e" decoding="async" data-nimg="intrinsic" class="h-50" width="50">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 32 32'%3e%3ctitle%3efile_type_vite%3c/title%3e%3cpath d='M29.8836 6.146L16.7418 29.6457c-.2714.4851-.9684.488-1.2439.0052L2.0956 6.1482c-.3-.5262.1498-1.1635.746-1.057l13.156 2.3516a.7144.7144 0 00.2537-.0004l12.8808-2.3478c.5942-.1083 1.0463.5241.7515 1.0513z' fill='url(%23paint0_linear)'/%3e%3cpath d='M22.2644 2.0069l-9.7253 1.9056a.3571.3571 0 00-.2879.3294l-.5982 10.1038c-.014.238.2045.4227.4367.3691l2.7077-.6248c.2534-.0585.4823.1647.4302.4194l-.8044 3.9393c-.0542.265.1947.4918.4536.4132l1.6724-.5082c.2593-.0787.5084.1487.4536.414l-1.2784 6.1877c-.08.387.4348.598.6495.2662L16.5173 25 24.442 9.1848c.1327-.2648-.096-.5667-.387-.5106l-2.787.5379c-.262.0505-.4848-.1934-.4109-.4497l1.8191-6.306c.074-.2568-.1496-.5009-.4118-.4495z' fill='url(%23paint1_linear)'/%3e%3cdefs id='defs50'%3e%3clinearGradient id='paint0_linear' x1='6.0002' y1='32.9999' x2='235' y2='344' gradientUnits='userSpaceOnUse' gradientTransform='matrix(.07142 0 0 .07142 1.3398 1.8944)'%3e%3cstop stop-color='%2341D1FF' id='stop38'/%3e%3cstop offset='1' stop-color='%23BD34FE' id='stop40'/%3e%3c/linearGradient%3e%3clinearGradient id='paint1_linear' x1='194.651' y1='8.8182' x2='236.076' y2='292.989' gradientUnits='userSpaceOnUse' gradientTransform='matrix(.07142 0 0 .07142 1.3398 1.8944)'%3e%3cstop stop-color='%23FFEA83' id='stop43'/%3e%3cstop offset='.0833' stop-color='%23FFDD35' id='stop45'/%3e%3cstop offset='1' stop-color='%23FFA800' id='stop47'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" decoding="async" data-nimg="intrinsic" class="h-50" width="50">
+  </div>
+<div style="display:flex;algin-items:center;justify-content:center;">
+  <span style="font-size:20px;line-height:50px;margin-right:10px;">找到我</span>
+  <a style="font-size:20px;line-height:50px;margin-right:10px;" href="https://juejin.cn/user/1847596772237719" alt="juejin">掘金</a>
+  <a style="font-size:20px;line-height:50px;margin-right:10px;" href="https://leetcode-cn.com/u/merlin218" alt="Leetcode">Leetcode</a>
+  <a style="font-size:20px;line-height:50px;margin-right:10px;" href="https://space.bilibili.com/8227630" alt="Bilibili">Bilibili</a>
+  <a style="font-size:20px;line-height:50px;margin-right:10px;" href="mailto:863176846@qq.com" alt="email">邮箱</a>
+</div>
+<div style="display:flex;algin-items:center;justify-content:space-between;flex-wrap: wrap">
+  <img style="flex:1" src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
+  <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="360"/>
+  </div>
+	
