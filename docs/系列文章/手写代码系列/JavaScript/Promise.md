@@ -9,7 +9,61 @@
 
 ## 实现代码及注解
 
+Promise方法
+```js
+// all
+Promise.myAll = function(arr){
+    return new Promise((resolve,reject)=>{
+        const resArr = [];
+        let length = 0;
+        arr.forEach((item, index)=>{
+            item.then((res)=>{
+                resArr[index] = ({
+                    status:'fullfilled',
+                    value: res
+                });
+                if(++length === arr.length) resolve(resArr);
+            }).catch((err)=>{
+                reject(err);
+            })
+        })
+    })
+}
 
+// race
+Promise.myRace = function(arr){
+    return new Promise((resolve,reject)=>{
+        arr.forEach((item)=>{
+            item.then((res)=>{
+                resolve(res);
+            }).catch((err)=>{
+                reject(err);
+            })
+        })
+    })
+}
+// allSettled
+Promise.allSettled = function(arr){
+    return new Promise((resolve,reject)=>{
+        const resArr = [];
+        arr.forEach((item,index)=>{
+            item.then((res)=>{
+                resArr[index] = {
+                    status:'fullfilled',
+                    value: res
+                };
+            }).catch((err)=>{
+                resArr[index] = {
+                    status:'rejected',
+                    reason: err
+                };
+            }).finally(()=>{
+                if(resArr.length === arr.length) resolve(resArr);
+            })
+        })
+    })
+}
+```
 
 ## 总结
 
