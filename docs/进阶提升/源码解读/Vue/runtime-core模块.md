@@ -12,12 +12,9 @@ gitee：https://gitee.com/merlin218/my-mini-vue
 
 学习参考：崔大 mini-vue  https://github.com/cuixiaorui/mini-vue
 
-
-
 回顾上期，我们完成了vue响应式的相关实现，这一期我们来完成vue在运行时的核心部分，一步步构建一个vue应用。
 
 > 上期链接
->
 > 【手写vue3系列】响应式实现：https://juejin.cn/post/7028613132339642382
 
 ## （二）原料/工具准备
@@ -150,6 +147,9 @@ export function createApp(rootComponent) {
   };
 }
 ```
+
+- createApp():接收一个根组件，并且暴露出一些方法
+	- mount():接受一个根容器，在内部呢，会将根组件转化vnode，然后再通过render函数将虚拟结点挂载在容器上。
 
 顺着逻辑，我们创建一个对根组件创建根节点vnode
 

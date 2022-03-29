@@ -1,3 +1,13 @@
+```java
+import java.util.*;
+public class Main{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		
+	}
+}
+```
+
 ### Integer
 
 `Integer_MAX_VALUE`
@@ -23,6 +33,7 @@
 ## StringBuffer
 
 - `str.append(ch)`在尾部添加一个字符
+- `toString()`转化为字符串
 
 ## Queue队列
 
@@ -44,7 +55,15 @@
 `new ArrayList<>()`初始化
 `add()`添加某个值
 `get()`根据下标获取某个值
+`size()`数组长度
 `Collections.reverse(xxx)`反转数组
+
+## Arrays
+
+`Arrays.copyOf()`复制生成新数组，第一个参数接收原数组，第二个参数接收数组长度，长度超过原数组则保留数组默认值
+`Arrays.sort(arr)`数组排序，默认从小到大
+`Arrays.sort(int[] a, int fromIndex, int toIndex)`还可以进行部分排序
+`Arrays.sort(int[] a, int fromIndex, int toIndex, Comparator<? super T> )`自定义比较
 
 ## Stack
 
