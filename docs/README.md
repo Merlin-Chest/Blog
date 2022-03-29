@@ -1,4 +1,5 @@
 ---
+home: true
 sidebar: false
 editLink: false
 contributors: false
@@ -26,8 +27,6 @@ lastUpdated: false
   <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="360"/>
   </div>
 
-```md
 ::: slot footer
 MIT Licensed | Copyright © 2021-present [粤ICP备2021165391号](https://beian.miit.gov.cn/)
 :::
-```
