@@ -1,5 +1,4 @@
 ---
-home: true
 sidebar: false
 editLink: false
 contributors: false
