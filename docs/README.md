@@ -1,11 +1,18 @@
 ---
+home: true
 sidebar: false
 editLink: false
 contributors: false
 lastUpdated: false
 ---
 
-<div style="text-align:center;height:68vh;display:flex;flex-flow:column;align-items:center;justify-content:space-evenly;margin-top:0;">
+::: slot heroText
+Code <b class="gradient">More</b> Create
+:::
+
+
+::: slot tagline
+<div style="text-align:center;height:50vh;display:flex;flex-flow:column;align-items:center;justify-content:space-evenly;margin-top:0;">
 <h1>Guys 👋 Nice to meet u!</h1>
 <div style="display:flex;algin-items:center;justify-content:center;">
   <span style="font-size:20px;line-height:50px;margin-right:10px;">技术栈</span>
@@ -25,7 +32,10 @@ lastUpdated: false
   <img style="flex:1" src="https://github-readme-stats.vercel.app/api?username=Merlin218&theme=vue&hide_border=true&show_icons=true" alt="GitHub stats" width="400"/>
   <img style="flex:1"  src="https://github-readme-stats.vercel.app/api/top-langs/?username=Merlin218&hide_border=true&layout=compact" alt="Top Langs" width="360"/>
   </div>
+</div>
+
+:::
 
 ::: slot footer
-MIT Licensed | Copyright © 2021-present [粤ICP备2021165391号](https://beian.miit.gov.cn/)
+MIT Licensed | Copyright © 2021 - 2022  [粤ICP备2021165391号](https://beian.miit.gov.cn/)
 :::

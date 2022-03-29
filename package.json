@@ -11,12 +11,16 @@
   "devDependencies": {
     "@typescript-eslint/parser": "^5.0.0",
     "@vue/component-compiler-utils": "^3.3.0",
+    "chalk": "^2.0.0",
+    "commander": "^2.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.2",
+    "esm": "^3.0.0",
     "markdown-it": "^8.4.2",
     "typescript": "^4.6.2",
     "vuepress": "^1.9.7",
     "vuepress-plugin-auto-sidebar": "^2.4.0-alpha.4",
+    "vuepress-theme-gungnir": "^0.3.0",
     "vuepress-theme-vt": "^0.4.2",
     "webpack": "^4.8.0"
   },

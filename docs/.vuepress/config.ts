@@ -1,4 +1,4 @@
-import { defineConfig } from '@vuepress/types';
+import { defineConfig,DefaultThemeConfig } from '@vuepress/types';
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
 module.exports = defineConfig({
@@ -17,10 +17,10 @@ module.exports = defineConfig({
         '.obsidian',
         'utils',
       ],
-      ignoreFiles: ['个人简历','学习计划'],
-      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化','手写代码系列'],
+      ignoreFiles: ['个人简历', '学习计划'],
+      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '手写代码系列'],
       deep: 3,
-      childrenKey:'items'
+      childrenKey: 'children'
     }),
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     editLinks: true,
