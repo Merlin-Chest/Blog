@@ -78,3 +78,39 @@ Promise.allSettled = function(arr){
 
 > 文章参考
 > - [手写Promise/A+](http://www.dennisgo.cn/Articles/JavaScript/Promise.html)
+
+## Promise相关
+
+### 实现一个并行限制的Promise调度器
+
+```js
+class PromiseLimiter{
+    constructor(maxCount){
+        this.maxCount = maxCount;
+        this.tasks = [];
+        this.runCount = 0;
+        this.result = [];
+    }
+    add(fn, delay){
+      const task = () => new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+              resolve(fn());
+          }, delay)
+      })
+      this.tasks.push(task);
+    }
+    start(){
+        for(let i = 0; i < this.maxCount; i++){
+            this.request();
+        }
+    }
+    request(){
+        if(!this.tasks.length) return;
+        this.tasks.shift()().then((res) => {
+            this.result.push(res);
+            this.request();
+        })
+    }
+}
+```
+

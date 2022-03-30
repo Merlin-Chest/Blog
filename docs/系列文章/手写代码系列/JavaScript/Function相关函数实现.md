@@ -80,6 +80,15 @@ function myInstanceof(left, right){
 		left = left.__proto__;
 	}
 }
+
+function myInstanceof(left, right){
+    let p = Object.getPrototypeOf(left);
+    while(p){
+        if(p == right.prototype) return true;
+        p = Object.getPrototypeOf(p);
+    }
+   return false; 
+}
 ```
 
 ## 函数柯里化
