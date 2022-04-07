@@ -2,10 +2,8 @@
 
 ## 	原理
 
-​		利用ES6中Proxy作为拦截器，在get时收集依赖，在set时触发依赖，来实现响应式
-
+- 利用ES6中Proxy作为拦截器，在get时收集依赖，在set时触发依赖，来实现响应式
 - 依赖 => 副作用函数 => 用户的函数
-
 - targetMap结构
 
   ```json
@@ -16,11 +14,9 @@
   }
   ```
 
-  
+## 相关函数实现
 
-##    相关函数实现
-
-### 		ReactiveEffect类
+### ReactiveEffect类
 
 ```typescript
 //响应式依赖 — 类
@@ -42,7 +38,7 @@ class ReactiveEffect {
 }
 ```
 
-### 		effect()：包装依赖函数
+### effect()：包装依赖函数
 
 ```typescript
 let activeEffect: ReactiveEffect; //当前的依赖
@@ -59,7 +55,7 @@ export function effect(fn) {
 
 > bind：创建一个新函数，使新函数的this指向传入的第一个参数，其他参数作为新函数的参数
 
-### 		track()：收集/添加依赖
+### track()：收集/添加依赖
 
 ```typescript
 const targetMap = new WeakMap();
@@ -92,7 +88,7 @@ export function track(target: Object, key) {
 >
 > *5、不能遍历*
 
-### 		trigger()：触发依赖
+### trigger()：触发依赖
 
 ```typescript
 //一次性触发对应target中key的所有依赖
@@ -118,7 +114,7 @@ export function trigger(target, key) {
 
 2. let a = reactive(obj),b = reactive(obj)
 
-3.  hasChanged
+3. hasChanged
 
 4. 深层对象代理
 
