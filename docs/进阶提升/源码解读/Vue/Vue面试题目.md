@@ -71,7 +71,37 @@ export function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 ## 简述 Vue 的生命周期以及每个阶段做的事
 
-- v-model双向绑定使用和原理
+vue的组件实例被创建之后呢，会有一系列的初始化步骤，比如，数据的观测，模板编译，挂载实例到dom上，以及数据变化时更新dom
+
+在这个过程中，会在特定的时机去运行生命周期钩子，以便用户在特定阶段去添加自己的代码
+
+共有八个阶段，创建前后，挂载前后，更新前后，消耗前后，以及一些特殊场景的生命周期。
+
+### vue3中新增了三个用于调试和服务端渲染的场景
+
+- renderTracked：调试钩子，响应式依赖被收集时调用
+- renderTriggered：调试钩子，响应式依赖被触发时调用
+- serverPrefetch：组件实例在服务器上被渲染之前调用
+
+### setup函数
+
+- setup函数运行时机比beforeCreate和created都更早
+- 在vue3中没有beforeCreate和created，因为setup早于任何声明周期，当setup调用之后，已经过了beforeCreate和created的时期，此时就算设置了也没有用。
+
+## v-model双向绑定使用和原理
+
+- `v-model`是一个指令，可以绑定一个响应式数据到视图，同时视图也能改变值。
+- 通常用在表单项上，也可以用来自定义组件上。
+- 它是是一个语法糖，默认情况下，会展开为`:value`和`@input`。使用它可以减少很多繁琐的代码，提高开发效率
+- 两种情况
+	- 原生元素，会根据对应的一个标签类型，生成不同的属性名和事件属性
+		- 
+	- 父子组件，会生成`:modelValue`和`@update:modelValue`两个属性，而且在vue3中可以绑定多个`v-model`
+- 原理上是在vue编译器上实现的，在模板转化为render函数的过程中，根据结点的类型，生成不同对应关系的属性和事件。
+- 对于基本类型，我们需要触发emit来让父组件修改数据，如果想自定义事件的内容，则需要重写事件就可以。渲染时候会覆盖。否则使用默认的。
+- 对于引用类型，实际上父组件和子组件引用的是同一个值，在子组件中直接更改props的值，父组件的值也会改变，所以不需要手动触发emit，但不建议这样使用，因为子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解，无法追溯、
+- [v-model Demo](https://sfc.vuejs.org/#eyJBcHAudnVlIjoiPHNjcmlwdCBzZXR1cD5cbmltcG9ydCBDaGlsZCBmcm9tICcuL0NoaWxkLnZ1ZSdcbmltcG9ydCB7IHJlZiwgcmVhY3RpdmUgfSBmcm9tICd2dWUnXG5cbmNvbnN0IG1zZyA9IHJlZignSGVsbG8gV29ybGQhJylcblxuY29uc3QgY2hlY2tib3ggPSByZWFjdGl2ZShbdHJ1ZSxmYWxzZV0pXG48L3NjcmlwdD5cblxuPHRlbXBsYXRlPlxuICA8aDE+e3sgbXNnIH19PC9oMT5cbiAgPGlucHV0IHYtbW9kZWw9XCJtc2dcIj5cbiAgXG4gIDxoMT57e2NoZWNrYm94fX08L2gxPlxuICA8aW5wdXQgaWQ9XCJhYVwiIHR5cGU9XCJjaGVja2JveFwiIHYtbW9kZWw9XCJjaGVja2JveFswXVwiPlxuICA8bGFiZWwgZm9yPVwiYWFcIj4xMTE8L2xhYmVsPlxuICA8aW5wdXQgaWQ9XCJiYlwiIHR5cGU9XCJjaGVja2JveFwiIHYtbW9kZWw9XCJjaGVja2JveFsxXVwiPlxuICA8bGFiZWwgZm9yPVwiYmJcIj4yMjI8L2xhYmVsPlxuICA8Q2hpbGQgdi1tb2RlbDpjb250ZW50PVwibXNnXCIgdi1tb2RlbDpjaGVja0NvbnRlbnQ9XCJjaGVja2JveFwiPjwvQ2hpbGQ+XG48L3RlbXBsYXRlPiIsImltcG9ydC1tYXAuanNvbiI6IntcbiAgXCJpbXBvcnRzXCI6IHtcbiAgICBcInZ1ZVwiOiBcImh0dHBzOi8vc2ZjLnZ1ZWpzLm9yZy92dWUucnVudGltZS5lc20tYnJvd3Nlci5qc1wiXG4gIH1cbn0iLCJDaGlsZC52dWUiOiI8c2NyaXB0IHNldHVwPlxuaW1wb3J0IHsgZGVmaW5lUHJvcHMsIGRlZmluZUVtaXRzIH0gZnJvbSAndnVlJ1xuXG5jb25zdCBwcm9wcyA9IGRlZmluZVByb3BzKHtcbiAgY29udGVudDp7XG4gICAgdHlwZTpTdHJpbmcsXG4gICAgcmVxdWlyZTp0cnVlLFxuICAgIGRlZmF1bHQ6J2RlZmF1bHQnXG4gIH0sXG4gIGNoZWNrQ29udGVudDp7XG4gICAgdHlwZTpBcnJheSxcbiAgICByZXF1aXJlOnRydWUsXG4gICAgZGVmYXVsdDpbZmFsc2UsdHJ1ZV1cbiAgfSxcbn0pXG5jb25zdCBlbWl0ID0gZGVmaW5lRW1pdHMoWyd1cGRhdGU6Y29udGVudCcsJ3VwZGF0ZTpjaGVja0NvbnRlbnQnXSlcblxuICBjb25zdCBjaGFuZ2UgPSAoZSk9PntcbiAgICBlbWl0KCd1cGRhdGU6Y2hlY2tDb250ZW50JywgW3Byb3BzLmNoZWNrQ29udGVudFswXSwgZS50YXJnZXQuY2hlY2tlZF0pXG4gIH1cbjwvc2NyaXB0PlxuXG48dGVtcGxhdGU+XG4gIDxoMT57eyBjb250ZW50IH19PC9oMT5cbiAgPGlucHV0IDp2YWx1ZT1cImNvbnRlbnRcIiBAaW5wdXQ9XCIkZW1pdCgndXBkYXRlOmNvbnRlbnQnLCAkZXZlbnQudGFyZ2V0LnZhbHVlKVwiPlxuICBcbiAgPGgxPnt7IGNoZWNrQ29udGVudCB9fTwvaDE+XG4gIDxpbnB1dCBpZD1cImNjXCIgdHlwZT1cImNoZWNrYm94XCIgOmNoZWNrZWQ9XCJjaGVja0NvbnRlbnRbMF1cIiBAY2hhbmdlPVwiY2hlY2tDb250ZW50WzBdID0gJGV2ZW50LnRhcmdldC5jaGVja2VkXCI+XG4gIDxsYWJlbCBmb3I9XCJjY1wiPjMzMzwvbGFiZWw+XG4gIDxpbnB1dCBpZD1cImRkXCIgdHlwZT1cImNoZWNrYm94XCIgOmNoZWNrZWQ9XCJjaGVja0NvbnRlbnRbMV1cIiBAY2hhbmdlPVwiY2hlY2tDb250ZW50WzFdID0gJGV2ZW50LnRhcmdldC5jaGVja2VkXCI+XG4gIDxsYWJlbCBmb3I9XCJkZFwiPjQ0NDwvbGFiZWw+XG48L3RlbXBsYXRlPiJ9)
+
 
 - 说说nextTick的使用和原理？
 
@@ -111,9 +141,24 @@ export function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 ## 综合应用
 
-- vue中如何扩展一个组件
+### vue中如何扩展一个组件
 
-- 子组件可以直接改变父组件的数据么，说明原因
+- 扩展方式
+	- 逻辑扩展
+		- vue2：mixins、extends
+		- vue3：composition Api
+	- 内容扩展
+		- slots
+- 一些问题
+	- mixins：可能存在变量冲突，导致来源不明
+- Vue.extend用于扩展Vue应用的构造器，在vue3中原相关方法都迁移到了应用实例上，
+
+### 子组件可以直接改变父组件的数据么，说明原因
+
+一个父组件下不只有你一个子组件。同样，使用这份 prop 数据的也不只有你一个子组件。
+如果每个子组件都能修改 prop 的话，将会导致修改数据的源头不止一处。
+
+所以，不能直接修改，直接修改的话会导致数据流错乱，你不清楚修改这个数据的来源是哪个组件。所以我们需要用把emit把修改数据的源头交回给父组件，保证了数据修改源唯一。
 
 - Vue要做权限管理该怎么做？控制到按钮级别的权限怎么做？
 
