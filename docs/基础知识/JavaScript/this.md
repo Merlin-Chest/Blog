@@ -195,6 +195,31 @@ console.log(bar.a); // 2
 
 4. 默认绑定，是否是严格模式 ？undefined ：全局对象。
 
+> 易错
+
+```js
+'use strict';
+
+function a() {
+  console.log(this);
+
+  function b() {
+    console.log(this);
+  }
+  b();
+}
+let obj = {
+  aa: 1,
+  a: a
+}
+obj.a(); 
+// {aa:1,a:function a(){xxx}}
+// undefined
+a();
+// undefined
+// undefined
+```
+
 ## 绑定的其他情况
 
 -  在call、apply等中，如果将要绑定的this传入`null`作为占位符时，在非严格模式下，会应用默认绑定规则绑定到全局对象，将导致不可预计的后果，如修改全局对象。
@@ -229,7 +254,7 @@ console.log(bar.a); // 2
 
 ## 箭头函数的this
 
-箭头函数的this是根据外层（函数或者全局）作用域来决定的。常用于回调函数中。
+箭头函数的this是根据定义函数时外层（函数或者全局）作用域来决定的。常用于回调函数中。
 
 ```javascript
 function foo(){
@@ -258,7 +283,8 @@ fn.bind().bind(a)() // => ?
 let fn2 = function fn1() {
   return function() {
     return fn.apply()
-}.apply(a) }
+  }.apply(a) 
+}
 fn2();
 ```
 
