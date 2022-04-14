@@ -1,13 +1,13 @@
-# Webpack
+# Webpack基础
 
-## **1、webpack 是什么？**
+## 1、webpack 是什么
 
 - 官⽅方⽹网站:[https://webpack.js.org/](https://webpack.js.org/)
 - 中⽂文⽹网站:[https://www.webpackjs.com/](https://www.webpackjs.com/)
 
 本质上，`webpack` 是一个现代 `JavaScript` 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
 
-## **2、安装**
+## 2、安装
 
 `webpack` 是一个使用 `Node.js` 实现的一个模块化代码打包工具。所以，我们需要先安装 webpack，安装之前需要搭建好 `Node.js` 环境
 
@@ -17,11 +17,10 @@
 
 > 注：不推荐全局安装
 
-`webpack-cli` : 提供 webpack 命令、工具，类似 `create-react-app`
+- `webpack-cli` : 提供 webpack 命令、工具，类似 `create-react-app`
+- `webpack` : webpack 代码，类似 `react`
 
-`webpack` : webpack 代码，类似 `react`
-
-## **3、使用**
+## 3、使用
 
 ```
  ./node_modules/.bin/webpack
@@ -55,15 +54,15 @@
 
 > 注：npm5.2+ 增加，如果没有，可以使用 npm i -g npx 来安装
 
-## **4、打包模块**
+## 4、打包模块
 
 打包之前，我们需要了解一个概念，入口文件
 
-### **4 - 1、入口文件**
+### 4-1、入口文件
 
 入口文件就是我们项目中加载的第一个文件，比如上面的 `main.js` 文件，其它文件都是通过 `import` 等方式引入的，`webpack` 会从我们指定的入口文件开始分析所有需要依赖的文件，然后把打包成一个完整文件。
 
-### **4 - 2、打包命令**
+### 4-2、打包命令
 
 ```
  webpack ./js/index.js
@@ -73,14 +72,14 @@
 
 模块文件打包以后，就可以在不支持 es6 模块语法的浏览器环境下引入使用了。
 
-**打包文件分析**
+#### 打包文件分析
 
 - 把分散的模块文件打包到一个文件中，不需要外部引入了
 - 内置了一个小型模块加载器(类似 `requireJS`)，实现了打包后的代码隔离与引用
 
 以上就是 webpack 最基础的使用于基本原理，当然强大的 `webpack` 远远不止这些功能。
 
-## **5、打包配置**
+## 5、打包配置
 
 虽然，我们可以直接通过命令的来打包，但是推荐创建一个 `webpack.config.js` 的配置文件来实现更方便和强大的功能。
 
@@ -114,7 +113,7 @@
  }
 ```
 
-### **5 - 1、mode**
+### 5-1、mode
 
 模式 : `"production" | "development" | "none"`
 
@@ -126,7 +125,9 @@
  }
 ```
 
-### **5 - 2、entry**
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202204140950713.png)
+
+### 5-2、entry
 
 指定打包⼊口⽂文件，有三种不同的形式：`string | object | array`
 
@@ -160,7 +161,7 @@
  }
 ```
 
-### **5 - 3、output**
+### 5-3、output
 
 打包后的文件位置
 
@@ -176,26 +177,32 @@
 ```
 
 - 可以指定一个固定的文件名称，如果是多入口多出口(`entry` 为对象)，则不能使用单文件出口，需要使用下面的方式
-- 通过 `webpack` 内置的变量占位符：`[name]`
-- [https://webpack.docschina.org/configuration/output/#template-strings](https://webpack.docschina.org/configuration/output/#template-strings)
+	- 通过 `webpack` 内置的变量占位符：`[name]`
+	- [Template strings](https://webpack.docschina.org/configuration/output/#template-strings)
 
-## **6、深入**
+- 占位符类型
+	- ext：文件后缀名
+	- name：文件名
+	- path：文件相对路径
+	- folder：文件所在文件夹
+	- hash：每次构建生成的唯一 hash 值
+	- chunkhash：根据 chunk 生成 hash 值
+	- contenthash：根据文件内容生成hash 值
+- 区分三种hash
+	- **hash** ：任何一个文件改动，整个项目的构建 hash 值都会改变；
+	- **chunkhash**：文件的改动只会影响其所在 chunk 的 hash 值；
+	- **contenthash**：每个文件都有单独的 hash 值，文件的改动只会影响自身的 hash 值；
 
-在 `webpack` 中，有一个很重要的特性：模块不仅仅只是 `js` 的文件，`webpack` 可以把任意文件数据作为模块进行处理，包括：非 js 文本、css、图片等等
+## 6、深入
 
-```javascript
- import txt from './a.txt';
- console.log(txt);
-```
+webpack 默认支持处理 JS 与 JSON 文件，其他类型都处理不了，这里必须借助 Loader 来对不同类型的文件的进行处理。
 
-但是 `webpack` 默认情况下只能处理 `js` 模块，如果需要处理其它类型的模块，则需要使用它提供的一些其它功能
-
-### **6 - 1、执行简要流程**
+### 6-1、执行简要流程
 
 - `loaders`：`webpack` 中灰常核心的内容之一，前面我们说的非 js 类型的模块处理就靠它了。webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。你可以使用 Node.js 来很简单地编写自己的 loader。
 - `plugins`：`webpack` 中另外一个核心的内容，它主要是扩展 `webpack` 本身的一些功能。插件可以运行在 `webpack` 的不同阶段（钩子 / 生命周期）。
 
-## **7、Loaders**
+## 7、Loaders
 
 [https://webpack.js.org/loaders/](https://webpack.js.org/loaders/)
 
@@ -221,15 +228,15 @@
 - 每一种类型规则通过 test 选项来定义，通过正则进行匹配，通常我们会通过正则的方式来匹配文件后缀类型
 - `use` 针对匹配到文件类型，调用对应的 `loader` 进行处理
 
-### **7 - 1、raw-loader**
+### 7-1、raw-loader
 
-在 webpack 中通过 import 方式导入文件内容，loader 并不是 webpack 内置的，所以首先要安装
+在 `webpack` 中通过 import 方式导入文件内容，loader 并不是 `webpack` 内置的，所以首先要安装
 
 ```
  npm install --save-dev raw-loader
 ```
 
-然后在 webpack.config.js 中进行配置
+然后在 `webpack.config.js` 中进行配置
 
 ```javascript
  module.exports = {
@@ -245,9 +252,11 @@
  }
 ```
 
-### **7 - 2、file-loader**
+### 7-2、图片资源处理
 
-把识别出的资源模块，移动到指定的输出⽬目录，并且返回这个资源在输出目录的地址(字符串)
+#### file-loader
+
+解决图片引入问题，并将图片 copy 到指定目录，默认为 dist
 
 ```
  npm install --save-dev file-loader
@@ -277,9 +286,91 @@
 > 占位符：https://webpack.js.org/loaders/file-loader#placeholders
 > 
 
-### **7 - 3、css-loader**
+#### url-loader
 
-分析 `css` 模块之间的关系，并合成⼀个 `css`
+解依赖 file-loader，当图片小于 limit 值的时候，会将图片转为 base64 编码，大于 limit 值的时候依然是使用 file-loader 进行拷贝。
+
+**配置和 file-loader 类似，多了一个 limit 的配置。**
+
+直接使用url-loader代替file-loader
+
+```js
+const config = {
+  //...
+  module: { 
+    rules: [
+      {
+         // ...
+      }, 
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        use:[
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name][hash:8].[ext]',
+              // 文件小于 50k 会转换为 base64，大于则拷贝文件
+              limit: 50 * 1024
+            }
+          }
+        ]
+      },
+    ]
+  },
+  // ...
+}
+```
+#### img-loader
+
+作用：压缩图片
+
+#### webpack5中新增了资源模块
+
+允许使用资源文件（字体，图片等）而无需配置额外的loader
+（用起来确实舒服）
+
+资源模块支持以下四个配置：
+
+> 1.  `asset/resource` 将资源分割为单独的文件，并导出 url，类似之前的 file-loader 的功能.
+> 2.  `asset/inline` 将资源导出为 dataUrl 的形式，类似之前的 url-loader 的小于 limit 参数时功能.
+> 3.  `asset/source` 将资源导出为源码（source code）. 类似的 raw-loader 功能.
+> 4.  `asset` 会根据文件大小来选择使用哪种类型，当文件小于 8 KB（默认） 的时候会使用 asset/inline，否则会使用 asset/resource
+
+```js
+// 使用webpack5自带资源模块
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        // asset 会根据文件大小来选择使用哪种类型
+        // 当文件小于 8 KB（默认） 的时候会使用 asset/inline
+        // 否则会使用 asset/resource
+        type: 'asset',
+        generator:{
+          filename:"[name][hash:8][ext]"
+        },
+        parser:{
+          dataUrlCondition:{
+            maxSize:50 * 1024 // 超过50kb 不转 base64
+          }
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+        type: 'asset',
+        generator: {
+          // 输出文件位置以及文件名
+          filename: "[name][hash:8][ext]"
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 超过100kb 不转 base64
+          }
+        }
+      },
+```
+
+### 7-3、css-loader
+
+对 `@import` 和 `url()` 进行处理，就像 js 解析 `import/require()` 一样。
 
 ```bash
  npm install --save-dev css-loader
@@ -305,7 +396,7 @@
  ]
 ```
 
-### **7 - 4、style-loader**
+### 7-4、style-loader
 
 把 `css-loader` 生成的内容，用 `style` 标签挂载到⻚面的 `head` 中
 
@@ -341,15 +432,152 @@
  ]
 ```
 
-## **8、Plugins**
+style-loader 核心逻辑相当于：
+
+```js
+const content = `${样式内容}`
+const style = document.createElement('style');
+style.innerHTML = content;
+document.head.appendChild(style);
+复制代码
+```
+
+通过动态添加 style 标签的方式，将样式引入页面
+
+> 对比MiniCssExtractPlugin.loader
+
+```js
+// 使用style-loader把css-loader处理完的内容通过style标签插入到head标签中
+
+use: ['style-loader', 'css-loader']
+
+// MiniCssExtractPlugin.loader是把css提取到单独的css文件中，然后通过link标签引入文件
+
+use: [MiniCssExtractPlugin.loader, 'css-loader']
+```
+
+### 7-5、postcss-loader
+
+使用 [postcss-loader](https://link.juejin.cn/?target=https%3A%2F%2Fwebpack.docschina.org%2Floaders%2Fpostcss-loader%2F "https://webpack.docschina.org/loaders/postcss-loader/")，自动添加 CSS3 部分属性的浏览器前缀。
+
+```bash
+pnpm install postcss postcss-loader postcss-preset-env -D
+```
+
+```js
+const config = {
+  // ...
+  module: { 
+    rules: [
+      {
+        test: /\.css$/, //匹配所有的 css 文件
+        use: [
+          'style-loader',
+          'css-loader', 
+          'postcss-loader'
+        ]
+      }
+    ]
+  }, 
+  // ...
+}
+```
+
+创建 `postcss` 配置文件 `postcss.config.js`
+
+```js
+// postcss.config.js
+module.exports = {
+  plugins: [require('postcss-preset-env')]
+}
+```
+
+创建 `postcss-preset-env` 配置文件 `.browserslistrc`
+
+```bash
+# 换行相当于 and
+last 2 versions # 回退两个浏览器版本
+> 0.5% # 全球超过0.5%人使用的浏览器，可以通过 caniuse.com 查看不同浏览器不同版本占有率
+IE 10 # 兼容IE 10
+```
+
+结果：
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202204141222058.png)
+
+### 7.6、less-loader或sass-loader
+
+```shell
+pnpm i less-loader -D
+
+pnpm i node-sass sass-loader -D
+```
+
+### 7.7、babel-loader
+
+对js代码进行兼容处理
+
+```shell
+npm install babel-loader @babel/core @babel/preset-env -D
+```
+
+-   `babel-loader` 使用 Babel 加载 ES2015+ 代码并将其转换为 ES5
+-   `@babel/core` Babel 编译的核心包
+-   `@babel/preset-env` Babel 编译的预设，可以理解为 Babel 插件的超集
+
+```js
+	{
+        test: /\.js$/i,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env'
+              ],
+            }
+          }
+        ]
+      },
+```
+
+配置babel
+
+useBuiltIns: false 默认值，无视浏览器兼容配置，引入所有 polyfill
+
+useBuiltIns: entry 根据配置的浏览器兼容，引入浏览器不兼容的 polyfill
+
+useBuiltIns: usage 会根据配置的浏览器兼容，以及你代码中用到的 API 来进行 polyfill，实现了按需添加
+
+```js
+module.exports = {
+  presets: [
+    [
+      "@babel/preset-env",
+      {
+        // useBuiltIns: false 默认值，无视浏览器兼容配置，引入所有 polyfill
+        // useBuiltIns: entry 根据配置的浏览器兼容，引入浏览器不兼容的 polyfill
+        // useBuiltIns: usage 会根据配置的浏览器兼容，以及你代码中用到的 API 来进行 polyfill，实现了按需添加
+        useBuiltIns: "usage",
+        corejs: "3.9.1", // 是 core-js 版本号
+        targets: { // 目标兼容对象
+          chrome: "58",
+          ie: "11",
+        },
+      },
+    ],
+  ],
+};
+```
+
+## 8、Plugins
 
 扩展 `webpack` 本身的一些功能，它们会运行在 `webpack` 的不同阶段（钩子 / 生命周期）。webpack 自身也是构建于你在 webpack 配置中用到的**相同的插件系统**之上！
 
 插件目的在于解决 [loader](https://webpack.docschina.org/concepts/loaders) 无法实现的**其他事**。
 
-### **8 - 1、HtmlWebpackPlugin**
+### 8-1、HtmlWebpackPlugin
 
-在打包结束后，⾃动生成⼀个 `html` ⽂文件，并把打包生成的 js 模块引⼊到该 `html` 中
+在打包结束后，⾃动生成⼀个 `html` ⽂文件，并把打包生成的 js、css等模块引⼊到该 `html` 中
 
 ```bash
  npm install --save-dev html-webpack-plugin
@@ -403,7 +631,7 @@
 - `chunksSortMode`: 允许控制块在添加到⻚面之前的排序方式，⽀持的值:`'none' | 'default' |{function}-default:'auto'`
 - `excludeChunks`: 允许跳过某些块，(⽐如，跳过单元测试的块)
 
-### **8 - 2、clean-webpack-plugin**
+### 8-2、clean-webpack-plugin
 
 删除（清理）构建目录
 
@@ -423,7 +651,7 @@
  }
 ```
 
-### **8 - 3、mini-css-extract-plugin**
+### 8-3、mini-css-extract-plugin
 
 提取 `CSS` 到一个单独的文件中
 
@@ -459,7 +687,7 @@
  }
 ```
 
-## **9、WebpackDevServer**
+## 9、WebpackDevServer
 
 每次的代码修改都需要重新编译打包，刷新浏览器，特别麻烦，我们可以通过安装 `webpackDevServer` 来改善这方面的体验
 
@@ -498,9 +726,11 @@
  }
 ```
 
-启动服务以后，`webpack` 不在会把打包后的文件生成到硬盘真实目录中了，而是直接存在了内存中(同时虚拟了一个存放目录路径)，后期更新编译打包和访问速度大大提升
+**为什么要配置 contentBase ？**
 
-### **9 - 1、Proxy**
+因为 webpack 在进行打包的时候，对静态文件的处理，例如图片，都是直接 copy 到 dist 目录下面。但是对于本地开发来说，这个过程太费时，也没有必要，所以在设置 contentBase 之后，就直接到对应的静态目录下面去读取文件，而不需对文件做任何移动，节省了时间和性能开销。
+
+### 9-1、Proxy
 
 当下前端的开发都是前后端分离开发的，前端开发过程中代码会运行在一个服务器环境下(如当前的 `WebpackDevServer`)，那么在处理一些后端请求的时候通常会出现跨域的问题。`WebpackDevServer` 内置了一个代理服务，通过内置代理就可以把我们的跨域请求转发目标服务器上(`WebpackDevServer` 内置的代理发送的请求属于后端 - `node`，不受同源策略限制)，具体如下：
 
@@ -637,12 +867,9 @@
 - [https://github.com/vuejs/vue-loader](https://github.com/vuejs/vue-loader)
 - vue 脚手架中也有集成
 
-## **10、sourceMap**
+## 10、sourceMap
 
 我们实际运行在浏览器的代码是通过 `webpack` 打包合并甚至是压缩混淆过的代码，所生成的代码并不利于我们的调试和错误定位，我们可以通过 `sourceMap` 来解决这个问题，`sourceMap` 本质是一个记录了编译后代码与源代码的映射关系的文件，我们可以通过 `webpack` 的 `devtool` 选项来开启 `sourceMap`
-
-> Tip验证 devtool 名称时， 我们期望使用某种模式， 注意不要混淆 devtool 字符串的顺序， 模式是： [inline-|hidden-|eval-][nosources-][cheap-[module-]]source-map.
-> 
 
 ```jsx
  module.exports = {
@@ -651,6 +878,19 @@
    ...
  }
 ```
+
+除了 `source-map` 这种类型之外，还有很多种类型可以用，例如：
+
+-   `eval`
+-   `eval-source-map`
+-   `cheap-source-map`
+-   `inline-source-map`
+-   `cheap-module-source-map`
+-   `inline-cheap-source-map`
+-   `cheap-module-eval-source-map`
+-   `inline-cheap-module-source-map`
+-   `hidden-source-map`
+-   `nosources-source-map`
 
 首先，编译后会为每一个编译文件生成一个对应的 `.map` 文件，同时在编译文件中添加一段对应的 `map` 文件引入代码
 
@@ -666,19 +906,37 @@
 
 同时，现代浏览器都能够识别 `sourceMap` 文件，如 `chrome`，会在 `Sources` 面板中显示根据编译文件与对应的 `map` 文件定位到源文件中，有利于我们的调试和错误定位
 
-| 参数                    | 详情                                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| eval                    | 不支持IE8 可以设断点调试，不显示列信息，每个js模块代码用eval()执行，并且在生成的每个模块代码尾部加上注释，如WEBPACK FOOTER；module id（模块在数组中的索引） ；sourceURL（原js路径）。不会生成.map文件 |
-| source-map              | 可以设断点调试，不显示列信息，生成相应的.Map文件，并在合并后的代码尾部加上注释//# sourceMappingURL=**.js.map |
-| eval-source-map         | 不能设断点调试，不显示列信息，可以用手动加入debugger调试;参考第一种eval模式，跟eval不一样的是其用base64存储map信息，不会生成.Map文件，Map信息以Base64格式存放在每个模块代码的尾部 |
-| cheap-source-map        | 可以设断点调试，不显示列信息，生成相应的.Map文件，可参考source-map，不包含 loader 的 sourcemap |
-| cheap-module-source-map | 不包含列信息，同时 loader 的 sourcemap 也被简化为只包含对应行的。最终的 sourcemap 只有一份，它是 webpack 对 loader 生成的 sourcemap 进行简化，然后再次生成的。 |
+### 配置项差异
 
-## **11、Code Spliting**
+通过打包发现，`eval`和`inline`都是没有对应的map文件的。
+
+总结一下：
+
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202204141759625.png)
+
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202204141759902.png)
+
+#### 推荐配置
+
+1.  本地开发：
+
+- 推荐：`eval-cheap-module-source-map`
+- 理由：
+	- 本地开发首次打包慢点没关系，因为 `eval` 缓存的原因，rebuild 会很快
+	- 开发中，我们每行代码不会写的太长，只需要定位到行就行，所以加上 `cheap`
+	- 我们希望能够找到源代码的错误，而不是打包后的，所以需要加上 `module`
+
+2.  生产环境：
+
+- 推荐：`(none)`
+- 理由：
+	- 就是不想别人看到我的源代码
+
+## 11、Code Spliting
 
 将代码分割到多个不同的bundle(打包后)文件中，可以通过按需加载等方式对资源进行加载，使用合理的情况下可以极大影响加载速度。
 
-### **11 - 1、入口起点**
+### 11-1、入口起点
 
 通过设置多个入口文件的方式实现最简单的代码分割
 
@@ -694,7 +952,7 @@
  }
 ```
 
-### **11 - 2、防止重复**
+### 11-2、防止重复
 
 通过设置dependOn配置多个模块之间的共享
 
@@ -800,7 +1058,7 @@
 将上下文中的dead-code移除，就像摇树上的枯叶使其掉落一样
 
 ```jsx
- optimization: {
+optimization: {
    usedExports: true,
- }
+}
 ```
