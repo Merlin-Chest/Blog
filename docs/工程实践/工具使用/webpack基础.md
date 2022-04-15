@@ -36,7 +36,8 @@
  {
    ...,
    "scripts": {
-     "start": "webpack"  // scripts 中可以定位到 ./node_modules/.bin/ 目录下
+	 // scripts 中可以定位到 ./node_modules/.bin/ 目录下
+     "start": "webpack"  
    }
  }
 ```
@@ -567,6 +568,45 @@ module.exports = {
     ],
   ],
 };
+```
+
+### 7.8、vue-loader
+
+```js
+modules: {
+	rules: [    
+		// 处理vue文件
+	    {
+	        test: /\.vue$/,
+	        use: 'vue-loader'
+	    },
+      // ,,,
+	]
+},
+plugins:[
+	new VueLoaderPlugin()
+]
+```
+
+更多细节前往[查看文档](https://vue-loader.vuejs.org/zh/)
+
+7-9、ts-loader
+
+```js
+resolve:{
+	// 解析文件格式列表，'...'为默认列表['js','json']
+	extensions: ['.ts','...'] 
+},
+modules: {
+	rules: [    
+	  // 处理ts文件
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+      },
+      // ,,,
+	]
+},
 ```
 
 ## 8、Plugins
