@@ -17,7 +17,7 @@ module.exports = defineConfig({
         '.obsidian',
         'utils',
       ],
-      ignoreFiles: ['个人简历', '学习计划'],
+      ignoreFiles: ['个人简历', '学习计划','面试准备'],
       subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '手写代码系列','计算机网络'],
       deep: 3,
       childrenKey: 'items'
