@@ -56,7 +56,7 @@ function Child(...args){
 }
 Child.prototype = new Father();
 Child.prototype.constructor = Child;
-Child.prototypr.show = function(){
+Child.prototype.show = function(){
     console.log('1');
 }
 ```

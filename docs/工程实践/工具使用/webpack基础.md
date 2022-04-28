@@ -440,7 +440,6 @@ const content = `${样式内容}`
 const style = document.createElement('style');
 style.innerHTML = content;
 document.head.appendChild(style);
-复制代码
 ```
 
 通过动态添加 style 标签的方式，将样式引入页面
