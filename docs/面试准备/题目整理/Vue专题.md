@@ -2,9 +2,9 @@
 
 问题来自：村长学前端，[仓库链接](http://github.com/57code/vue-interview)
 
-# 一、Vue API
+## 一、Vue API
 
-## 1.Vue组件之间都有通信方式
+### 1.Vue组件之间都有通信方式
 
 - 常用的方式有一下：
 	- 父子组件
@@ -27,7 +27,7 @@
 	- $children
 	- $listeners
 	- $on
-## 2.v-if和v-for哪个优先级更高
+### 2.v-if和v-for哪个优先级更高
 
 - 在vue2和vue3中完全相反
 - 先给出结论，说出细节
@@ -69,7 +69,7 @@ export function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 ```
 
-## 3.简述 Vue 的生命周期以及每个阶段做的事
+### 3.简述 Vue 的生命周期以及每个阶段做的事
 
 vue的组件实例被创建之后呢，会有一系列的初始化步骤，比如，数据的观测，模板编译，挂载实例到dom上，以及数据变化时更新dom
 
@@ -88,7 +88,7 @@ vue的组件实例被创建之后呢，会有一系列的初始化步骤，比�
 - setup函数运行时机比beforeCreate和created都更晚
 - 在vue3中没有beforeCreate和created，因为setup早于任何声明周期，当setup调用之后，已经过了beforeCreate和created的时期，此时就算设置了也没有用。
 
-## 4.v-model双向绑定使用和原理
+### 4.v-model双向绑定使用和原理
 
 - `v-model`是一个指令，可以绑定一个响应式数据到视图，同时视图也能改变值。
 - 通常用在表单项上，也可以用来自定义组件上。
@@ -384,7 +384,7 @@ function getSequence(arr) {
       }
       return result;
 }
-    ```
+```
 
 ### 5.key的作用
 - 作用：优化patch性能，更高效的更新虚拟DOM

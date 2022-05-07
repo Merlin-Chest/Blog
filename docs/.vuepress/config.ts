@@ -1,4 +1,4 @@
-import { defineConfig,DefaultThemeConfig } from '@vuepress/types';
+import { defineConfig } from '@vuepress/types';
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
 module.exports = defineConfig({
