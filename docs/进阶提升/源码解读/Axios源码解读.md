@@ -540,9 +540,143 @@ function dispatchRequest(config) {
 
 `./adapters/http.js` 则是对node `http`模块的封装，也会针对https做相应处理。
 
-## （六）主动取消请求
+## （六）取消请求
 
-//TODO，后续更新
+在[**lib/axios.js**](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Faxios%2Faxios%2Fblob%2Fmaster%2Flib%2Faxios.js%23L39 "https://github.com/axios/axios/blob/master/lib/axios.js#L39") `axios`实例对外抛出了三个取消请求的相关接口，我们来看一下涉及取消请求的是三个文件，在 [**/lib/cancel/**](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Faxios%2Faxios%2Ftree%2Fmaster%2Flib%2Fcancel "https://github.com/axios/axios/tree/master/lib/cancel") 中 , 分别的作用:
+
+1.**CanceledError.js** : `CanceledError`函数(伪造类)，接受参数message其实就是调用`source.cancel()`中的参数：取消信息 ,原型对象上的`__CANCEL__` 属性，是为了标识改请求返回信息为取消请求返回的信息
+
+2.**CancelToken.js** ：`CancelToken`提供创建token实例注册取消请求能力及提供取消请求方法
+
+3.**isCancel.js** ：用于判断是为为取消请求返回的结果，也就是是否是Cancel实例
+
+- source方法
+
+```javascript
+// 暴露出token 和 cancel取消方法
+CancelToken.source = function source() {
+  var cancel;
+  // 构造CancelToken 的实例,实例上有两个属性一个promise一个reason
+  // 同时把注册的回调函数的参数也是个函数把这个函数的执行权抛使用者调用(cancel)
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+复制代码
+```
+
+source方法返回的对象中有两个属性：`token` 为 `new CancelToken`的一个实例，`cancel` 是 `new CancelToken` 时候函数`executor`的一个参数，用来在需要的时候调用主动取消请求。我们来分析下`CancelToken`的源代码。
+
+```js
+function CancelToken(executor) {
+  // 类型判断
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+  // 创建一个promise的实例
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+  // 把resolve方法提出来 当resolvePromise执行时，this.promise状态会变为fulfilled
+    resolvePromise = resolve;
+  });
+  // 存一下this
+  var token = this;
+  // new CancelToken时会立即调用executor方法 也就是 会执行source方法中的cancel = c;
+  // 这里也就是把cancel函数暴露出去了，把取消的时机留给了使用者 使用者调用cancel时候也就会执行函数内的逻辑
+  executor(function cancel(message) {
+    // 请求已经被取消了直接return
+    if (token.reason) {
+      return;
+    }
+		// 给token(可就是当前this上)添加参数 调用new Cancel构造出cancel信息实例
+    token.reason = new Cancel(message);
+    // 这里当主动调用cancel方法时，就会把this.promise实例状态改为fulfilled，resolve出的信息则是reason（new Cancel实例）
+    resolvePromise(token.reason);
+  });
+}
+```
+
+**在adapter中的操作**
+
+当我们调用了`cancel`方法后，我们在请求中是如何进行中断/取消请求的。在适配器中这样一段代码可以找到想要的答案。
+
+```js
+// 判断使用者在改请求中是否配置了取消请求的token
+if (config.cancelToken) {
+  // 如果配置了则将实例上的promise用.then来处理主动取消调用cancel方法时的逻辑 
+  // 也就是说如果ajax请求发送出去之前，这时我们已经给cancelToken的promise注册了.then
+  // 当我们调用cancel方法时，cancelToken实例的promise会变为fulfilled状态，.then里的逻辑就会执行
+  config.cancelToken.promise.then(function onCanceled(cancel) {
+    if (!request) {
+      return;
+    }
+    // 调用 原生abort取消请求的方法
+    request.abort();
+    // axios的promise实例进入rejected状态 这里我们可以看到主动取消的请求是catch可以捕获到
+    reject(cancel);
+    // request置为null
+    request = null;
+  });
+}
+// 真正的请求在这时才发送出去！！！
+request.send(requestData);
+```
+
+上面是我们axios在请求中，中断请求的方式，那其他的情况下，请求前、请求完成后也是可以提前去做取消的逻辑的，这样也可以避免多余请求发送和不必要的逻辑执行，我们来看下是怎么做的吧。我们先看下`CancelToken`原型上的`throwIfRequested`方法：
+
+```javascript
+// CancelToken原型上有个么一个方法 很简单就是直接抛错 将reason抛出
+// reason则是根据调用cancel函数的参数 new Cancel的实例
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+复制代码
+```
+
+在我们的核心请求方法`dispatchRequest`中：
+
+直接抛错，代表会将axios构建的promise实例状态直接置为rejected，所以直接就走.catch的逻辑了
+
+```javascript
+// 判断如果配置了取消请求的token则就抛出
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    // 调用抛出错误的方法
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+module.exports = function dispatchRequest(config) {
+  // 请求前
+  throwIfCancellationRequested(config);
+  // ... 省略代码
+  // 请求中的在上面adapter中
+  return adapter(config).then(function onAdapterResolution(response) {
+    // 请求完成后
+    throwIfCancellationRequested(config);
+    // ... 省略代码
+  }, function onAdapterRejection(reason) {
+    // 请求完成后
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+      // ... 省略代码
+    }
+    return Promise.reject(reason);
+  });
+};
+复制代码
+```
+
+我们就在`axios`请求在`catch`中通过`isCancel`方法判断这个异常是不是取消请求抛出来的，也就是判断他是不是Cancel实例, 从而做相应处理。
+
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202205011106728.png)
+
 
 ## （七）写在最后
 
@@ -553,7 +687,5 @@ function dispatchRequest(config) {
 [Github仓库--Axios](https://github.com/axios/axios)
 
 [最全、最详细Axios源码解读---看这一篇就足够了](https://juejin.cn/post/7016255507392364557)
-
-
 
 文章持续更新中～欢迎关注我的掘金和github~
