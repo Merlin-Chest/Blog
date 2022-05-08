@@ -1,7 +1,6 @@
 # Vue专题
 
-问题来自：村长学前端，[仓库链接](http://github.com/57code/vue-interview)
-
+> 问题来自：村长学前端，[仓库链接](http://github.com/57code/vue-interview)
 ## 一、Vue API
 
 ### 1.Vue组件之间都有通信方式
