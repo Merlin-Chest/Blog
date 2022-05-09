@@ -1,6 +1,8 @@
 # Reactivity模块
 
-## 	原理
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202205082130574.png)
+
+## 原理
 
 - 利用ES6中Proxy作为拦截器，在get时收集依赖，在set时触发依赖，来实现响应式
 - 依赖 => 副作用函数 => 用户的函数

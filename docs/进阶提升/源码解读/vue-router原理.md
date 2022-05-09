@@ -70,7 +70,6 @@ window.addEventListener('popstate', cb, false);
 - 最后就是重写app.unmount逻辑，添加了移除router的过程。
 
 
-
 ### router-view和router-link
 
 RouterView 的 setup 函数返回了一个函数，这个函数就是 RouterView 组件的 render 函数。

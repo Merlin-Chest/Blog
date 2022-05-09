@@ -46,3 +46,53 @@ Object.is = function(x, y) {
     return x !== x && y !== y; // NaN
 }
 ```
+
+isEqual(obj1,obj2)
+
+```js
+function isEqual(obj1, obj2) {
+  const keys1 = Object.getOwnPropertyNames(obj1);
+  const keys2 = Object.getOwnPropertyNames(obj2);
+
+  if (keys1.length !== keys2.length) return false;
+  for (let i = 0; i < keys1.length; i++) {
+    const key = keys1[i];
+    const props1 = obj1[key];
+    const props2 = obj1[key];
+
+    if (typeof props1 === "object") {
+      if (!isEqual(props1, props2)) {
+        return false;
+      }
+    } else if (props1 !== props2) {
+      return false;
+    }
+  }
+  return true;
+}
+
+let obb1 = {
+  a: 1,
+  b: 2,
+  c: {
+    d: 4,
+    e: {
+      f: 5,
+      e: 6
+    }
+  }
+};
+let obb2 = {
+  b: 2,
+  a: 1,
+  c: {
+    e: {
+      e: 6,
+      f: 5
+    },
+    d: 4
+  }
+};
+
+console.log(isEqual(obb1, obb2));
+```
