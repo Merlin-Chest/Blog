@@ -47,7 +47,7 @@ Object.is = function(x, y) {
 }
 ```
 
-isEqual(obj1,obj2)
+## isEqual(obj1, obj2)
 
 ```js
 function isEqual(obj1, obj2) {
