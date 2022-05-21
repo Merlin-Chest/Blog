@@ -1,3 +1,4 @@
+# Java常用函数集
 ```java
 import java.util.*;
 public class Main{
