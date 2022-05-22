@@ -11,6 +11,7 @@
   "devDependencies": {
     "@typescript-eslint/parser": "^5.0.0",
     "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepress/plugin-pwa": "^2.0.0-beta.45",
     "chalk": "^2.0.0",
     "commander": "^2.0.0",
     "eslint": "^7.32.0",
@@ -41,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-vue": "^8.5.0",
+    "vue": "2.6.14",
     "vuepress-plugin-auto-navbar": "^1.0.13"
   }
 }
