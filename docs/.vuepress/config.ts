@@ -49,6 +49,7 @@ module.exports = defineConfig({
         '前端工程化',
         '手写代码系列',
         '计算机网络',
+        '源码解读'
       ],
       deep: 3,
       childrenKey: 'items',
