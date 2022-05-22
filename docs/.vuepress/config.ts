@@ -1,7 +1,5 @@
 import { defineConfig } from '@vuepress/types';
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
-import { pwaPlugin } from '@vuepress/plugin-pwa'
-
 
 module.exports = defineConfig({
   title: 'Code More Create',
