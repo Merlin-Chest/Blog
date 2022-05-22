@@ -3,18 +3,22 @@ import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
 
 module.exports = defineConfig({
   title: 'Code More Create',
-  description:"Merlin's Blog",
+  description: "Merlin's Blog",
   plugins: [
     ['vuepress-plugin-auto-sidebar', {}],
-    ['@vuepress/plugin-pwa',{
-      serviceWorker:true,
-      updatePopup:true,
-    }]
+    [
+      '@vuepress/plugin-pwa',
+      {
+        serviceWorker: true,
+        updatePopup: true,
+      },
+    ],
   ],
-  head:[
-    ['link', { rel: 'icon', href: '/logo.png' }],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
-    ['meta',{name:'viewport',content:'width=device-width, initial-scale=1.0'}],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { charset: 'UTF_8'}],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     ['meta', { name: 'theme-color', content: '#4c58bb' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
@@ -25,7 +29,7 @@ module.exports = defineConfig({
   ],
   theme: 'vt',
   themeConfig: {
-    logo: 'logo.jpg',
+    logo: 'logo.png',
     nav: AutoNavPlugin({
       ignoreFolders: [
         'node_modules',
@@ -36,10 +40,18 @@ module.exports = defineConfig({
         '.obsidian',
         'utils',
       ],
-      ignoreFiles: ['个人简历', '学习计划','面试准备','互联网公司列表'],
-      subNavShow: ['其他', '工具使用', 'Vue', '设计模式', '前端工程化', '手写代码系列','计算机网络'],
+      ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表'],
+      subNavShow: [
+        '其他',
+        '工具使用',
+        'Vue',
+        '设计模式',
+        '前端工程化',
+        '手写代码系列',
+        '计算机网络',
+      ],
       deep: 3,
-      childrenKey: 'items'
+      childrenKey: 'items',
     }),
     // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
     editLinks: true,
