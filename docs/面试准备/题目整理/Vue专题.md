@@ -278,6 +278,7 @@ router.beforeEach(async(to, from, next) => {
 
 ### 7.你知道哪些vue代码优化策略
 
+
 ### 8.SPA、SSR的区别是什么
 
 ### 9.你是怎么处理vue项目中的错误的？
