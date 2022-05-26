@@ -8,3 +8,4 @@ node_modules
 dist
 code
 pnpm-global
+.DS_Store
