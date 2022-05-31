@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 注册Service Worker
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('serviceWorker.js')
+      .then((registration)=>{
+        console.log('serviceWorker 注册成功')
+      })
+      .catch((registration)=>{
+        console.log('serviceWorker 注册失败')
+      })
+    }
+  </script>
+</body>
+</html>

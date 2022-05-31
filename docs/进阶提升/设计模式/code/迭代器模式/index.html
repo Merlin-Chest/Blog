@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const getActiveUploadObj = function(){
+      try{
+        return new ActiveXObject('TXFTNActiveX.FTNUpload');
+      }catch(e){
+        return false;
+      }
+    }
+
+    const supportFlash = function(){
+      const version = navigator.plugins['Shockwave Flash'];
+      if(version){
+        return true;
+      }
+      return false;
+    }
+
+    const getFlashUploadObj = function(){
+      if(supportFlash()){
+        const element =  document.createElement('object');
+        element.type = 'application/x-shockwave-flash';
+        return document.body.appendChild(element);
+      }
+      return false;
+    }
+
+    const getFormUploadObj = function(){
+      const element = document.createElement('input');
+      element.type = 'file';
+      element.name = 'file';
+      document.body.appendChild(element);
+      return element;
+    }
+
+    const iteratorUploadObj = function(...args){
+      for (let i = 0; i < args.length; i++) {
+        const uploadObj = args[i]();
+        if(uploadObj){
+          return uploadObj;
+        }
+      }
+    }
+
+    const uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getFormUploadObj);
+  </script>
+</body>
+</html>

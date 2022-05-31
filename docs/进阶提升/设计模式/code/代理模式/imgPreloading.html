@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const myImage = (function () {
+      const img = document.createElement('img');
+      document.body.appendChild(img);
+      return {
+        setSrc(src) {
+          img.src = src;
+        }
+      };
+    })()
+
+    const proxyImage = (function () {
+      // 新建一个图片
+      const img = new Image();
+      // 图片加载完，把图片的src属性设置给myImage
+      img.onload = function () {
+        myImage.setSrc(img.src);
+      }
+      return {
+        // 设置代理对象的src属性
+        setSrc(src) {
+          setTimeout(() => {
+            img.src = src;
+          }, 3000)
+        }
+      };
+    })()
+
+    proxyImage.setSrc('http://www.baidu.com/img/bd_logo1.png');
+  </script>
+</body>
+
+</html>

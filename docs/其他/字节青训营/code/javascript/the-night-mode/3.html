@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body {
+      width: 400px;
+    }
+
+    .content {
+      transition: background-color 0.6s;
+    }
+
+    #modeChange {
+      display: none;
+    }
+
+    #modeBtn::after {
+      content: '🌞';
+      float: right;
+      font-size: 2em;
+    }
+
+    #modeChange:checked+.content {
+      background-color: black;
+      color: white;
+    }
+
+    #modeChange:checked+.content #modeBtn::after {
+      content: '🌜';
+    }
+  </style>
+</head>
+
+<body>
+  <input id="modeChange" type="checkbox" />
+  <div class="content">
+    <header>
+      <label id="modeBtn" for="modeChange"></label>
+      <h1>深夜食堂</h1>
+    </header>
+    <main>
+      ...
+    </main>
+  </div>
+</body>
+
+</html>
