@@ -1,6 +1,6 @@
 import { defineConfig } from '@vuepress/types';
 import AutoNavPlugin from 'vuepress-plugin-auto-navbar';
-
+import CompressionPlugin from'compression-webpack-plugin';
 module.exports = defineConfig({
   title: 'Code More Create',
   description: "Merlin's Blog",
@@ -14,6 +14,16 @@ module.exports = defineConfig({
       },
     ],
   ],
+  configureWebpack:{
+    module:{
+      rules:[
+        {
+          test:/\.*$/,
+          exclude:/code|node_modules/
+        }
+      ]
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
