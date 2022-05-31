@@ -6,5 +6,6 @@ node_modules
 .vscode
 .idea
 dist
+/**/code
 pnpm-global
 .DS_Store
