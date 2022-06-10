@@ -7,5 +7,6 @@ node_modules
 .idea
 dist
 /**/code
+/**/resource
 pnpm-global
 .DS_Store
