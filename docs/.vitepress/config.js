@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import AutoNavPlugin from '../../../vitepress-auto-nav-sider/lib/index'
+import AutoNavPlugin from 'vitepress-auto-nav-sider'
 
 const { nav, sidebar } = AutoNavPlugin({
   ignoreFolders: [
@@ -12,7 +12,7 @@ const { nav, sidebar } = AutoNavPlugin({
     'utils',
     'resource'
   ],
-  ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表'],
+  ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表','index'],
   subNavShow: [
     '其他',
     '工具使用',

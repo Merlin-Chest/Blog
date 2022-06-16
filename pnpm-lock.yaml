@@ -2,10 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   vitepress: 1.0.0-alpha.2
+  vitepress-auto-nav-sider: 0.0.2
   vue: ^3.2.37
 
 devDependencies:
   vitepress: 1.0.0-alpha.2
+  vitepress-auto-nav-sider: 0.0.2
   vue: 3.2.37
 
 packages:
@@ -664,6 +666,10 @@ packages:
       rollup: 2.74.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vitepress-auto-nav-sider/0.0.2:
+    resolution: {integrity: sha512-48ylk33uOAGBNbw1eMyuwfN8pJ2rLkODnnKJpw1NTZRPvaM0DJPGT+EJ/RFEQvFi+MTJu6TR7Dl9eNmC21x/Vw==}
     dev: true
 
   /vitepress/1.0.0-alpha.2:
