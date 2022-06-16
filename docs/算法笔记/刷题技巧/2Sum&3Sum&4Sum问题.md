@@ -1,4 +1,4 @@
-# 2Sum 3Sum 4Sum 问题
+# 2Sum 3Sum 4Sum问题
 
 # two sum
 
