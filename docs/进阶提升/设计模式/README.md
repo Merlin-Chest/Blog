@@ -1,7 +1,6 @@
 # 思维导图
 
 ![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202206101053471.png)
-
 ## 代码重构手法
 
 - 提炼函数
