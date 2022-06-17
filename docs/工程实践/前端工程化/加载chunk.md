@@ -12,7 +12,7 @@
 
 第二种，则是使用 webpack 特定的 [`require.ensure`](https://www.webpackjs.com/api/module-methods#require-ensure)。
 
-```JavaScript
+```javascript
 // 以下为 index.js 内容
 import("./sum").then((m) => {
   m.default(3, 4);

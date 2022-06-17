@@ -88,13 +88,13 @@
 
 我们也可以通过 `—config` 选项来指定配置文件路径：
 
-```
+```bash
  webpack --config ./configs/my_webpack.config.js
 ```
 
 通常情况下，我们的项目目录大致如下：
 
-```
+```text
  -- /dist - 项目打包后存放目录
  -- /node_modules - 第三方模块
  -- /src
@@ -824,7 +824,7 @@ modules: {
  }
 ```
 
-通过 `proxy` 设置，当我们在当前 `WebpackDevServer` 环境下发送以 `/api` 开头的请求都会被转发到 [http://localhost:8787](http://localhost:8787/) 目标服务器下
+通过 `proxy` 设置，当我们在当前 `WebpackDevServer` 环境下发送以 `/api` 开头的请求都会被转发到 `http://localhost:8787` 目标服务器下
 
 ```
  axios({
@@ -835,7 +835,7 @@ modules: {
  })
 ```
 
-注意 `url` 地址要填写 `WebpackDevServer` 域，比如当前 `WebpackDevServer` 开启的是 [http://localhost:8081](http://localhost:8081/)，也就是我们当前前端代码运行的环境，那么请求的 `url` 也必须发送到这里，当我们的请求满足了 `proxy` 中设置的 `/api` 开头，那么就会把请求转发到 `target` ，所以最后的实际请求是：[http://lcoahost:8787/api/info](http://lcoahost:8787/api/info)
+注意 `url` 地址要填写 `WebpackDevServer` 域，比如当前 `WebpackDevServer` 开启的是 `http://localhost:8081`，也就是我们当前前端代码运行的环境，那么请求的 `url` 也必须发送到这里，当我们的请求满足了 `proxy` 中设置的 `/api` 开头，那么就会把请求转发到 `target` ，所以最后的实际请求是：`http://lcoahost:8787/api/info`
 
 ### **9 - 2、Hot Module Replacement**
 

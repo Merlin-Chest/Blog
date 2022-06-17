@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "vitepress": "1.0.0-alpha.2",
-    "vitepress-auto-nav-sider": "0.0.2",
+    "vitepress-auto-nav-sidebar": "0.0.3",
     "vue": "^3.2.37"
   },
   "description": "个人博客",

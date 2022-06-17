@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import AutoNavPlugin from 'vitepress-auto-nav-sider'
+import AutoNavPlugin from 'vitepress-auto-nav-sidebar'
 
 const { nav, sidebar } = AutoNavPlugin({
   ignoreFolders: [
@@ -13,18 +13,10 @@ const { nav, sidebar } = AutoNavPlugin({
     'resource'
   ],
   ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表','index'],
-  subNavShow: [
-    '其他',
-    '工具使用',
-    'Vue',
-    '设计模式',
-    '前端工程化',
-    '手写题',
-    '题目整理',
-    '计算机网络',
-    '源码解读'
-  ],
-  filePrefix: '',
+  showNavIcon:false,
+  showSideIcon:true,
+  isCollapse: true,
+  collapsed: true,
 })
 
 
@@ -32,6 +24,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'VitePress',
   description: 'Vite & Vue powered static site generator.',
+  markdown: { attrs: false },
   themeConfig: {
     logo: 'logo.png',
     siteTitle: 'Code More Create',
