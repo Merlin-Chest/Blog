@@ -19,13 +19,18 @@ const { nav, sidebar } = AutoNavPlugin({
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
-  markdown: { attrs: false },
+  title: 'Code More Create',
+  // description: 'Vite & Vue powered static site generator.',
   themeConfig: {
     logo: 'logo.png',
     siteTitle: 'Code More Create',
-    nav, sidebar,
+    nav:[
+      ...nav,
+      {
+        text: '🌱 算法笔记',
+        link: 'https://algorithm.merlin218.top'
+      }
+    ], sidebar,
     footer: {
       message: 'MIT Licensed | Copyright © 2021 - 2022',
       copyright: '粤ICP备2021165391号'
