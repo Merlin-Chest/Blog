@@ -13,10 +13,7 @@ const { nav, sidebar } = AutoNavPlugin({
     'resource'
   ],
   ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表','index'],
-  showNavIcon:false,
-  showSideIcon:true,
   isCollapse: true,
-  collapsed: true,
 })
 
 
