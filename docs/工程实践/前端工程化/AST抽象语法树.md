@@ -20,7 +20,7 @@ AST 的生成这一步骤被称为**解析(Parser)**，而该步骤也有两个�
 
 ### 词法分析
 用以将代码转化为 `Token` 流，维护一个关于 Token 的数组。
-```JavaScript
+```javascript
 // Code
 a = 3
 
