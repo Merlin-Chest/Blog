@@ -18,7 +18,6 @@ const { nav, sidebar } = AutoNavPlugin({
 
 
 export default defineConfig({
-  base:process.env.mode === 'development' ? '' : 'https://cdn.merlin218.top/',
   lang: 'zh-CN',
   title: 'Code More Create',
   // description: 'Vite & Vue powered static site generator.',
