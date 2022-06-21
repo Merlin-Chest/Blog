@@ -1,5 +1,5 @@
 {
-  "name": "vuepress-starter",
+  "name": "blog",
   "version": "1.0.0",
   "main": "index.js",
   "author": "merlin <863176846@qq.com>",
@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "serve": "vitepress serve docs",
+    "oss:cli":"ossutil cp -rf ./dist oss://merlin-website/blog/"
   },
   "devDependencies": {
     "vitepress": "1.0.0-alpha.2",
-    "vitepress-auto-nav-sidebar": "0.0.3",
+    "vitepress-auto-nav-sidebar": "0.0.4",
     "vue": "^3.2.37"
   },
   "description": "个人博客",
