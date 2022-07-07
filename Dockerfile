@@ -5,7 +5,7 @@ WORKDIR /code
 RUN npm install pnpm -g
 
 ADD package.json pnpm-lock.yaml /code/
-RUN pnpm
+RUN pnpm i
 
 ADD . /code/
 RUN pnpm build
