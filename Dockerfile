@@ -4,7 +4,7 @@ WORKDIR /code
 
 RUN npm install pnpm -g
 
-ADD package.json yarn.lock /code/
+ADD package.json pnpm-lock.yaml /code/
 RUN pnpm
 
 ADD . /code/
