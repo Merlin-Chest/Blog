@@ -1,0 +1,258 @@
+# CI/CD
+
+## 什么是CI/CD
+
+- CI，Continuous Integration，持续集成。
+- CD，Continuous Deployment，持续部署。(或者 Continuous Delivery，持续交付)
+
+CICD 与 git 集成在一起，可理解为服务器端的 git hooks: 
+
+当代码 push 到远程仓库后，借助 WebHooks 对当前代码在构建服务器(即 CI 服务器，也称作 Runner)中进行自动构建、测试及部署等。
+
+为了方便理解，我们将之前篇章中所指的服务器称为部署服务器，而 CI 中所指的服务器，称为构建服务器。
+
+- 部署服务器: 对外提供服务的服务器，容器在该服务器中启动。
+- 构建服务器: 进行CI构建的服务器，一般用以构建、测试和部署，构建镜像以及自动部署服务。一般也可以是 Docker 容器。
+
+在工作中，二者往往为独立服务器。但是为了更好的 CICD，构建服务器会赋予控制部署服务集群的权限，在构建服务器中通过一条命令，即可将某个服务在部署服务器集群中进行管理。
+
+在 CICD 中，构建服务器往往会做以下工作，这也是接下来几篇篇章的内容:
+
+1. 功能分支提交后，通过 CICD 进行自动化测试、语法检查、npm 库风险审计等前端质量保障工程，如未通过 CICD，则无法 Code Review，更无法合并到生产环境分支进行上线
+2. 功能分支提交后，通过 CICD 对当前分支代码构建独立镜像并生成独立的分支环境地址进行测试如对每一个功能分支生成一个可供测试的地址，一般是 `<branch>.dev.xxx` 此种地址
+3. 功能分支测试通过后，合并到主分支，自动构建镜像并部署到生成环境中 (一般生成环境需要手动触发、自动部署)
+
+当所有 Checks 通过后，Merge pull request 才会变绿允许进行合并。
+
+[!image](https://cdn.jsdelivr.net/gh/shfshanyue/assets/2021-11-17/clipboard-7669.a41a94.webp)
+
+> PS: 该图出自 Gitlab CICD Workflow
+
+- CI: 切出功能分支，进行新特性开发。此时为图中的 Verify、Package 阶段
+- CD: 合并功能分支，进行自动化部署。此时为图中的 Release 阶段。
+
+## 分支合并策略
+
+生产的代码必须要用过CI的检测才能上线，这些也需要我们手动配置
+
+1. 主分支禁止直接代码提交
+2. 代码必须通过PR才能合到主分支
+3. 分支必须CI成功才能合到主分支
+4. 代码必须通过 Code Review
+5. 代码必须两个人同意才能合并到主分支
+6. ...
+
+## 使用 `Github Action` 进行CICD构建部署
+
+### 相关术语
+
+- Runner: 用来执行CI/CD的构建服务器
+- Workflow/pineline: CI/CD的工作流
+- Job: 任务，比如构建、测试、部署等。每个Workflow由多个job组成
+
+[Github Actions 配置文档](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions)
+
+### 基本功能
+
+- 事件：该CI/CD触发的事件
+- 命令：运行的jobs和脚本
+
+### 两种方案
+
+- 通过 ssh 进入服务器并拉取代码执行命令
+- 自建 runner，直接执行命令即可
+
+## CI实践与安全质量保障
+
+### CI流程
+
+1. Install：依赖安装。
+2. Lint：保障统一的代码风格。
+3. Test：单元测试。
+4. Preview：生成一个供测试人员进行检查的网址。
+
+### Lint/Test
+
+#### 时机选择
+
+在 CI 操作保障代码质量的环节中，可确定以下时机:
+
+```yaml
+# 当功能分支代码 push 到远程仓库后，进行 CI
+on:
+  push:
+    branches:    
+      - 'feature/**'
+```
+
+或者将 CI 阶段提后至 PR 阶段，毕竟能够保障合并到主分支的代码没有质量问题即可。(但同时建议通过 git hooks 在客户端进行代码质量检查)
+
+```yaml
+# 当功能分支代码 push 到远程仓库以及是 Pull Request 后，进行 CI
+on:
+  pull_request:
+    types:
+      # 当新建了一个 PR 时
+      - opened
+      # 当提交 PR 的分支，未合并前并拥有新的 Commit 时
+      - synchronize
+    branches:    
+      - 'feature/**'
+```
+
+#### 任务内容
+
+Lint 和 Test 仅是 CI 中最常见的阶段。为了保障我们的前端代码质量，还可以添加以下阶段。
+
+- Audit: 使用 `npm audit` 或者 [snyk](https://snyk.io/)检查依赖的安全风险。可详查文章[如何检测有风险依赖](https://q.shanyue.tech/engineering/742.html#audit)
+- Quality: 使用 [SonarQube](https://www.sonarqube.org/)检查代码质量。
+- Container Image: 使用 [trivy](https://github.com/aquasecurity/trivy)扫描容器镜像安全风险。
+- End to End: 使用 [Playwright](https://github.com/microsoft/playwright)进行 UI 自动化测试。
+- Bundle Chunk Size Limit: 使用 [size-limit](https://github.com/ai/size-limit)限制打包体积，打包体积过大则无法通过合并。
+- Performance (Lighthouse CI): 使用 [lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci)为每次 PR 通过 Lighthouse 打分，如打分过低则无法通过合并。
+
+> 任务的并行和串行
+> 在 CI 中，互不干扰的任务并行执行，可以节省很大时间。如 Lint 和 Test 无任何交集，就可以并行执行。
+>  Lint 和 Test 都需要依赖安装 (Install)，在依赖安装结束后再执行，此时就是串行的。如果前一个任务失败，则下一个任务也无法继续。即如果测试无法通过，则无法进行 Preview，更无法上线。
+
+#### Git Hooks
+
+某些 CI 工作也可在 Git Hooks 完成，它们的最大的区别在于一个是客户端检查，一个是服务端检查。而客户端检查是天生不可信任的。
+
+而针对 git hooks 而言，很容易通过 git commit --no-verify 而跳过。
+
+### CI中的缓存优化
+
+如果可以对 node_modules 进行缓存，那么有以下两个好处
+
+假设没有新的 package 需要安装，则无需再次 npm i/yarn
+假设存有新的 package 需要安装，仅仅会安装变动的 package
+在 Github Actions 中，通过 [Cache Action](https://github.com/actions/cache)
+
+path: 指需要缓存的目录
+key: 根据 key 进行缓存，如果存在相同的 key，则为命中 (hit)。在 Github Actions 中可利用函数 hashFiles 针对文件计算其 hash 值。
+restore-keys: 如果 ke 未命中，则使用 restore-keys 命中缓存。
+
+```yaml
+- name: Cache Node Modules
+  id: cache-node-modules
+  # 使用 cache action 进行目录资源缓存
+  uses: actions/cache@v2
+  with:
+    # 对 node_modules 目录进行缓存
+    path: node_modules
+    # 根据字段 node-modules- 与 yarn.lock 的 hash 值作为 key
+    # 当 yarn.lock 内容未发生更改时，key 将不会更改，则命中缓存
+    # 如果使用 npm 作为包管理工具，则是 package-lock.json
+    key: node-modules-${{ hashFiles('yarn.lock') }}
+    restore-keys: node-modules-
+```
+
+缓存 node_modules 有时会存在问题，比如 npm ci 在 npm i 之前，特意将 node_modules 删除以保障安全性。
+
+如果不想缓存 node_modules，可以缓存 npm/yarn 全局缓存目录。通过以下命令可知他们的全局缓存目录
+
+- npm: npm config get cache，如 ~/.npm
+- yarn: yarn cache dir
+
+#### 检验缓存是否利用成功
+
+为了保证缓存确实已设置成功，可在依赖安装之前通过 `ls -lah node_modules` 查看 `node_modules` 目录是否有文件。
+
+```yaml
+# 查看缓存是否设置成功，输出 node_modules 目录
+- name: Check Install/Build Cache
+  run: ls -lah node_modules | head -5
+```
+
+`steps.cache-node-modules.outputs.cache-hit` 可获得 ID 为 `cache-node-modules` 该步骤，是否命中缓存。若命中，则无需再次安装依赖。
+
+```yaml
+- name: Install Dependencies
+  # 如果命中 key，则直接跳过依赖安装
+  if: steps.cache-node-modules.outputs.cache-hit != 'true'
+  run: yarn
+```
+
+即使缓存未命中，我们也可以同样利用 node_modules 中内容，依赖安装时间也大幅降低。
+
+### CI中的环境变量
+
+#### 使用场景
+
+比如在 OSS 篇使用环境变量存储云服务的权限；在前端的异常监控服务中还会用到 Git 的 Commit/Tag 作为 Release 方便定位代码，其中 Commit/Tag 的名称即可从环境变量中获取；还会使用分支名称作为功能测试分支的前缀。
+
+#### 环境变量
+
+在 Linux 系统中，通过 `env` 可列出所有环境变量，我们可对环境变量进行修改与获取操作，如 `export` 设置环境变量，`${}` 操作符获取环境变量。
+
+```bash
+# 列出所有环境变量
+env
+
+# 获取指定变量的值
+echo $USER
+printenv USER
+# 获取指定变量的值，如果不存在，则返回默认值
+echo ${NAME:-shanyue}
+
+# 设置环境变量
+export xxx=xxx
+```
+
+在nodejs中可以通过 `process.env.xxx` 获取环境变量。
+
+#### CI中的环境变量
+
+CI 作为与 Git 集成的工具，其中注入了诸多与 Git 相关的环境变量。以下列举一条常用的环境变量：
+
+在 `Github Action` 中，
+- CI：true 标明当前环境在 CI 中
+- GITHUB_REPOSITORY：仓库名称。例如 shfshanyue/cra-deploy.
+- GITHUB_EVENT_NAME：触发当前 CI 的 Webhook 事件名称
+- GITHUB_SHA：当前的 Commit Id。 ffac537e6cbbf934b08745a378932722df287a53.
+- GITHUB_REF_NAME：当前的分支名称。
+
+另外，在 Github Actions 中还可以使用 Context 获取诸多上下文信息，可通过 `${{ toJSON(github) }}` 进行获取。也可以通过 `${{ env.xxx }}` 获取自定义环境变量。
+
+
+### CI中设置环境变量
+
+在 Github Actions 中，可通过 `env` 设置环境变量，并可通过 `$GITHUB_ENV` 在不同的 Step 共享环境变量。
+
+```yaml
+# 如何在 Github Actions 中设置环境变量
+# https://docs.github.com/en/actions/learn-github-actions/environment-variables
+- run: echo $CURRENT_USER
+  env:
+    CURRENT_USER: merlin
+
+- name: Check GITHUB_ENV
+  run: |
+    echo $GITHUB_ENV
+    cat $GITHUB_ENV
+- run: echo CURRENT_USER=$(echo merlin) >> $GITHUB_ENV
+- run: echo $CURRENT_USER
+```
+
+> 不同的 CI 产品会在构建服务器中自动注入环境变量。
+> `export CI=true`
+> 而测试、构建等工具均会根据环境变量判断当前是否在 CI 中，如果在，则执行更为严格的校验。
+
+### 一个项目的环境变量管理
+
+一个项目中的环境变量，可通过以下方式进行设置
+
+1. 本地/宿主机拥有环境变量
+2. CI 拥有环境环境变量，当然 CI Runner 可认为是宿主机，CI 也可传递环境变量 (命令式或者通过 Github/Gitlab 手动操作)
+3. Dockerfile 可传递环境变
+4. docker-compose 可传递环境变量
+5. kubernetes 可传递环境变量 (env、ConfigMap、secret)
+6. 一些配置服务，如 consul、vault
+
+而对于一些前端项目而言，可如此进行配置
+
+1. 敏感数据放在 [vault] 或者 k8s 的 [secket] 中注入环境变量，也可通过 Github/Gitlab 设置中进行注入环境变量
+2. 非敏感数据可放置在项目目录 .env 中维护
+3. Git/OS 相关通过 CI 注入环境变量
+
