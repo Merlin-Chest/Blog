@@ -20,7 +20,7 @@ const { nav, sidebar } = AutoNavPlugin({
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Code More Create',
-  description: "Merlin's Blog",
+  // description: "Merlin's Blog",
   themeConfig: {
     logo: '/logo.png',
     siteTitle: 'Code More Create',
