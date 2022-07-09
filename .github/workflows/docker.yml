@@ -5,7 +5,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  production:
+  build:
   # 该 JOB 在自建 Runner 中进行运行
     runs-on: self-hosted
     steps:
