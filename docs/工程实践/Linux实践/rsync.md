@@ -63,6 +63,6 @@ $ rsync -lahz ~/Documents/react/ ~/Documents/abc/
 
 ## 几个问题
 
-1. 在 Node.js 或其它语言中如何实现 `cp`。参考 [fsp.cp](https://nodejs.org/api/fs.html#fspromisescpsrc-dest-options)。(cp 实际上是通过库函数 open/write 模拟实现)
-2. 为何说保留复制文件时的元属性，对静态资源服务器有益
-- 有利于进行相关缓存策略的设置，并且保留原始的编辑时间等
+- 在 Node.js 或其它语言中如何实现 `cp`。参考 [fsp.cp](https://nodejs.org/api/fs.html#fspromisescpsrc-dest-options)。(cp 实际上是通过库函数 open/write 模拟实现)
+- 为何说保留复制文件时的元属性，对静态资源服务器有益
+	- 有利于进行相关缓存策略的设置，并且保留原始的编辑时间等

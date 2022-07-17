@@ -69,7 +69,7 @@ merlin$ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:789
 local$ ssh -NR 7890:localhost:7890 merlin
 
 # 机器使用代理方式访问，需要设置HTTP_PROXY变量
-merlin$ export HTTP_PROXY=http://127.0.0.1:7890/
+merlin$ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
 merlin$ curl www.google.com
 ```
