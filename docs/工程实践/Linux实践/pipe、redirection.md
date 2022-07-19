@@ -42,8 +42,11 @@ cat << EOF > README.md
 `/dev/null` 是一个空文件，对于所有的输入都统统吃下，化为乌有。
 
 ```bash
+# 把标准输出（1）重定向到/dev/null
 echo hello > /dev/null
 
 # 如果后边跟一个 2>&1，表示将 stderr (fd 为2) 重定向至 &1 (fd===1 的文件，及 stdout)
+
+# 那么标准错误输出也会重定向到/dev/null
 cat hello > /dev/null 2>&1
 ```
