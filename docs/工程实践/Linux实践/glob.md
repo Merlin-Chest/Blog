@@ -23,7 +23,7 @@ ls -lah **/*.???
 ls -lah [258]*.???
 ```
 
-![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202207222233288.png)
+![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202207230020863.png)
 
 ## extglob
 一些扩展的glob模式
