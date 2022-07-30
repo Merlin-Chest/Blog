@@ -82,4 +82,6 @@ chmod u=rwx xxx
 
 ## 相关问题
 - 在 Node.js 或其它语言中如何修改 user 及 mode
-
+- 当我们新建了一个文件时，他默认的 mode 是多少
+	- 普通用户：664
+	- root用户：644
