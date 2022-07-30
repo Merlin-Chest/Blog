@@ -159,7 +159,7 @@ const compose = function(...funcs) {
 	if(funcs.length === 1) {
 		return funcs[0];
 	}
-	return funcs.reduce((pre, cur) => (...args) => pre(cur(...args)))
+	return funcs.reduce((pre, cur) => (...args) => cur(pre(...args)))
 }
 
 ```

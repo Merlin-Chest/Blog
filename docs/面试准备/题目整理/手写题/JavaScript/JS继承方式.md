@@ -107,6 +107,14 @@ function Child(...args){
 }
 Child.prototype = Object.create(Father.prototype);
 Child.prototype.constructor = Child;
+
+// 等效于
+// const F = function(){}
+// F.prototype = Father.prototype;
+// Child.prototype = new F();
+
+// 不能直接Child.prototype = Father.prototype
+// 这样子如果增加 Child.prototype.testProp = 1; 同时会影响 Parent.prototype 。
 ```
 
 ## 原型链演示图
