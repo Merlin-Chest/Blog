@@ -5,14 +5,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    labels:
-      # 设置Host 为 localhost 进行域名访问
-      - traefik.http.routers.blog.rule=Host(`blog.merlin218.top`)
-      # 开启HTTPS
-      - traefik.http.routers.blog.tls=true
-      - traefik.http.routers.blog.tls.certresolver=le
+    ports:
+      - "8080:80"
 
-networks:
-  default:
-    external:
-      name: traefik_default
+#     labels:
+#       # 设置Host 为 localhost 进行域名访问
+#       - traefik.http.routers.blog.rule=Host(`blog.merlin218.top`)
+#       # 开启HTTPS
+#       - traefik.http.routers.blog.tls=true
+#       - traefik.http.routers.blog.tls.certresolver=le
+
+# networks:
+#   default:
+#     external:
+#       name: traefik_default

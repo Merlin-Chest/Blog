@@ -12,19 +12,20 @@ const { nav, sidebar } = AutoNavPlugin({
     'utils',
     'resource'
   ],
-  ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表','index'],
+  ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表', 'index'],
   isCollapse: true,
 })
 
 
 export default defineConfig({
+  base: '',
   lang: 'zh-CN',
   title: 'Code More Create',
   // description: "Merlin's Blog",
   themeConfig: {
     logo: '/logo.png',
     siteTitle: 'Code More Create',
-    nav:[
+    nav: [
       ...nav,
       {
         text: '🌱 算法笔记',
