@@ -41,7 +41,6 @@ const extensions = [javascript(), html(), oneDark];
 
 const getContent = () => {
   const instance = getCurrentInstance();
-  console.log(instance.slots.default()[0])
   return instance.slots.default()[0].children;
 }
 
