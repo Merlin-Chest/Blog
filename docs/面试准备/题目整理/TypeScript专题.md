@@ -196,7 +196,6 @@ printY = printX
 >   "extends": "",
 >   "compilerOptions": { ... }
 > }
-> 复制代码
 > ```
 > 
 > `files` 是一个数组列表，里面包含指定文件的相对或绝对路径，用来指定待编译文件，编译器在编译的时候只会编译包含在files中列出的文件。  
@@ -221,7 +220,6 @@ printY = printX
 >       } 
 >    } 
 > }
-> 复制代码
 > ```
 
 **24. declare，declare global是什么？**

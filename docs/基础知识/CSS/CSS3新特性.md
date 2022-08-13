@@ -164,54 +164,53 @@ filter: grayscale灰度/sepia(褐色)/saturate(饱和度)/hue-rotate(色度旋�
 ![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202208011335673.png)
 
 ```html
-<div class="Grid">
-  <div class="Grid-row">
-    <div class="Grid-cell u-1of2">...</div>
-    <div class="Grid-cell">...</div>
-    <div class="Grid-cell">...</div>
+<style>
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .grid-row {
+    width:100%;
+    display: flex;
+  }
+
+  .grid-cell {
+    flex: 1;
+    background: #ccc;
+    box-sizing: border-box;
+    padding: 10px;
+    background-clip: content-box;
+  }
+
+  .u-1of2 {
+    flex: 0 0 50%;
+  }
+
+  .u-1of3 {
+    flex: 0 0 33.3%;
+  }
+
+  .u-1of4 {
+    flex: 0 0 25%;
+  }
+</style>
+<div class="grid">
+  <div class="grid-row">
+    <div class="grid-cell u-1of2">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell">...</div>
   </div>
-  <div class="Grid-row">
-    <div class="Grid-cell">...</div>
-    <div class="Grid-cell u-1of3">...</div>
+  <div class="grid-row">
+    <div class="grid-cell">...</div>
+    <div class="grid-cell u-1of3">...</div>
   </div>  
-  <div class="Grid-row">
-    <div class="Grid-cell u-1of4">...</div>
-    <div class="Grid-cell">...</div>
-    <div class="Grid-cell u-1of3">...</div>
+  <div class="grid-row">
+    <div class="grid-cell u-1of4">...</div>
+    <div class="grid-cell">...</div>
+    <div class="grid-cell u-1of3">...</div>
   </div>
 </div>
-```
-
-```css
-.Grid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Grid-row {
-  width:100%;
-  display: flex;
-}
-
-.Grid-cell {
-  flex: 1;
-  background: #ccc;
-  box-sizing: border-box;
-  padding: 10px;
-  background-clip: content-box;
-}
-
-.u-1of2 {
-  flex: 0 0 50%;
-}
-
-.u-1of3 {
-  flex: 0 0 33.3%;
-}
-
-.u-1of4 {
-  flex: 0 0 25%;
-}
 ```
 
 ### 圣杯布局
@@ -223,66 +222,62 @@ filter: grayscale灰度/sepia(褐色)/saturate(饱和度)/hue-rotate(色度旋�
 HTML代码如下。
 
 ```html
-<body class="HolyGrail">
-  <header>...</header>
-  <div class="HolyGrail-body">
-    <main class="HolyGrail-content">...</main>
-    <nav class="HolyGrail-nav">...</nav>
-    <aside class="HolyGrail-ads">...</aside>
-  </div>
-  <footer>...</footer>
-</body>
-```
-
-CSS代码如下：
-```css
-.HolyGrail {
+<style>
+.container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
-
-header,
-footer {
+header,footer {
   flex: 1;
 }
 
-.HolyGrail-body {
+.holygrail-body {
   display: flex;
   flex: 1;
 }
 
-.HolyGrail-content {
+.holygrail-content {
   flex: 1;
 }
 
-.HolyGrail-nav, .HolyGrail-ads {
+.holygrail-nav, .holygrail-ads {
   /* 两个边栏的宽度设为12em */
   flex: 0 0 12em;
 }
 
-.HolyGrail-nav {
+.holygrail-nav {
   /* 导航放到最左边 */
   order: -1;
 }
 
 /* 如果是小屏幕，躯干的三栏自动变为垂直叠加。 */
 @media (max-width: 768px) {
-  .HolyGrail-body {
+  .holygrail-body {
     flex-direction: column;
     flex: 1;
   }
-  .HolyGrail-nav,
-  .HolyGrail-ads,
-  .HolyGrail-content {
+  .holygrail-nav,
+  .holygrail-ads,
+  .holygrail-content {
     flex: auto;
   }
 }
+</style>
+<div class="container">
+<header>header</header>
+  <div class="holygrail-body">
+    <main class="holygrail-content">content</main>
+    <nav class="holygrail-nav">nav</nav>
+    <aside class="holygrail-ads">abs</aside>
+  </div>
+  <footer>footer</footer>
+</div>
 ```
 
-## Grid栅格布局
+## grid栅格布局
 
-[Grid布局指南](https://link.segmentfault.com/?enc=S7m0AwBYRSyftMfoiagpbA%3D%3D.%2Fx1%2BcLbKoWtV%2FZ3IfwNLfA%2BoGDvFTg3zRBDT6tAFeTXoDJqzBZiQLPwKahFkLnEk)
+[grid布局指南](https://link.segmentfault.com/?enc=S7m0AwBYRSyftMfoiagpbA%3D%3D.%2Fx1%2BcLbKoWtV%2FZ3IfwNLfA%2BoGDvFTg3zRBDT6tAFeTXoDJqzBZiQLPwKahFkLnEk)
 
 ## 多列布局
 
@@ -290,14 +285,9 @@ footer {
 ![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202208011346169.png)
 
 ```html
-<div class="newspaper">
-当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。
-</div>
-```
-
-```css
-.newspaper
-{
+<head>
+  <style>
+.newspaper{
     column-count: 3;
     -webkit-column-count: 3;
     -moz-column-count: 3;
@@ -305,6 +295,11 @@ footer {
     -webkit-column-rule:2px solid #000;
     -mox-column-rule:2px solid #000;
 }
+</style>
+</head>
+<div class="newspaper">
+当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。
+</div>
 ```
 
 ## 盒模型定义
@@ -314,11 +309,6 @@ border-box/content-box/padding-box
 ## 媒体查询
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"> 
-<title></title> 
 <style>
 body {
     background-color: pink;
@@ -334,15 +324,10 @@ body {
     }
 }
 </style>
-</head>
-<body>
 
 <h1>重置浏览器窗口查看效果！</h1>
 <p>如果媒体类型屏幕的可视窗口宽度小于 960 px ，背景颜色将改变。</p>
 <p>如果媒体类型屏幕的可视窗口宽度小于 480 px ，背景颜色将改变。</p>
-
-</body>
-</html>
 ```
 
 ## 混合模式

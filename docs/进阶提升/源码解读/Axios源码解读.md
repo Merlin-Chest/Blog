@@ -566,7 +566,6 @@ CancelToken.source = function source() {
     cancel: cancel
   };
 };
-复制代码
 ```
 
 source方法返回的对象中有两个属性：`token` 为 `new CancelToken`的一个实例，`cancel` 是 `new CancelToken` 时候函数`executor`的一个参数，用来在需要的时候调用主动取消请求。我们来分析下`CancelToken`的源代码。
@@ -636,7 +635,6 @@ CancelToken.prototype.throwIfRequested = function throwIfRequested() {
     throw this.reason;
   }
 };
-复制代码
 ```
 
 在我们的核心请求方法`dispatchRequest`中：
@@ -670,7 +668,6 @@ module.exports = function dispatchRequest(config) {
     return Promise.reject(reason);
   });
 };
-复制代码
 ```
 
 我们就在`axios`请求在`catch`中通过`isCancel`方法判断这个异常是不是取消请求抛出来的，也就是判断他是不是Cancel实例, 从而做相应处理。

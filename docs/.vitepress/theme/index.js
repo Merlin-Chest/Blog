@@ -1,5 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
-import RunCode from '../components/RunCode.vue'
+import RunCode from './plugins/run-code/RunCode.vue'
+import './custom.css'
 
 export default {
   ...DefaultTheme,

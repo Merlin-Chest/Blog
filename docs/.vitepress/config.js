@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import AutoNavPlugin from 'vitepress-auto-nav-sidebar'
-
+import CodeRunPlugin from './theme/plugins/run-code'
 const { nav, sidebar } = AutoNavPlugin({
   ignoreFolders: [
     'node_modules',
@@ -22,6 +22,11 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'Code More Create',
   // description: "Merlin's Blog",
+  markdown: {
+    config: (md) => {
+      md.use(CodeRunPlugin)
+    }
+  },
   themeConfig: {
     logo: '/logo.png',
     siteTitle: 'Code More Create',

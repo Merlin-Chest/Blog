@@ -1,4 +1,5 @@
 ## CSS发展
+
 - 手写原生CSS
 - 使用预处理器 Sass/Less
 - 使用后处理器 PostCSS
@@ -18,8 +19,8 @@
 为什么不使用导入样式？
 
 - 导入样式，**只能放在 style 标签的第一行**，放其他行则会无效。
-- @import 声明的样式表不能充分利用浏览器并发请求资源的行为，其加载行为往往会**延后触发或被其他资源加载挂起**。
--   由于 @import 样式表的延后加载，可**能会导致页面样式闪烁**。
+- `@import` 声明的样式表不能充分利用浏览器并发请求资源的行为，其加载行为往往会**延后触发或被其他资源加载挂起**。
+- 由于 @import 样式表的延后加载，可**能会导致页面样式闪烁**。
 
 ### 使用预处理器 Sass/Less
 
@@ -94,8 +95,7 @@ CSS Modules 指的是我们像 import js 一样去引入我们的 css 代码，�
 
 ```js
 import styles from "./style.css";
-
-element.innerHTML = '<div class="' + styles.className + '">';
+element.innerHTML = "<div class='"+ styles.className +"'></div>";
 ```
 
 3、配置 css-loader 打包。
@@ -177,11 +177,13 @@ const TomatoButton = styled(Button)`
   color: tomato;
   border-color: tomato;
 `;
+```
 
+```html
 <Wrapper>
   <Title>Hello World, this is my first styled component!</Title>
   <Button primary>Primary</Button>
-</Wrapper>;
+</Wrapper>
 ```
 
 可以看到，我们直接在 js 中编写 css，案例中在定义源生 html 时就创建好了样式，在使用的时候就可以渲染出带样式的组件了。
