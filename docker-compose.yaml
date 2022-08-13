@@ -5,9 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-
     labels:
       # 设置Host 为 localhost 进行域名访问
       - traefik.http.routers.blog.rule=Host(`blog.merlin218.top`)
