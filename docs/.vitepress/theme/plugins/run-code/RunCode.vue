@@ -154,6 +154,5 @@ const exec = async () => {
   height: 300px;
   border: 1px solid #eee;
   border-radius: 10px;
-  overflow: scroll;
 }
 </style>
