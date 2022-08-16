@@ -31,7 +31,7 @@ console.log(a, b) // a为全局作用域12，b在函数中被修改为13
 
 /* 输出：
     undefined undefined
-    undefined "林一一"
+    undefined "merlin"
     13 13
     12 13
 */
@@ -43,7 +43,7 @@ console.log(a, b) // a为全局作用域12，b在函数中被修改为13
 let obj = {a:1,b:2}
 let {a,b} = obj
 
-let arr = ["a","b","c"]    || let arr = "abc"
+let arr = ["a","b","c"] // 或 let arr = "abc"
 let [e,f] = arr
 
 //快速交换a,b
@@ -55,14 +55,14 @@ let [e,f] = arr
 ### 展开运算符
 
 ```javascript
-①
+// ①
 let arr = [1,2,3,4]
 let arr2 = ['a','b',...arr,'c','d']
 //arr2 = ['a','b',1,2,3,4,'c','d']
-②
+// ②
 let [a,b,...c] = arr
 //a = 1,b = 2,c = [3,4]
-③
+// ③
 let obj = {
 	a:1,
 	b:2
@@ -74,7 +74,7 @@ let obj2 = {
 };
 let [a,b,...c] = obj2
 //a = 1,b = 2,c = {c:3,d:4}
-④
+// ④
 let obj2 = obj
 //传的是地址，改变obj2，obj跟着改变
 let obj2 = {...obj}
@@ -185,8 +185,8 @@ let arr = [
 arr.flat(depth) //depth=1,返回["小明","18","小红","19"]
 arr.flat(Infinity) //无限扁平
 
-let newArr = **arr.flatMap**((item)=>{   //flatMap只能扁平化一层
-	item = **item.filter**((item,index)=>{
+let newArr = arr.flatMap((item)=>{   //flatMap只能扁平化一层
+	item = item.filter((item,index)=>{
 		return index == 0;
 	});
 	return item;
@@ -197,7 +197,7 @@ let newArr = **arr.flatMap**((item)=>{   //flatMap只能扁平化一层
 
 ```javascript
 let arr = ["a","b","c","d","e"];
-**arr.includes("c",3)**  //参数：要查找的值，从第几位开始检索（可选）
+arr.includes("c",3)  //参数：要查找的值，从第几位开始检索（可选）
 ```
 
 - forEach()：为每个元素执行的函数
@@ -224,10 +224,10 @@ arr.join("")  //将数组转化为字符串
 
 ```javascript
 let str = "Hello"
-**str.includes("c",3)  //参数：要查找的值，从第几位开始检索（可选）**
-**str.startsWith("He",3) //参数：开始的值，从第几位开始（可选）
+str.includes("c",3)  //参数：要查找的值，从第几位开始检索（可选）
+str.startsWith("He",3) //参数：开始的值，从第几位开始（可选）
 str.endsWith("lo",3)  //参数：结束的值，总共多少位（可选）
-str.repeat(num)  //参数：重复多少次** 
+str.repeat(num)  //参数：重复多少次
 ```
 
 ### 模板字符串

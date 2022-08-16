@@ -18,7 +18,7 @@ HTTP是超文本传输协议（`HyperText Transfer Protocol`）
 
 ## 常见的HTTP状态码
 
-[HTTP常见状态码](../计算机网络/常见的状态码.md)
+[HTTP常见状态码](常见的状态码.md)
 
 ## 常见的HTTP字段
 - Host
