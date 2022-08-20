@@ -1,10 +1,17 @@
 # CSS垂直居中方案
 
-<iframe height="384" style="width: 100%;" scrolling="no" title="垂直水平居中" src="https://codepen.io/merlin218/embed/VwyeRVR?default-tab=css%2Cresult&editable=true&theme-id=light" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/merlin218/pen/VwyeRVR">
-  垂直水平居中</a> by Merlin218 (<a href="https://codepen.io/merlin218">@merlin218</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+```html
+<style>
+#container{
+
+}
+</style>
+<div>实现垂直居中布局</div>
+<div id="container">
+  <div id="content">
+  </div>
+</div>
+```
 
 1. flex布局
 

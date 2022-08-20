@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, defineComponent, getCurrentInstance } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import { html_decode } from './utils/html-transform.js'
 import { Codemirror } from "vue-codemirror";
 import { html } from "@codemirror/lang-html";
@@ -29,9 +29,6 @@ const props = defineProps({
   },
 })
 
-const isJavascript = () => {
-  return props.type === 'js' || props.type.toLocaleLowerCase() === 'javascript';
-}
 
 const isHtml = () => {
   return props.type === 'html';
@@ -52,7 +49,6 @@ const reset = () => {
   editableCode.value = html_decode(original);
 }
 
-const btn = document.querySelector('button');
 const subApp = ref(null)
 
 const execJs = async () => {
@@ -150,7 +146,7 @@ const exec = async () => {
 }
 
 .html__view {
-  width: 100&;
+  width: 100%;
   height: 300px;
   border: 1px solid #eee;
   border-radius: 10px;
