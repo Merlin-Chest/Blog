@@ -1,7 +1,7 @@
 <template>
   <div style="display:flex;flex-flow:column nowrap;">
     <div class="container">
-      <codemirror style="overflow:scroll;height:300px;flex:1;margin-right:20px;" v-model="editableCode"
+      <codemirror style="overflow:hidden;height:300px;flex:1;margin-right:20px;" v-model="editableCode"
         placeholder="Edit code here..." :autofocus="true" :indent-with-tab="true" :tabSize="4"
         :extensions="extensions" />
       <div class="btn__container">
@@ -34,7 +34,7 @@ const isHtml = () => {
   return props.type === 'html';
 }
 
-const extensions = [javascript(), html(), oneDark];
+const extensions = [props.type === 'js' ? javascript() : html(), oneDark];
 
 const getContent = () => {
   const instance = getCurrentInstance();

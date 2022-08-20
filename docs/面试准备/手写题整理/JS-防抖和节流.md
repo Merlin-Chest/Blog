@@ -9,7 +9,7 @@
 2.  调整浏览器窗口大小时，resize 次数过于频繁，造成计算过多，此时需要一次到位，就用到了防抖
 3.  文本编辑器实时保存，当无任何更改操作一秒后进行保存
 
-```ts
+```js
 /**
  * @description: 该函数会从上一次调用之后，延迟wait毫秒后执行fn方法
  * @param {Function} fn 延迟执行的函数
@@ -38,7 +38,7 @@ function debounce(fn, interval){
 2.  浏览器播放事件，每个一秒计算一次进度信息等
 3.  input 框实时搜索并发送请求展示下拉列表，每隔一秒发送一次请求 (也可做防抖)
 
-```ts
+```js
 /**
  * @description: 控制fn方法执行的频率，wait时间内发生一次
  * @param {Function} fn 用户函数
