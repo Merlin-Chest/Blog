@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs",
+    "serve": "vitepress serve docs --port=8080",
     "oss:cli": "ossutil cp -rf ./dist oss://merlin-website/blog/"
   },
   "devDependencies": {
@@ -34,6 +34,7 @@
     "@codemirror/theme-one-dark": "^6.0.0",
     "codemirror": "^6.0.1",
     "unplugin-icons": "^0.14.8",
-    "vue-codemirror": "^6.0.2"
+    "vue-codemirror": "^6.0.2",
+    "xmind-embed-viewer": "^1.0.7"
   }
 }

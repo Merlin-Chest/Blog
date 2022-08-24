@@ -12,27 +12,27 @@
 2. 执行时刻很早，甚至早于beforeCreate
 3. this不可用也没有必要用
 4. 可用参数
-    - props：属性，是一个Proxy对象
-      
-        解构会失去响应能力
-        
-    - ctx：上下文，是一个对象，可以解构（{attrs, slots, emit}）
+- props：属性，是一个Proxy对象
+  
+解构会失去响应能力
+
+- ctx：上下文，是一个对象，可以解构（{attrs, slots, emit}）
 5. return
-    - 返回render函数的上下文对象
-    - 返回一个渲染函数
+- 返回render函数的上下文对象
+- 返回一个渲染函数
 6. 获取组件实例getCurrentInstance()
 
 ### **响应式系统 API**
 
 #### reactive：对象响应式
 
-```javascript
+```js
 const obj = reactive({count:0})
 ```
 
 - **toRefs** 把⼀个响应式对象转换成普通对象，该普通对象的每个属性都是⼀个Ref。
 
-  ```javascript
+```js
   const state = reactive({
   foo: 1,
   bar: 2,
@@ -43,13 +43,13 @@ const obj = reactive({count:0})
    bar: Ref<number>
   }
   */
-  ```
+```
 
 - 响应式对象结构丢失响应式
 
 #### ref：单值响应式
 
-```javascript
+```js
 const count = ref(0)
 console.log(count.value)
 ```
@@ -58,20 +58,20 @@ console.log(count.value)
 
 - 模板中访问：Ref对象在模板中使⽤时会⾃动解套，⽆需额外书写 .value
   
-    ```html
-    <div>{{ count }}</div>
-    ```
-    
+```html
+<div>{{ count }}</div>
+```
+
 - Ref对象作为 reactive 对象的属性被访问或修改时，也将⾃动解套 value 值
   
-    ```javascript
-    const count = ref(0)
-    const state = reactive({
-    count,
-    })
-    console.log(state.count) // 0
-    ```
-    
+```js
+const count = ref(0)
+const state = reactive({
+	count,
+})
+console.log(state.count) // 0
+```
+
 
 #### readonly：只读属性
 
@@ -81,32 +81,32 @@ console.log(count.value)
 
 1. 传⼊⼀个 getter 函数，返回⼀个不可⼿动修改的 Ref 对象
    
-    ```javascript
-    const count = ref(1)
-    const doubleCount = computed(() => count.value * 2)
-    console.log(doubleCount.value) // 2
-    doubleCount.value++ // 错误
-    ```
-    
+```js
+const count = ref(1)
+const doubleCount = computed(() => count.value * 2)
+console.log(doubleCount.value) // 2
+doubleCount.value++ // 错误
+```
+
 2. 传⼊⼀个拥有 get 和 set 函数的对象，创建⼀个可⼿动修改的计算状态
    
-    ```javascript
-    const count = ref(1)
-    const doubleCount = computed({
-    get: () => count.value * 2,
-    set: (val) => {
-    count.value = val / 2
-     },
-    })
-    doubleCount.value = 4
-    console.log(count.value) // 2
-    ```
+```js
+const count = ref(1)
+const doubleCount = computed({
+get: () => count.value * 2,
+set: (val) => {
+count.value = val / 2
+ },
+})
+doubleCount.value = 4
+console.log(count.value) // 2
+```
 
 #### watchEffect ：副作⽤侦听器
 
 - ⽴即执⾏传⼊的⼀个函数，并收集响应式的依赖，当依赖变更时重新运⾏该函数
 
-```javascript
+```js
 const count = ref(0)
 watchEffect(() => console.log(count.value)) // 打印出 0
 setTimeout(() => {
@@ -117,36 +117,36 @@ count.value++ // 打印出 1
 #### watch ：侦听器
 
 - watch 侦听特定数据源，并在回调函数中执⾏副作⽤
-    - 侦听单个数据源：数据源可以是⼀个拥有返回值的 getter 函数，也可以是 ref
-    
-    ```javascript
-    // 如果观察的是一个对象里的key，需要使用一个函数来返回
-    const state = reactive({ count: 0 })
-    watch(
-     () => state.count,
-     (count, prevCount) => {}
-    )
-    // 直接侦听⼀个 ref
-    const count = ref(0)
-    watch(count, (count, prevCount) => {})
-    
-    //接受第三个参数 options
-    const state = reactive({ count: 0 })
-    watch(
-     () => state.count,
-     (count, prevCount) => {},
-      {
-        immediate:true, //立即执行
-      }
-    ) 
-    ```
-    
-    - 侦听多个数据源
-    
-    ```javascript
-    watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {})
-    ```
-    
+- 侦听单个数据源：数据源可以是⼀个拥有返回值的 getter 函数，也可以是 ref
+
+```js
+// 如果观察的是一个对象里的key，需要使用一个函数来返回
+const state = reactive({ count: 0 })
+watch(
+ () => state.count,
+ (count, prevCount) => {}
+)
+// 直接侦听⼀个 ref
+const count = ref(0)
+watch(count, (count, prevCount) => {})
+
+//接受第三个参数 options
+const state = reactive({ count: 0 })
+watch(
+ () => state.count,
+ (count, prevCount) => {},
+  {
+immediate:true, //立即执行
+  }
+) 
+```
+
+- 侦听多个数据源
+
+```js
+watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {})
+```
+
 
 ---
 
@@ -160,75 +160,75 @@ count.value++ // 打印出 1
 
 1. ⽣命周期钩⼦可以通过 onXXX 形式导⼊并在setup内部注册，只能在setup()使用
    
-    ```javascript
-    import { onMounted, onUpdated, onUnmounted } from 'vue'
-    const MyComponent = {
-    	setup() {
-    		onMounted(() => {
-    		console.log('mounted!')
-    	 })
-    	onUpdated(() => {
-    		console.log('updated!')
-    	 })
-    	onUnmounted(() => {
-    		console.log('unmounted!')
-    	 })
-    	},
-    }
-    ```
-    
+```js
+import { onMounted, onUpdated, onUnmounted } from 'vue'
+const MyComponent = {
+	setup() {
+		onMounted(() => {
+		console.log('mounted!')
+	 })
+	onUpdated(() => {
+		console.log('updated!')
+	 })
+	onUnmounted(() => {
+		console.log('unmounted!')
+	 })
+	},
+}
+```
+
 2. 可以多次注册，按顺序执行
    
-    ```javascript
-    setup() {
-    	onMounted(() => {
-    		console.log('mounted1')
-    	 })
-    	onMounted(() => {
-    		console.log('mounted2')
-    	 })
-    }
-    ```
-    
-    妙⽤：可以⽤在其他可复⽤的逻辑中
-    
-    ```javascript
-    function useCounter() {
-    const counter = ref(0)
-    let timer
-    onMounted(() => {
-    timer = setInterval(() => counter.value++, 1000)
-     })
-    onUnmounted(() => {
-    clearInterval(timer)
-     })
-    return counter
-    }
-    setup() {
-    const counter = useCounter()
-    return { counter }
-    }
-    ```
-    
-    > 与 2.x 版本⽣命周期相对应的组合式 API
-    > 
-    - beforeCreate -> 直接写到 setup()
-    - created -> 直接写到 setup()
-    - beforeMount -> onBeforeMount
-    - mounted -> onMounted
-    - beforeUpdate -> onBeforeUpdate
-    - updated -> onUpdated
-    - beforeDestroy -> onBeforeUnmount 变化
-    - destroyed -> onUnmounted 变化
-    - errorCaptured -> onErrorCaptured
-    - onRenderTracked 新增
-    - onRenderTriggered 新增
+```js
+setup() {
+	onMounted(() => {
+		console.log('mounted1')
+	 })
+	onMounted(() => {
+		console.log('mounted2')
+	 })
+}
+```
+
+妙⽤：可以⽤在其他可复⽤的逻辑中
+
+```js
+function useCounter() {
+const counter = ref(0)
+let timer
+onMounted(() => {
+timer = setInterval(() => counter.value++, 1000)
+ })
+onUnmounted(() => {
+clearInterval(timer)
+ })
+return counter
+}
+setup() {
+const counter = useCounter()
+return { counter }
+}
+```
+
+> 与 2.x 版本⽣命周期相对应的组合式 API
+> 
+- beforeCreate -> 直接写到 setup()
+- created -> 直接写到 setup()
+- beforeMount -> onBeforeMount
+- mounted -> onMounted
+- beforeUpdate -> onBeforeUpdate
+- updated -> onUpdated
+- beforeDestroy -> onBeforeUnmount 变化
+- destroyed -> onUnmounted 变化
+- errorCaptured -> onErrorCaptured
+- onRenderTracked 新增
+- onRenderTriggered 新增
 
 ### 依赖注入
 
 - 在setup中依赖注⼊使⽤ provide 和 inject
 
-```javascript
+```js
 import { provide, inject } from 'vue'
 const Ancestor = {
 	setup() {
@@ -249,7 +249,7 @@ const Descendent = {
 
 - 如果注⼊⼀个响应式对象，则它的状态变化也可以被侦听
 
-```javascript
+```js
 // 提供者响应式数据
 const themeRef = ref('dark')
 provide('colorTheme', themeRef)
@@ -264,7 +264,7 @@ console.log(`theme set to: ${theme.value}`)
 
 - 为了获得对模板内元素或组件实例的引⽤，我们可以像往常⼀样在 setup() 中声明⼀个 **同名**的ref 并返回它
 
-```javascript
+```js
 <template> 
 	<div ref="root"></div>
 </template> 
@@ -292,7 +292,7 @@ export default {
 - ⾮常灵活的⽅式，来分发 Vue 组件中的可复⽤功能
 - 当组件使⽤混⼊对象时，所有混⼊对象的选项将被“混合”进⼊该组件本身的选项
 
-```javascript
+```js
 // 定义⼀个混⼊对象
 const myMixin = {
 	created() {
@@ -322,7 +322,7 @@ vue3中使⽤composition-api复⽤逻辑是更好的解决⽅案
 
 - 对普通 DOM 元素进⾏底层操作
 
-```javascript
+```js
 const app = Vue.createApp({})
 // 全局注册指令 `v-focus`
 app.directive('focus', {
@@ -341,19 +341,19 @@ directives: {
 ```
 
 - 指令钩⼦函数：钩⼦函数和vue2相较有⼀些变化，现在和组件钩⼦⼀致：
-    - beforeMount ：当指令第⼀次绑定到元素并且在挂载⽗组件之前调⽤，这⾥可以做⼀次性初始化设置。
-    - mounted ：在挂载绑定元素到⽗组件时调⽤。
-    - beforeUpdate ：在更新包含组件的 VNode 之前调⽤。
-    - updated ：在包含组件的 VNode 及其⼦组件的 **VNode** 更新后调⽤。
-    - beforeUnmount ：在卸载绑定元素的⽗组件之前调⽤
-    - unmounted ：当指令与元素解除绑定且⽗组件已卸载时，只调⽤⼀次。
+- beforeMount ：当指令第⼀次绑定到元素并且在挂载⽗组件之前调⽤，这⾥可以做⼀次性初始化设置。
+- mounted ：在挂载绑定元素到⽗组件时调⽤。
+- beforeUpdate ：在更新包含组件的 VNode 之前调⽤。
+- updated ：在包含组件的 VNode 及其⼦组件的 **VNode** 更新后调⽤。
+- beforeUnmount ：在卸载绑定元素的⽗组件之前调⽤
+- unmounted ：当指令与元素解除绑定且⽗组件已卸载时，只调⽤⼀次。
 
 ### TelePort传送
 
 - 有时组件模板的⼀部分在逻辑上属于该组件，⽽从技术⻆度来看，最好将模板的这⼀部分移动到 DOM中 Vue app 之外的其他位置
 - ⽐如⼀个弹窗内容、消息通知等。
 
-```javascript
+```js
 //js
 app.component('modal-button', {
 	template: `
@@ -413,7 +413,7 @@ app.component('modal-button', {
 
 - 提供完全JS编程能⼒，可以解决更复杂的模板需求
 
-```javascript
+```js
 const app = Vue.createApp({})
 app.component('x-heading', {
 	render() {
@@ -434,7 +434,7 @@ props: {
 
 渲染函数中⽤ if / else 和 map() 来替代 v-if 和 v-for
 
-```javascript
+```js
 props: ['items'],
 render() {
 	if (this.items.length) {
@@ -449,7 +449,7 @@ render() {
 
 v-model 指令展开为 modelValue 和 onUpdate:modelValue ，要实现同等功能必须提供这些prop
 
-```javascript
+```js
 props: ['modelValue'],
 	render() {
 		return Vue.h(SomeComponent, {
@@ -461,7 +461,7 @@ props: ['modelValue'],
 
 事件处理需要提供⼀个正确的prop名称，例如，要处理 click 事件，prop名称应该是 onClick 
 
-```javascript
+```js
 render() {
 	return Vue.h('div', {
 		onClick: $event => console.log('clicked', $event.target)
@@ -471,7 +471,7 @@ render() {
 
 对于 .passive 、 .capture 和 .once 事件修饰符，Vue提供了专属的对象语法
 
-```javascript
+```js
 render() {
 	return Vue.h('input', {
 		onClick: {
@@ -488,7 +488,7 @@ render() {
 
 通过 this.$slots 访问静态插槽的内容，每个插槽都是⼀个 VNode 数组
 
-```javascript
+```js
 render() {
 	// `<div><slot></slot></div>`
 	return Vue.h('div', {}, this.$slots.default())
@@ -497,7 +497,7 @@ render() {
 
 如果要将插槽传递给⼦组件
 
-```javascript
+```js
 render() {
 	// `<child v-slot="props"><span>{{ props.text }}</span></child>`
 	return Vue.h('div', [
@@ -515,7 +515,7 @@ render() {
 - ⾃包含的代码，通常给 Vue 添加全局功能
 - 可以是包含 install() ⽅法的 object ，也可以是 function
 
-```javascript
+```js
 export default {
 	install: (app, options) => {
 		// 插件接收应⽤实例和插件选项
@@ -525,7 +525,7 @@ export default {
 
 - 常见任务
 
-```javascript
+```js
 export default {
 	install: (app, options) => {
 		//添加指令/组件/过渡等全局资源
@@ -540,13 +540,13 @@ export default {
 
 - 使用插件：实例挂载之前调⽤use()注册插件
 
-```javascript
+```js
 app.use(plugin)
 ```
 
 - 范例：实现⼀个Message插件
 
-```javascript
+```js
 const MessagePlugin = function (app) {
 const MyMessage = {
 	props: {

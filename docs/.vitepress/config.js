@@ -10,7 +10,8 @@ const { nav, sidebar } = AutoNavPlugin({
     'code',
     '.obsidian',
     'utils',
-    'resource'
+    'resource',
+    'xmind'
   ],
   ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表', 'index'],
   isCollapse: true,
@@ -22,9 +23,23 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'Code More Create',
   // description: "Merlin's Blog",
+  assetsInclude: ['**/*.xmind'],
   markdown: {
     config: (md) => {
       md.use(CodeRunPlugin)
+      md.use(function (md) {
+        const handleImage = md.renderer.rules.image
+        md.renderer.rules.image = (tokens, idx, options, env, self) => {
+          const url = tokens[idx].attrs[0][1];
+          if (/.xmind$/.test(url)) {
+            const title = tokens[idx].children[0].content;
+            const url = tokens[idx].attrs[0][1];
+            return `<XMindViewer src="${url}" title="${title}"></XMindViewer>`;
+          } else {
+            return handleImage(tokens, idx, options, env, self);
+          }
+        }
+      })
     }
   },
   themeConfig: {

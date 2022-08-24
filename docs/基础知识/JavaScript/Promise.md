@@ -17,7 +17,7 @@
 
 ## 方法
  
- ### then
+### then
   - 作用：定义状态改变时的回调函数，第一个参数是`resolved`状态的回调函数，第二个参数是`rejected`状态的回调函数
   - 返回一个新的Promise实例，因此可以采用链式写法
 
@@ -125,6 +125,34 @@ p
 	- `thenable`对象（具有then方法的对象），将这个对象转为 Promise 对象，并立即执行`thenable`对象的`then()`方法
 	- 参数不是具有`then()`方法的对象，或根本就不是对象，则返回一个新的 Promise 对象，状态为`resolved`
 	- 不带参数，直接返回一个`resolved`状态的 Promise 对象
+
+```js
+let p0 = new Promise((resolve,reject)=>{
+	reject(1);
+});
+
+const thenAble = {
+	then:(resolve, reject) => { 
+		return p0.then(resolve, reject).catch(error=>{
+			console.log('err1:' + error);
+		})
+	}
+}
+
+Promise.resolve(thenAble).catch(error=>{
+	console.log('err2:' + error);
+})
+
+new Promise((resolve,reject)=>{
+	setTimeout(() => {
+		p0.then(resolve, reject).catch(error=>{
+			console.log('err1:' + error);
+		})
+    });
+})
+
+// err2: 1
+```
 
 ### Promise.reject
 

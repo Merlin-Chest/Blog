@@ -15,7 +15,7 @@
         - 防抖节流
         - 立即执行函数（IIFE）
 
-```
+```js
 for(var i = 0; i < 10; i++){
   setTimeout(function(){
     console.log(i)
