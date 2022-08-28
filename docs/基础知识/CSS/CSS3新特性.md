@@ -4,6 +4,23 @@
 
 transition: CSS属性，花费时间，效果曲线（默认ease），延迟时间（默认0）
 
+```html
+<style>
+#box{
+  width:100px;
+  height:100px;
+  background-color:#00abfe;
+  /* width属性以1s的时间变化 */
+  transition: width 1s;
+}
+#box:hover{
+  width:500px;
+}
+</style>
+
+<div id="box"></div>
+```
+
 ## 动画
 
 animation: 动画名称，一个周期花费的时间，运动曲线（默认ease），动画延迟（默认0），播放次数（默认1），是否反向播放（默认normal），是否暂停动画（默认running）
@@ -31,30 +48,53 @@ both：向前和向后填充模式都被应用。  */
 transform：适用于2D或3D转换的元素
 transform-origin：转换元素的位置（围绕哪个点进行转换，默认(50%,50%,0)）
 
-```css
-/* 旋转30度 */
-transform:rotate(30deg);
-/* 水平旋转30度 */
-transform:rotateX(180deg);
-/* 竖直旋转30度 */
-transform:rotateY(180deg);
-/* 三个方向各90度 */
-transform:rotate3d(1,1,1,90deg);
-/* 水平竖直平移30px */
-transform:translate(30px,30px);
-/* 缩放到0.8 */
-transform:scale(.8)
-/* 倾斜10度 */
-transform: skew(10deg,10deg);
+```html
+<style>
+  .box{
+    width:60px;
+    height:60px;
+    background-color:#00abfe;
+    margin: 30px 0;
+  }
+</style>
+<div style="padding:20px;">
+  <span>旋转30度：transform:rotate(30deg)</span>
+  <div class="box" style="transform:rotate(30deg);"></div>
+  <span>水平旋转30度：transform:rotateX(180deg)</span>
+  <div class="box" style="transform:rotateX(180deg);"></div>
+  <span>竖直旋转30度：transform:rotateY(180deg)</span>
+  <div class="box" style="transform:rotateY(180deg);"></div>
+  <span>三个方向各90度：transform:rotate3d(1,1,1,90deg)</span>
+  <div class="box" style="transform:rotate3d(1,1,1,90deg);"></div>
+  <span>水平竖直平移30px：transform:translate(30px,30px)</span>
+  <div class="box" style="transform:translate(30px,30px);"></div>
+  <span>缩放到0.8：transform:scale(.8)</span>
+  <div class="box" style="transform:scale(.8);"></div>
+  <span>倾斜10度：transform: skew(10deg,10deg)</span>
+  <div class="box" style="transform: skew(10deg,10deg);"></div>
+</div>
 ```
 
 ## 选择器
 
-![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202207311536837.png)
+[文章：选择器](选择器.md)
 
 ## 阴影
 
 box-shadow：水平阴影的位置 垂直阴影的位置 模糊距离 阴影的大小 阴影的颜色 阴影开始的方向（默认从里往外，设置inset就是从外往里）;
+
+```html
+<style>
+#box{
+  width:100px;
+  height:100px;
+  background-color:#00abfe;
+  box-shadow: 40px 40px 40px 10px #cdcdcd
+}
+</style>
+
+<div id="box"></div>
+```
 
 ## 边框
 
@@ -68,6 +108,19 @@ border-radius: n1,n2,n3,n4;
 
 n1-n4四个值的顺序是：左上角，右上角，右下角，左下角
 
+```html
+<style>
+#box{
+  width:100px;
+  height:100px;
+  background-color:#00abfe;
+  border-radius: 30px;
+}
+</style>
+
+<div id="box"></div>
+```
+
 ## 背景
 
 ### 设定背景区域
@@ -76,7 +129,7 @@ background-clip：默认border-box，可以改成padding-box、content-box
 
 ### 设置背景起点
 
-background-Origin：border-box，、padding-box或content-box
+background-Origin：border-box、padding-box或content-box
 
 ![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202207311612855.png)
 
@@ -95,49 +148,105 @@ background-size: `contain`、`cover`、`auto`、`100% 100%`...
 
 ## 倒影（反射）
 
-`-webkit-box-reflect`：方向(above上|below下|right右|left左)，偏移量，用于反射的蒙版（图片）。
+`-webkit-box-reflect`：方向(`above`上|`below`下|`right`右|`left`左)，偏移量，用于反射的蒙版（图片）。
 
 ## 文字
 
 ### 换行
 
-word-break: normal默认|break-all只能在半角空格或连字符处换行|keep-all在单词内换行
+word-break: `normal`默认|`break-all`只能在半角空格或连字符处换行|`keep-all`在单词内换行
 
-![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202208011028221.png)
+```html
+<style>
+  .box{
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    border:1px solid #000;
+    margin:10px;
+  }
+</style>
+<div style="display:flex;">
+  <div>
+    <span>word-break: normal;</span>
+    <div class="box" style="word-break: normal;">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
+  </div>
+  <div>
+    <span>word-break: keep-all;</span>
+    <div class="box" style="word-break: keep-all;">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
+  </div>
+  <div>
+    <span>word-break: break-all;</span>
+    <div class="box" style="word-break: break-all;">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
+  </div>
+</div>
+```
 
-word-wrap: normal默认|break-word
+word-wrap: `normal`（默认）| `break-word`
 
-![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202208011031944.png)
-
-text-overflow: clip|ellipsis|string,`clip`这个方式处理不美观，不优雅。`string`只在火狐兼容。
-
-![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202208011033085.png)
+```html
+<style>
+  .box{
+    width:200px;
+    height:200px;
+    border:1px solid #000;
+    margin:10px;
+  }
+</style>
+<div style="display:flex;">
+  <div>
+    <span>word-wrap: normal;</span>
+    <div class="box" style="word-wrap: normal;">The lawn started at the beach and ran toward the front door for a quarter offfffffffffffffffffffffffofff a mile</div>
+  </div>
+  <div>
+    <span>word-wrap: break-word;</span>
+    <div class="box" style="word-wrap: break-word;">The lawn started at the beach and ran toward the front door for a quarter offfffffffffffffffffffffffofff a mile</div>
+  </div>
+</div>
+```
 
 ### 超出省略号
 
-```css
-div
-{
+text-overflow: `clip`|`ellipsis`|`string`,`clip`这个方式处理不美观，不优雅。`string`只在火狐兼容。
+
+```html
+<style>
+  .box{
     overflow:hidden;
-    white-space:nowrap; 
     text-overflow:ellipsis;
-}
+    white-space:nowrap;
+  }
+</style>
+<div class="box">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
 ```
 
 ### 多行超出省略号
-```css
-div{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
+
+```html
+<style>
+  .box{
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+</style>
+<div class="box">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
 ```
 
 ### 文字阴影
 
 text-shadow: 水平阴影，垂直阴影，模糊的距离，以及阴影的颜色。
+
+```html
+<style>
+  .box{
+    text-shadow: 10px 10px 10px #000
+  }
+</style>
+<div class="box">The lawn started at the beach and ran toward the front door for a quarter of a mile, jumping over sundials and brick walks and burning gardens - finally when it reached the house drifting up the side in bright vines as though from the momentum of its run. The front was broken by a line of French windows, glowing now with reflected gold and wide open to the warm windy afternoon.</div>
+```
 
 ## 颜色
 
