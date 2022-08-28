@@ -24,11 +24,17 @@ export default defineConfig({
   title: 'Code More Create',
   // description: "Merlin's Blog",
   assetsInclude: ['**/*.xmind'],
+  head: [
+    // add jquert and fancybox
+    ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js' }],
+    ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js' }],
+    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css' }]
+  ],
   markdown: {
     config: (md) => {
       md.use(CodeRunPlugin)
       md.use(function (md) {
-        const handleImage = md.renderer.rules.image
+        // const handleImage = md.renderer.rules.image
         md.renderer.rules.image = (tokens, idx, options, env, self) => {
           const url = tokens[idx].attrs[0][1];
           if (/.xmind$/.test(url)) {
@@ -36,7 +42,15 @@ export default defineConfig({
             const url = tokens[idx].attrs[0][1];
             return `<XMindViewer src="${url}" title="${title}"></XMindViewer>`;
           } else {
-            return handleImage(tokens, idx, options, env, self);
+            const PUBLIC_PREFIX = "/docs/.vitepress/public";
+            const token = tokens[idx];
+            const srcIndex = token.attrIndex("src");
+            const url = token.attrs[srcIndex][1].replace(PUBLIC_PREFIX, "");
+            const caption = md.utils.escapeHtml(token.content);
+            return `<a data-fancybox href="${url}" content="${caption}">
+                    <img src="${url}" alt="${caption}" />
+                </a>`;
+            // return handleImage(tokens, idx, options, env, self);
           }
         }
       })

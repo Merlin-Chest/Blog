@@ -23,6 +23,46 @@ function myNew(fn, ...args){
 }
 ```
 
+## Class 语法糖——ES6转ES5
+
+题目：
+
+```js
+class Person {
+     constructor (name) {
+          this.name = name;
+     }
+     greet () {
+          console.log(`Hi, my name is ${this.name}`);
+     }
+     greetDelay (time) {
+          setTimeout(() => {
+               console.log(`Hi, my name is ${this.name}`);
+          }, time);
+     }
+}
+```
+
+答案
+```js
+// 注意var，不能使用let、const
+ var Person = (function () {
+     function Person (name) {
+          this._name = name;
+     }
+     Person.prototype.greet = function () {
+          console.log(“Hi, my name is “ + this._name);
+     }
+     Person.prototype.greetDelay = function (time) {
+	     // 注意this
+          var _this = this;
+          setTimeout(function () {
+               console.log(“Hi, my name is “ + _this.name);
+          }, time);
+     }
+})();
+```
+
 ## call、apply、bind
 
 - call(ctx, ...args)
