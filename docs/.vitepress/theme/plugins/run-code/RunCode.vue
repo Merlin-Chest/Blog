@@ -8,7 +8,7 @@
         <button class="button" style="margin-bottom:10px;" @click="reset">重置</button>
         <button class="button" @click="exec">执行</button>
       </div>
-      <p class="warn">{{ warnText }}</p>
+      <p class="warn">{{  warnText  }}</p>
     </div>
     <iframe v-if="type === 'html'" id="subApp" ref="subApp" class="html__view"></iframe>
   </div>
@@ -78,10 +78,7 @@ const execHtml = () => {
   const style = document.createElement('style');
   style.textContent = value.match(/\<style\>.*\<\/style\>/g)?.join('')?.replace(/\<style\>/g, '').replace(/\<\/style\>/g, '');
   head.appendChild(style);
-  const div = document.createElement('div');
-  div.id = 'content';
-  div.innerHTML = value.replace(/\<style\>.*\<\/style\>/g, '').replace(/\<head\>.*\<\/head\>/g, '');
-  document.body.appendChild(div);
+  document.body.innerHTML = value.replace(/\<style\>.*\<\/style\>/g, '').replace(/\<head\>.*\<\/head\>/g, '');
   warnText.value = 'Tip: 你可在下方看到预览效果！';
 }
 

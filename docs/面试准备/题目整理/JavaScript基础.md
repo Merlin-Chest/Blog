@@ -61,21 +61,21 @@ for(var i = 0; i < 10; i++){
         -   let、const暂时性死区
 
 ```
-console.log(a, b) // 12 林一一
-var a = 12, b ='林一一' 
+console.log(a, b) // 12 merlin
+var a = 12, b ='merlin' 
 function foo(){ 
     console.log(a, b) 
     var a = b = 13 
     console.log(a, b) 
 } 
 foo() // 13 13 13 13
-console.log(a, b) // 12 林一一
+console.log(a, b) // 12 merlin
 
 // 未声明错误 Uncaught ReferenceError: 变量 is not defined
 
 /* 输出：
     undefined undefined
-    undefined "林一一"
+    undefined "merlin"
     13 13
     12 13
 */
