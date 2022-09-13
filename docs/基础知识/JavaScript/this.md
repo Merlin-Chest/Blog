@@ -99,9 +99,7 @@ foo(); // TypeError:this is undefined
       a:2;
       obj2:obj2
   };
-  obj1.obj2.foo() // 3 而不是2
-  
-  隐式
+  obj1.obj2.foo() // 3 而不是2，只会指向上一层的上下文
   ```
 
 - 隐式丢失
@@ -121,60 +119,45 @@ foo(); // TypeError:this is undefined
   
   var a = 2;
   var fn = obj.foo;
-  fn(); // 2 而不是3
+  fn(); // 2 而不是3，相当于没有上下文
   ```
 
 ### 显式绑定
 
 直接指定this的绑定对象
 
-- call(thisArg,arg1,arg2,...) 与 apply(...)
-  
-  - 参数
-    
-    - this的绑定对象
-    
-    - 参数列表
-  
-  - 使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数
+- call 与 apply：使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数
+	- 参数
+	    - this的绑定对象
+	    - 多个参数（call）或参数数组（apply）
 
 > 如果传入一个原始值，会被转化为其对象形式，以下同理。
 
-- bind(thisArg,arg1,arg2,...)——硬绑定
-  
-  - 参数
-    
-    - this的绑定对象
-    
-    - 参数列表
-  
-  - 创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+- bind：硬绑定，创建一个新函数，this指定为目标上下文。
+	- 参数
+	    - this的绑定对象
+	    - 参数列表，绑定为新函数的参数
 
 - API调用的上下文
   
   某些API提供了可选参数，其作用和bind(...)一样，确保你的回调函数使用指定的this。
   
-  ```javascript
-  function foo(el){
-      console.log(el,this.id)
-  }
-  var obj = {
-      id:'ok'
-  }
-  [1,2,3].forEach(foo,obj);
-  //1ok 2ok 3ok
-  ```
+```js
+var obj = {
+    id:'ok'
+}
+[1,2,3].forEach(function(el){
+    console.log(el,this.id)
+},obj);
+//1ok 2ok 3ok
+```
 
 ### new绑定
 
 创建过程：
-
 1. 创建一个全新的对象
-
-2. 执行[[Prototype]]连接
-
+2. 执行`prototype`连接
 3. 将该对象绑定到函数调用的this
-
 4. 如果函数中没有返回其他对象，自动返回创建的对象。
 
 ```javascript
@@ -188,14 +171,9 @@ console.log(bar.a); // 2
 ## 绑定规则优先级
 
 1. 函数是否在new中调用 ？this绑定的是新创建的对象 ：继续往下
-
 2. 函数是否通过call、apply或者bind调用 ？this绑定指定对象：继续往下
-
 3. 函数是否在某个上下文对象中调用 ？this绑定该上下文对象 ：继续往下
-
 4. 默认绑定，是否是严格模式 ？undefined ：全局对象。
-
-> 易错
 
 ```js
 'use strict';
@@ -213,7 +191,7 @@ let obj = {
   a: a
 }
 obj.a(); 
-// {aa:1,a:function a(){xxx}}
+// { aa:1, a:function a(){xxx} }
 // undefined
 a();
 // undefined
@@ -222,44 +200,43 @@ a();
 
 ## 绑定的其他情况
 
--  在call、apply等中，如果将要绑定的this传入`null`作为占位符时，在非严格模式下，会应用默认绑定规则绑定到全局对象，将导致不可预计的后果，如修改全局对象。
-  
-  - 创建一个空的非委托的对象，将this指向它。
+-  使用call、apply等时，如果将要绑定的this传入`null`时，在非严格模式下，会应用默认绑定规则绑定到全局对象，将导致不可预计的后果，如修改全局对象。
+- 创建一个空的非委托的对象，将this指向它。
   
   > Object.create(null) 不会创建Object.prototype这个委托，比{}更空。
 
-- 间接引用（见隐式绑定中的隐式丢失）
-
+- 间接引用——隐式丢失
 - 使用软绑定
   
-  ```javascript
-  if (!Function.prototype.softBind) {
-      Function.prototype.softBind = function (obj,...args1) {
-          //传入的obj是我们想要设置的默认的this绑定值
-          var fn = this;
-          var bound = function (...args2) {
-              return fn.apply(
-                  // 如果this指向全局对象，说明默认绑定，则绑定为obj
-                  (!this || this === (window || global)) ? obj : this,
-                  //新的参数列表
-                  [...args1,...args2]
-              );
-          };
-          bound.prototype = Object.create(fn.prototype);
-          return bound;
-      };
-  }
-  //来自《你不知道的JavaScript》上册
-  ```
+```js
+//来自《你不知道的JavaScript》上册
+if (!Function.prototype.softBind) {
+  Function.prototype.softBind = function (obj, ...args1) {
+    //传入的obj是我们想要设置的默认的this绑定值
+    var fn = this;
+    var bound = function (...args2) {
+      return fn.apply(
+        // 如果this指向全局对象，说明默认绑定，则绑定为obj
+        (!this || this === (window || global)) ? obj : this,
+        //新的参数列表
+        [...args1, ...args2]
+      );
+    };
+    bound.prototype = Object.create(fn.prototype);
+    return bound;
+  };
+}
+```
 
 ## 箭头函数的this
 
 箭头函数的this是根据定义函数时外层（函数或者全局）作用域来决定的。常用于回调函数中。
 
 ```javascript
+'use strict';
 function foo(){
-    return ()=>{
-        console.log(this.a)
+    return () => {
+        console.log(this.a) // this为foo的上下文
     }
 }
 var obj = {
@@ -268,8 +245,10 @@ var obj = {
 var obj2 = {
     a:3;
 }
+foo()(); // Uncaught TypeError: Cannot read properties of undefined
+// 严格模式下全局上下文为undefined
 var bar = foo.bind(obj);
-bar.call(obj2); // 2 而不是3，箭头函数的绑定无法修改。
+bar()(); // 2
 ```
 
 如果对一个函数进行多次 bind，那么上下文会是什么呢?
