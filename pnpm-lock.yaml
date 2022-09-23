@@ -23,7 +23,7 @@ dependencies:
 
 devDependencies:
   vitepress: 1.0.0-alpha.2
-  vitepress-auto-nav-sidebar: 0.0.4
+  vitepress-auto-nav-sidebar: link:../vitepress-auto-nav-sidebar
   vue: 3.2.37
 
 packages:
@@ -1156,10 +1156,6 @@ packages:
       rollup: 2.74.1
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
-
-  /vitepress-auto-nav-sidebar/0.0.4:
-    resolution: {integrity: sha512-rcaPhZdRkJWAvkORR4ES5QvTwLMMHqVmSdC3fkq/HAuIw3XSHzROQi62a2HbiUsfi0styFxY7o6VBdtJk8cMDg==}
     dev: true
 
   /vitepress/1.0.0-alpha.2:
