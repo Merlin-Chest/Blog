@@ -21,6 +21,7 @@
 <style>
 #container {
   position: relative;
+  height:100%;
 }
 #content {
   width:200px;
@@ -36,7 +37,7 @@
 </div>
 ```
 
-3. 绝对定位📌 + margin:auto
+3. 绝对定位📌 + margin:auto，该方法适用于**盒子有宽高**的情况
 
 ```html
 <style>

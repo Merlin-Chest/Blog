@@ -111,6 +111,9 @@ Function.prototype.myBind = function(ctx, ...args){
 	const self = this;
 	const fNod = function(){};
 	const bound = function(...innerArgs){
+	// 因为fNod.prototype = this.prototype;
+	// 所以作为构造函数时，this instanceof fNod 为true，所以还是用this
+	// 否则就是普通函数调用，否则使用传进来的ctx
 		return self.apply(
 			this instanceof fNod ? this : ctx,
 			args.concat(Array.prototype.slice(innerArgs))
@@ -120,6 +123,17 @@ Function.prototype.myBind = function(ctx, ...args){
 	bound.prototype = new fNod();
 	return bound;
 }
+
+const ctx = {str:'str1'};
+function Name(str){
+	this.str = str;
+	console.log(this.str)
+}
+const NewName = Name.myBind(ctx,'str2');
+console.log((new NewName()).str === 'str2'); // true
+// 执行NewName后 ctx被修改了
+NewName();
+console.log(ctx.str === 'str2'); // true
 ```
 
 ## instanceof
