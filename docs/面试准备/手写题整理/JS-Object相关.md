@@ -15,7 +15,7 @@ Object._freeze = function (obj) {
     const keys = Object.getOwnPropertyNames(object)
     const symbols = Object.getOwnPropertySymbols(object)
  
-    ;[...keys, ...symbols].forEach(key => {
+    [...keys, ...symbols].forEach(key => {
         Object.defineProperty(object, key, {
             configurable: false,
             writable: false,

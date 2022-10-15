@@ -9,8 +9,6 @@
 
 ## 2、安装
 
-^959b49
-
 `webpack` 是一个使用 `Node.js` 实现的一个模块化代码打包工具。所以，我们需要先安装 webpack，安装之前需要搭建好 `Node.js` 环境
 
 ```
@@ -76,7 +74,6 @@
 模块文件打包以后，就可以在不支持 es6 模块语法的浏览器环境下引入使用了。
 
 #### 打包文件分析
-
 - 把分散的模块文件打包到一个文件中，不需要外部引入了
 - 内置了一个小型模块加载器(类似 `requireJS`)，实现了打包后的代码隔离与引用
 
@@ -202,7 +199,7 @@ webpack 默认支持处理 JS 与 JSON 文件，其他类型都处理不了，�
 
 ### 6-1、执行简要流程
 
-- `loaders`：`webpack` 中灰常核心的内容之一，前面我们说的非 js 类型的模块处理就靠它了。webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。你可以使用 Node.js 来很简单地编写自己的 loader。
+- `loaders`：`webpack` 中非常核心的内容之一，前面我们说的非 js 类型的模块处理就靠它了。webpack 可以使用 loader 来预处理文件。这允许你打包除 JavaScript 之外的任何静态资源。你可以使用 Node.js 来很简单地编写自己的 loader。
 - `plugins`：`webpack` 中另外一个核心的内容，它主要是扩展 `webpack` 本身的一些功能。插件可以运行在 `webpack` 的不同阶段（钩子 / 生命周期）。
 
 ## 7、Loaders
@@ -323,6 +320,7 @@ const config = {
   // ...
 }
 ```
+
 #### img-loader
 
 作用：压缩图片
@@ -618,7 +616,7 @@ modules: {
 
 ### 8-1、HtmlWebpackPlugin
 
-在打包结束后，⾃动生成⼀个 `html` ⽂文件，并把打包生成的 js、css等模块引⼊到该 `html` 中
+在打包结束后，⾃动生成⼀个 `html` 文件，并把打包生成的 js、css等模块引⼊到该 `html` 中
 
 ```bash
  npm install --save-dev html-webpack-plugin

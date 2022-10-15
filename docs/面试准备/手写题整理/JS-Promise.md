@@ -42,6 +42,7 @@ Promise.myRace = function(arr){
         })
     })
 }
+
 // allSettled
 Promise.allSettled = function(arr){
     return new Promise((resolve,reject)=>{
@@ -88,7 +89,6 @@ class PromiseLimiter{
     constructor(maxCount){
         this.maxCount = maxCount;
         this.tasks = [];
-        this.runCount = 0;
         this.result = [];
     }
     add(fn, delay){

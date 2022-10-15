@@ -62,6 +62,7 @@ let newObj = JSON.parse(JSON.stringify(obj))
 console.log(newObj)
 // Uncaught TypeError: Converting circular structure to JSON
 ```
+
 #####  序列化问题
 
 在遇到`函数、undefined 或者 symbol`的时候，该对象也不能正常的序列化
