@@ -8,13 +8,13 @@
 - 依赖 => 副作用函数 => 用户的函数
 - targetMap结构
 
-  ```json
+```json
   targetMap:{
     [target:Map]:{
       [key: Set]:[]
     }
   }
-  ```
+```
 
 ## 相关函数实现
 

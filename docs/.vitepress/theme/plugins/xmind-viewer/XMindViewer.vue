@@ -24,6 +24,7 @@ const props = defineProps({
 const xmind = ref(null)
 
 onMounted(() => {
+
   const viewer = new XMindEmbedViewer({
     el: xmind.value,
   })
@@ -48,4 +49,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
 </style>

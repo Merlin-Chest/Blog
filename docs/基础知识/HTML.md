@@ -1,61 +1,94 @@
 # HTML专题
+
 ### 1. src和href的区别
-	- src：对资源文件的引用，例如请求js脚本或者图片等；当解析js时，默认情况下会阻塞html的渲染
-	- href：对超文本的引用，建立联系，可以是网络资源，或者是文件，或者锚点，不会阻塞对html的处理
+
+- src：对资源文件的引用，例如请求js脚本或者图片等；当解析js时，默认情况下会阻塞html的渲染
+- href：对超文本的引用，建立联系，可以是网络资源，或者是文件，或者锚点，不会阻塞对html的处理
+
 ### 2. a标签中href的几种跳转方法
-- href="javascript:js_method();" 执行js方法（不推荐）
-- href="javascript:void(0)" onclick="js_method()" 执行js方法（推荐）
-- href="javascript:;" οnclick="js_method()" 与上面方法类似，执行一行空的js代码
-- href="#" 返回页面顶部
-- href="#top" 跳到对应的id
-- href="http://xxx" 新建窗口，访问网址
-- href="./test.doc" 下载文件
+- `href="javascript:js_method();"` 执行js方法（不推荐）
+- `href="javascript:void(0)" onclick="js_method()"` 执行js方法（推荐）
+- `href="javascript:;" οnclick="js_method()"` 与上面方法类似，执行一行空的js代码
+- `href="#"` 返回页面顶部
+- `href="#top"` 跳到对应的id
+- `href="http://xxx"` 新建窗口，访问网址
+- `href="./test.doc"` 下载文件
+
 ### 3. HTML语义化的理解？好处？常用的语义化标签有？
 - 根据内容的结构化，使用合适的带有具体语义的标签，用正确的标签做正确的事情。
 - 好处：可读性强；便于维护；有助于搜索引擎爬取相关信息，有利于SEO；对读屏软件可以根据文章生成目录；
 - 常用的语义化标签
-	- `header`头部、`nav`导航、`footer`底部、`main`主要区域、`section`区块、`article`主要内容
+	- `header`头部
+	- `nav`导航
+	- `footer`底部
+	- `main`主要区域
+	- `section`区块
+	- `article`主要内容
+	- `aside`侧边
+
 ### 4. DOCTYPE（文档类型）作用？有什么意义 ✅ 
 - 告诉浏览器一个用什么文档类型来解析。必须声明在文档第一行`<!DOCTYPE html>`，现在不需要表明具体的版本。
 	- 标准模式：以W3C的标准模式解析渲染页面
 	- 怪异模式：浏览器以自己的怪异模式解析
+
 ### 5. script标签中defer和async的相同点和不同点 ✅
 - 相同点：该脚本会异步加载，不会阻塞页面渲染。
 - 不同点：
 	- defer：加载完会在页面全部渲染完成后再执行，多个defer脚本会按顺序执行
 	- async：会在加载完立即执行，占用html渲染进程，并且不保证执行顺序
+
 ### 7. meta标签的作用？常用的有哪些？❎
 - 用来描述网页文档的属性，如标题，页面描述，作者等
 - 常用：
 	- `<meta charset="UTF-8" />` HTML的编码类型
 	- `<meta name="keywords" content="关键词" />`
-	- `<meta name="descript" content="页面描述信息" />`
-	- `<meta http-equiv="refresh" content="0;url=" />` 刷新网页 content="秒数;url=跳转链接"
+	- `<meta name="description" content="页面描述信息" />`
+	- `<meta http-equiv="refresh" content="秒数;url=跳转链接" />` 刷新网页
 	- `<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">` 适配移动端，可以控制视口的大小和比例
-			- width：宽度（数值/device-width) 
-			- height：高度（数值/device-height）
-			- initial-scale：初始缩放比例 
-			- maximum-scale：最大缩放比例 
-			- minimum-scale：最小缩放比例 
-			- user-scalable：是否允许用户缩放(yes/no)
+		- width：宽度（数值/device-width) 
+		- height：高度（数值/device-height）
+		- initial-scale：初始缩放比例 
+		- maximum-scale：最大缩放比例 
+		- minimum-scale：最小缩放比例 
+		- user-scalable：是否允许用户缩放(yes/no)
 	- `<meta name="robots" content="index,follow" />` content参数有几种
-			- all:文件将被检索，且页面上的链接可以备查询
-			- none：文件将不被检索，且页面上的链接不可以被查询
-			- index：文件将被检索
-			- follow：页面是上的链接可以被查询
-			- onindex：文件将不被检索
-			- onfollow：页面上的链接不可以被查询
-### 8. HTML5有哪些更新❎
+		- all:文件将被检索，且页面上的链接可以备查询
+		- none：文件将不被检索，且页面上的链接不可以被查询
+		- index：文件将被检索
+		- follow：页面是上的链接可以被查询
+		- onindex：文件将不被检索
+		- onfollow：页面上的链接不可以被查询
+
+### 8. HTML5有哪些更新
+
+- #### 标签方面
+- 语义化标签
+    - `header`头部、`nav`导航、`footer`底部、`main`主要区域、`section`区块、`article`主要内容、`aside`侧边
+ - 表单控件：`calendar`、`date`、`time`、`email`、`url`、`search`
+- video标签
+	- 属性
+		- poster：封面，默认视频文件第一帧
+		- controls：控制面板
+		- width、height
+		- autoplay
+  - audio标签
+	  - 属性
+		  - controls：控制面板
+		  - autoplay
+		  - `loop="true"`：循环播放
+- source标签
+	- 用来指定视频源
+  - 移除了一些元素
+    - 纯表现的元素：`big`、`center`、`font`、`s`、`strike`
+    - 对可用性产生负面影响的元素：`frame`、`frameset`、`noframes`;
+
 - canvas
-- video和audio元素
 - localStorage长期存储数据，关闭浏览器不会丢失
 - sessionStorage的数据在浏览器关闭后自动删除
-- 语义化标签
-- 表单控件：calendar、date、time、email、url、search
-- webWorker、webSocket、地理位置定位
-- 移除了一些元素
-		- 纯表现的元素：big、center、font、s、strike
-		- 对可用性产生负面影响的元素：frame,frameset,noframes;
+- webWorker
+- webSocket
+- 地理位置定位
+
 - IE8/IE7/IE6支持通过document.createElement方法产生的标签，可以利用这一特性让这些浏览器支持HTML5新标签，浏览器支持新标签后，还需要添加标签默认的样式。
 ### 9. img标签srcset属性的作用
 - srcset属性用于设置不同屏幕密度下，img 会自动加载不同的图片。

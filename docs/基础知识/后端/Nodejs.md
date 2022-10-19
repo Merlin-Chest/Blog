@@ -1,8 +1,5 @@
 # NodeJS
 
-Created: July 21, 2021 5:39 PM
-Tags: nodejs
-
 ### Node.js介绍
 
 - Node.js 诞生于2009年，Node.js采用C++语言编写而成，是 一个Javascript的运行环境。Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境 ，让JavaScript的运行脱离浏览器端，可以使用JavaScript语言 书写服务器端代码。

@@ -1,6 +1,21 @@
+:root {
+  --vp-c-brand: #ECBF60;
+  --vp-c-brand-light: #EC8F06;
+  --vp-button-alt-bg:transparent;
+}
+
 .VPFlyout .text, .VPNavBarMenuLink{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width:110px;
+}
+
+.VPFooter, .VPLocalNav{
+  background-color:transparent !important;
+  border:0 !important;
+}
+
+.VPButton{
+  backdrop-filter: blur(30px);
 }
