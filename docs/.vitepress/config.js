@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import AutoNavPlugin from 'vitepress-auto-nav-sidebar'
 import CodeRunPlugin from './theme/plugins/run-code'
 
-import XMindPlugin from 'vite-plugin-vue-xmind'
+// import XMindPlugin from 'vite-plugin-vue-xmind'
 const { nav, sidebar } = AutoNavPlugin({
   ignoreFolders: [
     'node_modules',
@@ -25,9 +25,9 @@ export default defineConfig({
   title: 'Code More Create',
   // description: "Merlin's Blog",
   assetsInclude: ['**/*.xmind'],
-  vite: {
-    plugins: [XMindPlugin()]
-  },
+  // vite: {
+  //   plugins: [XMindPlugin()]
+  // },
   head: [
     // add jquert and fancybox
     ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js' }],
