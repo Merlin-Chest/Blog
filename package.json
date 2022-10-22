@@ -11,7 +11,7 @@
     "oss:cli": "ossutil cp -rf ./dist oss://merlin-website/blog/"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.2",
+    "vitepress": "1.0.0-alpha.21",
     "vitepress-auto-nav-sidebar": "0.0.4",
     "vue": "^3.2.37"
   },
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/Merlin218/Merlin218.github.io#readme",
   "dependencies": {
+    "@algolia/client-search": "^4.14.2",
     "@codemirror/lang-html": "^6.1.0",
     "@codemirror/lang-javascript": "^6.0.2",
     "@codemirror/theme-one-dark": "^6.0.0",
