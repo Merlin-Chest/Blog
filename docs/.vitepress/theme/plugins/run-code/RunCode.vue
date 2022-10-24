@@ -8,7 +8,7 @@
         <button class="button" style="margin-bottom:10px;" @click="reset">重置</button>
         <button class="button" @click="exec">执行</button>
       </div>
-      <p class="warn">{{  warnText  }}</p>
+      <p class="warn">{{ warnText }}</p>
     </div>
     <iframe v-if="type === 'html'" id="subApp" ref="subApp" class="html__view"></iframe>
   </div>

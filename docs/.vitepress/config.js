@@ -36,15 +36,16 @@ export default defineConfig({
   ],
   markdown: {
     config: (md) => {
-      md.use(CodeRunPlugin)
+      // md.use(CodeRunPlugin)
       md.use(function (md) {
         // const handleImage = md.renderer.rules.image
         md.renderer.rules.image = (tokens, idx, options, env, self) => {
           const url = tokens[idx].attrs[0][1];
           if (/.xmind$/.test(url)) {
-            const title = tokens[idx].children[0].content;
-            const url = tokens[idx].attrs[0][1];
-            return `<XMindViewer src="${url}" title="${title}"></XMindViewer>`;
+            // const title = tokens[idx].children[0].content;
+            // const url = tokens[idx].attrs[0][1];
+            // return `<XMindViewer src="${url}" title="${title}"></XMindViewer>`;
+            return `<p>暂时不支持XMIND预览</p>`;
           } else {
             const PUBLIC_PREFIX = "/docs/.vitepress/public";
             const token = tokens[idx];

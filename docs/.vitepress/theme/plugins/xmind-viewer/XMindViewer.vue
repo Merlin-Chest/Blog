@@ -4,7 +4,6 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { XMindEmbedViewer } from 'xmind-embed-viewer';
 
 const props = defineProps({
   src: {
