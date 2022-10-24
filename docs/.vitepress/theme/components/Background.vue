@@ -16,7 +16,8 @@ const containerClass = ref('container')
 watch(
   () => router.path,
   () => {
-    if (router.path === '/') {
+    console.log(router.path)
+    if (!router.path || router.path === '/') {
       containerClass.value = 'container'
     } else {
       containerClass.value = 'container filter'
