@@ -15,7 +15,7 @@ const { nav, sidebar } = AutoNavPlugin({
     'resource',
     'xmind'
   ],
-  ignoreFiles: ['个人简历', '学习计划', '面试准备', '互联网公司列表', 'index'],
+  ignoreFiles: ['个人简历', '学习大纲', '学习计划', '面试准备', '互联网公司列表', 'index'],
   isCollapse: true,
 })
 
