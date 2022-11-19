@@ -13,7 +13,8 @@ const { nav, sidebar } = AutoNavPlugin({
     '.obsidian',
     'utils',
     'resource',
-    'xmind'
+    'xmind',
+    'Vue'
   ],
   ignoreFiles: ['个人简历', '学习大纲', '学习计划', '面试准备', '互联网公司列表', 'index'],
   isCollapse: true,
