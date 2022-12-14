@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import AutoNavPlugin from 'vitepress-auto-nav-sidebar'
-import CodeRunPlugin from './theme/plugins/run-code'
 
 // import XMindPlugin from 'vite-plugin-vue-xmind'
 const { nav, sidebar } = AutoNavPlugin({
