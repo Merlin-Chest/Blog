@@ -15,12 +15,16 @@ const { nav, sidebar } = AutoNavPlugin({
     'xmind',
     'Vue'
   ],
+  dirPrefix: '',
+  filePrefix: '',
   ignoreFiles: ['个人简历', '学习大纲', '学习计划', '面试准备', '互联网公司列表', 'index'],
   isCollapse: true,
+
 })
 
 export default defineConfig({
   base: '',
+  appearance: false,
   lang: 'zh-CN',
   title: 'Code More Create',
   // description: "Merlin's Blog",
@@ -62,12 +66,12 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    logo: '/logo.png',
+    // logo: '/logo.png',
     siteTitle: 'Code More Create',
     nav: [
       ...nav,
       {
-        text: '🌱 算法笔记',
+        text: '🏄🏻‍♂️ 算法笔记',
         link: 'https://algorithm.merlin218.top'
       }
     ], sidebar,

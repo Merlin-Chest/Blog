@@ -1,5 +1,5 @@
 <template>
-  <Background></Background>
+  <!-- <Background></Background> -->
   <!-- this is where markdown content will be rendered -->
   <Layout />
 </template>

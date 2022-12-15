@@ -4,6 +4,7 @@ import DefaultTheme from 'vitepress/theme'
 import Background from './components/Background.vue'
 import './custom.css'
 import Layout from './components/Layout.vue'
+import SpotlightCursorText from './components/SpotlightCursorText.vue'
 
 export default {
   ...DefaultTheme,
@@ -12,5 +13,6 @@ export default {
     // app.component('RunCode', RunCode)
     // app.component('XMindViewer', XMindViewer)
     app.component('Background', Background)
+    app.component('SpotlightCursorText', SpotlightCursorText)
   }
 }
