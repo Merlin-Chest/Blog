@@ -2,16 +2,15 @@
 
 ## 早期的模式
 
-\[\[前端路由\]\]
+<!-- \[\[前端路由\]\]
 
-[前端路由](../基础知识/浏览器/前端路由.md)
+[前端路由](../基础知识/浏览器/前端路由.md) -->
 
 ## 实现原理
 
 首先，vue-router实现的是无刷新的页面跳转和视图更新。
 
 ![](https://cdn.jsdelivr.net/gh/Merlin218/image-storage/picGo/202204111044344.png)
-
 
 这种所有路由都渲染一个前端入口文件的方式，是单页面应用程序（SPA，single page application）应用的雏形。
 
@@ -56,19 +55,19 @@ window.addEventListener('popstate', cb, false);
 在vue-router4中，提供了 **createRouter** 的方法来创建路由的实例。我们可以看看都完成了哪些事情?[源码地址](https://github.com/vuejs/router/blob/main/src/router.ts#L355)
 
 - 入口
-	- routerOptions规范了我们配置的路由对象，包括了history（路由模式）、routes（所有的路由关系）等。
+  - routerOptions规范了我们配置的路由对象，包括了history（路由模式）、routes（所有的路由关系）等。
 - 返回值
-	- 返回一个包括了`addRoute`、`push`、`beforeEnter`、`install`等方法和`currentRoute`和`options`等属性的对象。
+  - 返回一个包括了`addRoute`、`push`、`beforeEnter`、`install`等方法和`currentRoute`和`options`等属性的对象。
 
 ### install方法
 
 **install** 方法实际就是vue提供的安装插件的机制，我们看一下是如何在vue应用中注入路由的。
+
 - 注册全局组件`router-view`和`router-link`；
 - 把`$router`加入到全局的属性`app.config.globalProperties`中，值为该路由实例；
 - 把`$route`加入到全局属性中，值为使用`defineProperty`的形式返回`currentRoute`的`value`，可以做到实时同步；
 - 使用 computed 把currentRoute变成响应式对象，存储在 reactiveRoute 对象中，再通过 app.provide 给全局注册了 `router` 和 `reactive 包裹后的 reactiveRoute 对象`。（provide 提供的数据并没有做响应式的封装）
 - 最后就是重写app.unmount逻辑，添加了移除router的过程。
-
 
 ### router-view和router-link
 
